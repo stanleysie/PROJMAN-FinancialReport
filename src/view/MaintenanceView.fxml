@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Button fx:id="sss" layoutX="190.0" layoutY="185.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="125.0" stylesheets="@Login.css" text="SSS Rates" />
+      <Button fx:id="pagibig" layoutX="190.0" layoutY="250.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="125.0" stylesheets="@Login.css" text="Pagibig Rates" />
+      <Button fx:id="provincial" layoutX="190.0" layoutY="315.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="125.0" stylesheets="@Login.css" text="Provincial Rates" />
+      <Button fx:id="back" layoutX="215.0" layoutY="400.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="80.0" stylesheets="@Login.css" text="Return" />
+      <Label layoutX="140.0" layoutY="39.0" text="Admin Maintenance">
+         <font>
+            <Font name="Corbel" size="27.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="445.0" fitWidth="35.0" layoutX="25.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../files/side.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="445.0" fitWidth="35.0" layoutX="450.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../files/side.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="addUser" layoutX="190.0" layoutY="120.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="125.0" stylesheets="@Login.css" text="Add User" />
+   </children>
+</AnchorPane>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="155.0" layoutY="175.0" text="(File Name) has been Printed!" />
+      <Button fx:id="generateNew" layoutX="160.0" layoutY="330.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="180.0" stylesheets="@Login.css" text="Generate a New File" />
+      <Button fx:id="exit" layoutX="220.0" layoutY="410.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="60.0" stylesheets="@Login.css" text="Exit" />
+      <ImageView fitHeight="445.0" fitWidth="35.0" layoutX="25.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../files/side.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="445.0" fitWidth="35.0" layoutX="450.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../files/side.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="115.0" layoutY="220.0" text="(File Name) has been saved at (Location)" />
+      <ImageView fitHeight="147.0" fitWidth="180.0" layoutX="160.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../files/logo.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="70.0" layoutY="265.0" text="(Date &amp; Time of Printing)" />
+      <Label layoutX="250.0" layoutY="265.0" text="(Document Version Number)" />
+   </children>
+</AnchorPane>

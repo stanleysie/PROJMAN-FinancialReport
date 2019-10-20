@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Computation;
 import model.ComputationDaily;
@@ -27,9 +28,9 @@ import java.text.DecimalFormat;
 public class Testing implements View {
 
     @FXML
-    private Label name, address;
+    private TextField name, address;
     @FXML
-    private Button generate;
+    private Button generate, adminEdit;
 
     private Stage stage;
     private Paragraph NEWLINE;
@@ -39,6 +40,7 @@ public class Testing implements View {
     private Computation comp;
 
     public Testing(Stage stage) {
+        System.out.println("SCENE: TESTING");
         this.stage = stage;
         Scene scene = FXMLClass.getScene("/view/Testing.fxml", this);
         this.stage.setScene(scene);
@@ -49,6 +51,7 @@ public class Testing implements View {
     public void initialize() {
         generate.setDefaultButton(true);
         generate.setOnAction(event -> {
+            System.out.println("PRINTING");
             try {
                 generate();
             } catch (FileNotFoundException e) {
@@ -60,11 +63,34 @@ public class Testing implements View {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            Stage stage = (Stage) generate.getScene().getWindow();
+            Success success = new Success(stage);
+        });
+
+        adminEdit.setOnAction(event -> {
+            Stage stage = (Stage) adminEdit.getScene().getWindow();
+            Maintenance maintenance = new Maintenance(stage);
+        });
+
+        adminEdit.setOnMouseEntered(event -> {
+            adminEdit.setStyle("-fx-background-color: darkgrey");
+        });
+
+        adminEdit.setOnMouseExited(event -> {
+            adminEdit.setStyle("-fx-background-color: lightgrey");
+        });
+
+        generate.setOnMouseEntered(event -> {
+            generate.setStyle("-fx-background-color: darkgrey");
+        });
+
+        generate.setOnMouseExited(event -> {
+            generate.setStyle("-fx-background-color: lightgrey");
         });
     }
 
     public void generate() throws IOException, DocumentException, URISyntaxException {
-        Path path = Paths.get(ClassLoader.getSystemResource("files/PTS.png").toURI());
+        Path path = Paths.get(ClassLoader.getSystemResource("files/logo.png").toURI());
         Image image = Image.getInstance(path.toAbsolutePath().toString());
         image.scaleToFit(100, 100);
 
