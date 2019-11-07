@@ -23,7 +23,7 @@ public class Success implements View{
     public void initialize(){
         generateNew.setOnAction(event -> {
             Stage stage = (Stage) generateNew.getScene().getWindow();
-            Testing testing = new Testing(stage);
+            GeneratePDF generatePDF = new GeneratePDF(stage);
         });
 
         generateNew.setOnMouseEntered(event -> {

@@ -6,11 +6,10 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
-public class Login implements View{
+public class Login implements View {
 
     @FXML
     private Button loginBtn;
-
     private Stage stage;
 
     public Login(Stage stage) {
@@ -26,7 +25,7 @@ public class Login implements View{
     public void initialize(){
         loginBtn.setOnAction(event -> {
             Stage stage = (Stage) loginBtn.getScene().getWindow();
-            Testing testing = new Testing(stage);
+            GeneratePDF generatePDF = new GeneratePDF(stage);
         });
 
         loginBtn.setOnMouseEntered(event -> {

@@ -11,10 +11,8 @@ public class AddUser implements View{
 
     @FXML
     private Button back,register;
-
     @FXML
     private TextField username;
-    
     @FXML
     private PasswordField password,confirmPassword;
 

@@ -22,7 +22,7 @@ public class Maintenance implements View{
     public void initialize(){
         back.setOnAction(event ->{
             Stage stage = (Stage) sss.getScene().getWindow();
-            Testing testing = new Testing(stage);
+            GeneratePDF generatePDF = new GeneratePDF(stage);
         });
 
         back.setOnMouseEntered(event -> {

@@ -1,21 +1,16 @@
 package view;
 
 import com.itextpdf.text.*;
-import com.itextpdf.text.pdf.PdfPCell;
-import com.itextpdf.text.pdf.PdfPTable;
-import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.text.pdf.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Border;
 import javafx.stage.Stage;
-import model.Computation;
-import model.ComputationDaily;
-import model.ComputationMonthly;
-import model.Data;
+import model.*;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -25,7 +20,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.DecimalFormat;
 
-public class Testing implements View {
+public class GeneratePDF extends PdfPageEventHelper implements View {
 
     @FXML
     private TextField name, address;
@@ -36,13 +31,13 @@ public class Testing implements View {
     private Paragraph NEWLINE;
     private ObservableList<Data> basic, monthlyCost, governmental;
     private PdfPCell space;
+    private PdfWriter writer;
     private Font regular, bold, small;
     private Computation comp;
 
-    public Testing(Stage stage) {
-        System.out.println("SCENE: TESTING");
+    public GeneratePDF(Stage stage) {
         this.stage = stage;
-        Scene scene = FXMLClass.getScene("/view/Testing.fxml", this);
+        Scene scene = FXMLClass.getScene("/view/GeneratePDF.fxml", this);
         this.stage.setScene(scene);
         this.stage.show();
         setup();
@@ -95,16 +90,15 @@ public class Testing implements View {
         image.scaleToFit(100, 100);
 
         Document document = new Document();
-        PdfWriter.getInstance(document, new FileOutputStream("Testing.pdf"));
+        writer = PdfWriter.getInstance(document, new FileOutputStream("GeneratePDF.pdf"));
         document.setPageSize(PageSize.LETTER);
         document.open();
 
         document.add(image);
-        document.add(NEWLINE);
         Paragraph para = new Paragraph();
-        para.add(new Chunk(name.getText(), FontFactory.getFont(FontFactory.HELVETICA_BOLD, 12)));
+        para.add(new Chunk(name.getText(), FontFactory.getFont(FontFactory.HELVETICA_BOLD, 11)));
         para.add(Chunk.NEWLINE);
-        para.add(new Chunk(address.getText(), FontFactory.getFont(FontFactory.HELVETICA_BOLD, 12)));
+        para.add(new Chunk(address.getText(), FontFactory.getFont(FontFactory.HELVETICA_BOLD, 11)));
         para.add(Chunk.NEWLINE);
         document.add(para);
         document.add(NEWLINE);
@@ -114,6 +108,7 @@ public class Testing implements View {
         document.add(NEWLINE);
         document.add(NEWLINE);
         signatories(document);
+        addFooter(writer, document);
         document.close();
     }
 
@@ -123,9 +118,9 @@ public class Testing implements View {
         PdfPCell emptyCell = new PdfPCell();
         PdfPCell value = new PdfPCell();
         emptyCell.setColspan(2);
-        emptyCell.setBorderColor(BaseColor.WHITE);
+        emptyCell.setBorder(Rectangle.NO_BORDER);
         value.setColspan(1);
-        value.setBorderColor(BaseColor.WHITE);
+        value.setBorder(Rectangle.NO_BORDER);
         value.setHorizontalAlignment(Element.ALIGN_CENTER);
         emptyCell.setPhrase(new Phrase(" "));
         table.addCell(emptyCell);
@@ -152,7 +147,7 @@ public class Testing implements View {
     private void addHeader(PdfPTable table, String title) {
         PdfPCell header = new PdfPCell();
         header.setPhrase(new Phrase(new Chunk(title, regular)));
-        header.setBorderColor(BaseColor.WHITE);
+        header.setBorder(Rectangle.NO_BORDER);
         header.setColspan(3);
         table.addCell(header);
     }
@@ -163,8 +158,8 @@ public class Testing implements View {
         PdfPCell header2 = new PdfPCell();
         header1.setPhrase(new Phrase(new Chunk(title, regular)));
         header2.setPhrase(new Phrase(new Chunk("P" + df.format(value), regular)));
-        header1.setBorderColor(BaseColor.WHITE);
-        header2.setBorderColor(BaseColor.WHITE);
+        header1.setBorder(Rectangle.NO_BORDER);
+        header2.setBorder(Rectangle.NO_BORDER);
         header1.setColspan(2);
         header2.setColspan(1);
         header2.setHorizontalAlignment(Element.ALIGN_RIGHT);
@@ -173,20 +168,20 @@ public class Testing implements View {
     }
 
     private void addHeader(PdfPTable table, String title, double percent, double value) {
-        DecimalFormat df = new DecimalFormat("#.00");
+        DecimalFormat df = new DecimalFormat("#,###.00");
         PdfPCell header1 = new PdfPCell();
         PdfPCell header2 = new PdfPCell();
         PdfPCell header3 = new PdfPCell();
         header1.setPhrase(new Phrase(new Chunk(title, regular)));
-        header1.setBorderColor(BaseColor.WHITE);
+        header1.setBorder(Rectangle.NO_BORDER);
         header1.setColspan(1);
         header2.setColspan(1);
         header3.setColspan(1);
         header2.setPhrase(new Phrase(new Chunk(df.format(percent) + "%", regular)));
         header2.setHorizontalAlignment(Element.ALIGN_CENTER);
-        header2.setBorderColor(BaseColor.WHITE);
+        header2.setBorder(Rectangle.NO_BORDER);
         header3.setPhrase(new Phrase(new Chunk("P" + df.format(value), regular)));
-        header3.setBorderColor(BaseColor.WHITE);
+        header3.setBorder(Rectangle.NO_BORDER);
         header3.setHorizontalAlignment(Element.ALIGN_RIGHT);
         table.addCell(header1);
         table.addCell(header2);
@@ -200,8 +195,8 @@ public class Testing implements View {
 
         cellLeft.setHorizontalAlignment(Element.ALIGN_LEFT);
         cellRight.setHorizontalAlignment(Element.ALIGN_RIGHT);
-        cellLeft.setBorderColor(BaseColor.WHITE);
-        cellRight.setBorderColor(BaseColor.WHITE);
+        cellLeft.setBorder(Rectangle.NO_BORDER);
+        cellRight.setBorder(Rectangle.NO_BORDER);
         cellLeft.setColspan(2);
         cellRight.setColspan(1);
 
@@ -233,53 +228,92 @@ public class Testing implements View {
     }
 
     private void signatories(Document document) throws DocumentException {
-        PdfPTable table = new PdfPTable(3);
+        float[] width = {1, 4, 1, 4, 1, 4, 1};
+        PdfPTable table = new PdfPTable(width);
+        PdfPCell smallSpace = new PdfPCell();
         PdfPCell cell1 = new PdfPCell();
         PdfPCell cell2 = new PdfPCell();
         PdfPCell cell3 = new PdfPCell();
+        smallSpace.setColspan(1);
+        smallSpace.setPhrase(new Phrase("", small));
+        smallSpace.setBorder(Rectangle.NO_BORDER);
         cell1.setColspan(1);
         cell2.setColspan(1);
         cell3.setColspan(1);
-        cell1.setBorderColor(BaseColor.WHITE);
-        cell2.setBorderColor(BaseColor.WHITE);
-        cell3.setBorderColor(BaseColor.WHITE);
-        cell2.setHorizontalAlignment(Element.ALIGN_LEFT);
+        space.setColspan(7);
+        cell1.setHorizontalAlignment(Element.ALIGN_CENTER);
         cell2.setHorizontalAlignment(Element.ALIGN_CENTER);
         cell3.setHorizontalAlignment(Element.ALIGN_CENTER);
+        cell1.setBorder(Rectangle.NO_BORDER);
+        cell2.setBorder(Rectangle.NO_BORDER);
+        cell3.setBorder(Rectangle.NO_BORDER);
         cell1.setPhrase(new Phrase(new Chunk("Created By", small)));
-        cell2.setPhrase(new Phrase(" "));
-        cell3.setPhrase(new Phrase(" "));
-        table.addCell(cell1);
-        table.addCell(cell2);
-        table.addCell(cell3);
+        addCells(table, cell1, cell2, cell3, smallSpace);
         table.addCell(space);
         table.addCell(space);
-        cell1.setHorizontalAlignment(Element.ALIGN_CENTER);
+        cell1.setPhrase(new Phrase(""));
+        cell1.setBorder(Rectangle.BOTTOM);
+        addCells(table, cell1, cell2, cell3, smallSpace);
         cell1.setPhrase(new Phrase(new Chunk("Name", small)));
-        cell2.setPhrase(new Phrase(" "));
-        cell3.setPhrase(new Phrase(" "));
-        table.addCell(cell1);
-        table.addCell(cell2);
-        table.addCell(cell3);
+        cell1.setBorder(Rectangle.NO_BORDER);
+        addCells(table, cell1, cell2, cell3, smallSpace);
         table.addCell(space);
-        cell1.setHorizontalAlignment(Element.ALIGN_LEFT);
         cell1.setPhrase(new Phrase(new Chunk("Reviewed By", small)));
-        cell2.setPhrase(new Phrase(" ", small));
+        cell2.setPhrase(new Phrase(""));
         cell3.setPhrase(new Phrase("Approved By", small));
-        table.addCell(cell1);
-        table.addCell(cell2);
-        table.addCell(cell3);
+        addCells(table, cell1, cell2, cell3, smallSpace);
         table.addCell(space);
         table.addCell(space);
-        cell1.setHorizontalAlignment(Element.ALIGN_CENTER);
+        cell1.setPhrase(new Phrase(""));
+        cell3.setPhrase(new Phrase(""));
+        cell1.setBorder(Rectangle.BOTTOM);
+        cell2.setBorder(Rectangle.BOTTOM);
+        cell3.setBorder(Rectangle.BOTTOM);
+        addCells(table, cell1, cell2, cell3, smallSpace);
         cell1.setPhrase(new Phrase(new Chunk("HR Manager", small)));
         cell2.setPhrase(new Phrase("Accounting Supervisor", small));
         cell3.setPhrase(new Phrase("General Manager", small));
-        table.addCell(cell1);
-        table.addCell(cell2);
-        table.addCell(cell3);
+        cell1.setBorder(Rectangle.NO_BORDER);
+        cell2.setBorder(Rectangle.NO_BORDER);
+        cell3.setBorder(Rectangle.NO_BORDER);
+        addCells(table, cell1, cell2, cell3, smallSpace);
         document.add(table);
     }
+
+    private void addCells(PdfPTable table, PdfPCell cell1, PdfPCell cell2, PdfPCell cell3, PdfPCell smallSpace) {
+        table.addCell(smallSpace);
+        table.addCell(cell1);
+        table.addCell(smallSpace);
+        table.addCell(cell2);
+        table.addCell(smallSpace);
+        table.addCell(cell3);
+        table.addCell(smallSpace);
+    }
+
+    private void addFooter(PdfWriter writer, Document document) {
+        PdfPTable footer = new PdfPTable(1);
+        try {
+            footer.setWidths(new int[]{100});
+            footer.setTotalWidth(527);
+            footer.setLockedWidth(false);
+            footer.getDefaultCell().setFixedHeight(40);
+            footer.getDefaultCell().setBorder(Rectangle.TOP);
+            footer.getDefaultCell().setBorderColor(BaseColor.LIGHT_GRAY);
+
+            // add current page count
+            footer.getDefaultCell().setHorizontalAlignment(Element.ALIGN_RIGHT);
+            footer.addCell(new Phrase(String.format("Version 1.0.1") , new Font(Font.FontFamily.HELVETICA, 10, Font.BOLD)));
+
+            // write page
+            PdfContentByte canvas = writer.getDirectContent();
+            canvas.beginMarkedContentSequence(PdfName.ARTIFACT);
+            footer.writeSelectedRows(0, -1, 34, 50, canvas);
+            canvas.endMarkedContentSequence();
+        } catch(DocumentException de) {
+            throw new ExceptionConverter(de);
+        }
+    }
+
 
     public void setData(String location, String type, double basicSalary, int workingDays, int daysOfIncentiveLeave, double allowance) {
         if(type.equalsIgnoreCase("daily")) {
@@ -306,13 +340,13 @@ public class Testing implements View {
         governmental = FXCollections.observableArrayList();
         space = new PdfPCell();
         space.setPhrase(new Phrase(" "));
-        space.setBorderColor(BaseColor.WHITE);
+        space.setBorder(Rectangle.NO_BORDER);
         space.setHorizontalAlignment(Element.ALIGN_CENTER);
         space.setColspan(3);
         NEWLINE = new Paragraph();
         NEWLINE.add(Chunk.NEWLINE);
-        regular = FontFactory.getFont(FontFactory.HELVETICA, 12);
-        bold = FontFactory.getFont(FontFactory.HELVETICA, 12, Font.BOLD);
+        regular = FontFactory.getFont(FontFactory.HELVETICA, 10);
+        bold = FontFactory.getFont(FontFactory.HELVETICA, 10, Font.BOLD);
         small = FontFactory.getFont(FontFactory.HELVETICA, 10);
     }
 }
