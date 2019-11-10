@@ -1,0 +1,29 @@
+.text-field {
+    -fx-background-color: transparent;
+    -fx-border-color: white;
+    -fx-border-width: 0 0 2 0;
+    -fx-color: white;
+}
+
+.text-field:focused {
+    -fx-background-color: transparent;
+    -fx-border-color: white;
+    -fx-border-width: 0 0 2 0;
+}
+
+.password-field{
+    -fx-background-color: transparent;
+    -fx-border-color: white;
+    -fx-border-width: 0 0 2 0;
+    -fx-color: white;
+
+}
+
+.button{
+    -fx-border-radius: 50px;
+    -fx-border-style: solid;
+    -fx-border-width: 3px;
+    -fx-border-color: white;
+    -fx-background-color: transparent;
+    -fx-background-radius: 50px;
+}
