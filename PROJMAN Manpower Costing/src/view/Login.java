@@ -26,7 +26,7 @@ public class Login implements View{
     public void initialize(){
         loginBtn.setOnAction(event -> {
             Stage stage = (Stage) loginBtn.getScene().getWindow();
-            Testing testing = new Testing(stage);
+            Menu menu = new Menu(stage);
         });
 
         loginBtn.setOnMouseEntered(event -> {

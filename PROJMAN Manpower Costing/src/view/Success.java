@@ -23,7 +23,7 @@ public class Success implements View{
     public void initialize(){
         generateNew.setOnAction(event -> {
             Stage stage = (Stage) generateNew.getScene().getWindow();
-            Testing testing = new Testing(stage);
+            Menu menu = new Menu(stage);
         });
 
         generateNew.setOnMouseEntered(event -> {

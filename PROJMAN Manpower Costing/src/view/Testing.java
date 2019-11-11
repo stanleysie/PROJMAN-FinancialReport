@@ -30,7 +30,7 @@ public class Testing implements View {
     @FXML
     private TextField name, address;
     @FXML
-    private Button generate, adminEdit, logout;
+    private Button generate, logout;
 
     private Stage stage;
     private Paragraph NEWLINE;
@@ -67,18 +67,6 @@ public class Testing implements View {
             Success success = new Success(stage);
         });
 
-        adminEdit.setOnAction(event -> {
-            Stage stage = (Stage) adminEdit.getScene().getWindow();
-            Maintenance maintenance = new Maintenance(stage);
-        });
-
-        adminEdit.setOnMouseEntered(event -> {
-            adminEdit.setStyle("-fx-background-color: #535353");
-        });
-
-        adminEdit.setOnMouseExited(event -> {
-            adminEdit.setStyle("-fx-background-color: #ef5350");
-        });
 
         generate.setOnMouseEntered(event -> {
             generate.setStyle("-fx-background-color: #535353");
@@ -90,7 +78,7 @@ public class Testing implements View {
 
         logout.setOnAction(event ->{
             Stage stage = (Stage) logout.getScene().getWindow();
-            Login login = new Login(stage);
+            Menu menu = new Menu(stage);
         });
 
         logout.setOnMouseEntered(event -> {

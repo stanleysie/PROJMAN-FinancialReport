@@ -62,12 +62,8 @@
             <Font name="Corbel Light" size="24.0" />
          </font></Label>
       <TextField layoutX="265.0" layoutY="150.0" stylesheets="@Testing.css" />
-      <Button fx:id="adminEdit" layoutX="540.0" layoutY="390.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="125.0" stylesheets="@Login.css" text="Settings" textAlignment="CENTER" textFill="WHITE" wrapText="true">
-         <font>
-            <Font name="Open Sans Light" size="20.0" />
-         </font></Button>
       <ComboBox fx:id="allowance" layoutX="265.0" layoutY="390.0" prefWidth="150.0" promptText="None" stylesheets="@Testing.css" />
-      <Button fx:id="logout" layoutX="570.0" layoutY="455.0" mnemonicParsing="false" stylesheets="@Login.css" text="Log Out" textFill="WHITE">
+      <Button fx:id="logout" layoutX="581.0" layoutY="455.0" mnemonicParsing="false" stylesheets="@Login.css" text="Back" textFill="WHITE">
          <font>
             <Font name="Open Sans Light" size="12.0" />
          </font>

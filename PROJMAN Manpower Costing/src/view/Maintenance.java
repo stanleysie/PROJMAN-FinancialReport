@@ -19,10 +19,10 @@ public class Maintenance implements View{
         this.stage.show();
     }
 
-    public void initialize(){
+        public void initialize(){
         back.setOnAction(event ->{
             Stage stage = (Stage) back.getScene().getWindow();
-            Testing testing = new Testing(stage);
+            Menu menu = new Menu(stage);
         });
 
         back.setOnMouseEntered(event -> {
