@@ -94,9 +94,8 @@ CREATE TABLE `employee` (
   `idemployee` int(11) NOT NULL,
   `employeefirstname` varchar(45) DEFAULT NULL,
   `employeelastname` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`idemployee`),
-  KEY `employee_idx` (`employeefirstname`),
-  CONSTRAINT `employee` FOREIGN KEY (`employeefirstname`) REFERENCES `daily_report` (`employeename`)
+  `province` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`idemployee`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -106,6 +105,7 @@ CREATE TABLE `employee` (
 
 LOCK TABLES `employee` WRITE;
 /*!40000 ALTER TABLE `employee` DISABLE KEYS */;
+INSERT INTO `employee` VALUES (1,'Shyrene','Ching',NULL),(2,'Stanley','Sie',NULL),(3,'Jeff','Capistrano',NULL),(4,'Myles','Chan',NULL);
 /*!40000 ALTER TABLE `employee` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -123,7 +123,7 @@ CREATE TABLE `monthly_report` (
   `basic_rate` float DEFAULT NULL,
   `no_working_days` float DEFAULT NULL,
   `total_days_rendered` float DEFAULT NULL,
-  `no_abscence` int(11) DEFAULT NULL,
+  `no_absence` int(11) DEFAULT NULL,
   `absent_rate` float DEFAULT NULL,
   `absent_deduction` float DEFAULT NULL,
   `late_hours` float DEFAULT NULL,
@@ -210,4 +210,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-11-03 18:07:15
+-- Dump completed on 2019-11-24 14:06:33
