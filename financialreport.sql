@@ -105,7 +105,6 @@ CREATE TABLE `employee` (
 
 LOCK TABLES `employee` WRITE;
 /*!40000 ALTER TABLE `employee` DISABLE KEYS */;
-INSERT INTO `employee` VALUES (1,'Shyrene','Ching',NULL),(2,'Stanley','Sie',NULL),(3,'Jeff','Capistrano',NULL),(4,'Myles','Chan',NULL);
 /*!40000 ALTER TABLE `employee` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -178,27 +177,29 @@ LOCK TABLES `monthly_report` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `salary_rates`
+-- Table structure for table `province`
 --
 
-DROP TABLE IF EXISTS `salary_rates`;
+DROP TABLE IF EXISTS `province`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
-CREATE TABLE `salary_rates` (
-  `idsalary_rates` int(11) NOT NULL,
-  `salary` int(11) DEFAULT NULL,
-  `province` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`idsalary_rates`)
+CREATE TABLE `province` (
+  `idProvince` int(11) NOT NULL,
+  `provincename` varchar(45) DEFAULT NULL,
+  `salarymin` float DEFAULT NULL,
+  `salarymax` float DEFAULT NULL,
+  PRIMARY KEY (`idProvince`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `salary_rates`
+-- Dumping data for table `province`
 --
 
-LOCK TABLES `salary_rates` WRITE;
-/*!40000 ALTER TABLE `salary_rates` DISABLE KEYS */;
-/*!40000 ALTER TABLE `salary_rates` ENABLE KEYS */;
+LOCK TABLES `province` WRITE;
+/*!40000 ALTER TABLE `province` DISABLE KEYS */;
+INSERT INTO `province` VALUES (1,'NCR',500,537),(2,'CAR',340,350),(3,'Region I',282,340),(4,'Region II',320,360),(5,'Region III',284,400),(6,'Region IV-A',303,400),(7,'Region IV-B',294,320),(8,'Region V',310,310),(9,'Region VI',310,395),(10,'Region VII',313,386),(11,'Region VIII',285,315),(12,'Region IX',303,316),(13,'Region X',331,365),(14,'Region XI',381,396),(15,'Region XII',290,311),(16,'Region XIII',320,320),(17,'ARMM',270,280);
+/*!40000 ALTER TABLE `province` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -210,4 +211,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-11-24 14:06:33
+-- Dump completed on 2019-11-24 19:26:42

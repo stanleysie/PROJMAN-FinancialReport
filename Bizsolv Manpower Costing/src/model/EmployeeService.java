@@ -19,7 +19,7 @@ public class EmployeeService {
     public boolean add(Employee emp) throws SQLException {
         // Get a connection:
         Connection connection = pool.checkOut();
-        String query = "INSERT INTO accounts VALUE (?, ?, ?)";
+        String query = "INSERT INTO employee VALUE (?, ?, ?, ?)";
         PreparedStatement statement = connection.prepareStatement(query);
         try {
             Employee temp = getEmployeeLast();
@@ -147,8 +147,7 @@ public class EmployeeService {
         pool.checkIn(connection);
         return false;
     }
-
-    //pass the username of the account that wants to be change and an account class with COMPLETE information including the updates
+    
     public boolean update(int idemployee, Employee emp) throws SQLException {
         //UPDATE
         // Get a connection:
