@@ -3,13 +3,14 @@ package model;
 public class ComputationDaily extends Computation {
 
     private int daysOfIncentiveLeave;
-    private double allowance, subTotal;
+    private double allowance, subTotal, adminCost;
 
-    public ComputationDaily(String location, int workingDays, int daysOfIncentiveLeave, double allowance) {
+    public ComputationDaily(String location, int workingDays, int daysOfIncentiveLeave, double allowance, double adminCost) {
         super(location, workingDays);
         this.allowance = allowance;
         this.daysOfIncentiveLeave = daysOfIncentiveLeave;
         this.subTotal = this.getBasicSalary() + this.getMonthBonus() + getNumOfDayIncentive() + this.allowance;
+        this.adminCost = adminCost;
     }
 
     public double getNumOfDayIncentive() {
@@ -31,4 +32,6 @@ public class ComputationDaily extends Computation {
     public double getSubTotal() {
         return subTotal;
     }
+
+    public double getAdminCost() { return adminCost; }
 }

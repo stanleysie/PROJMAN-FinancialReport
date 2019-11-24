@@ -49,5 +49,6 @@ public abstract class Computation {
     abstract public double getEffectiveMonthlyRate();
     abstract public double getAllowance();
     abstract public double getSubTotal();
+    abstract public double getAdminCost();
 
 }

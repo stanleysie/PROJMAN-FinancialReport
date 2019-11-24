@@ -40,6 +40,7 @@ public class GeneratePDF extends PdfPageEventHelper implements View {
     private Computation comp;
     private ObservableList<String> allowanceList, rateTypeList, locationList, nameList;
     private double basicSalary, allowanceValue;
+    private int incentiveValue;
 
     public GeneratePDF(Stage stage, Master master) {
         this.stage = stage;
@@ -66,6 +67,17 @@ public class GeneratePDF extends PdfPageEventHelper implements View {
             } else if(fileName.getText().trim().isEmpty()) {
                 Toast.makeText(stage, "File name is empty", 2000, 1000, 1000, -250, 5, Color.RED);
                 done = false;
+            }
+
+            if(allowance.getSelectionModel().getSelectedItem() == "" || allowance.getSelectionModel().getSelectedItem() == null) {
+                allowanceValue = 0.00;
+            } else {
+                allowanceValue = Double.parseDouble(allowance.getSelectionModel().getSelectedItem());
+            }
+            if(incentiveLeave.getText().isEmpty()) {
+                incentiveValue = 0;
+            } else {
+                incentiveValue = Integer.parseInt(incentiveLeave.getText());
             }
 
             if(done) {
@@ -145,7 +157,7 @@ public class GeneratePDF extends PdfPageEventHelper implements View {
         para.add(Chunk.NEWLINE);
         document.add(para);
         document.add(NEWLINE);
-        setData(locations.getSelectionModel().getSelectedItem(), rateType.getSelectionModel().getSelectedItem(), basicSalary, Integer.parseInt(workingDays.getText()), Integer.parseInt(incentiveLeave.getText()), allowanceValue);
+        setData(locations.getSelectionModel().getSelectedItem(), rateType.getSelectionModel().getSelectedItem(), basicSalary, Integer.parseInt(workingDays.getText()), incentiveValue, allowanceValue, Double.parseDouble(adminCost.getText()));
         PdfPTable table = createTable(rateType.getSelectionModel().getSelectedItem(), Integer.parseInt(workingDays.getText()));
         document.add(table);
         document.add(NEWLINE);
@@ -181,7 +193,7 @@ public class GeneratePDF extends PdfPageEventHelper implements View {
         addRows(table, governmental);
         addHeader(table, "D. Total Monthly Labor Cost", 16645.67);
         table.addCell(space);
-        addHeader(table, "E. BIZSOLV ADMIN COST", 12.00, 1997.48);
+        addHeader(table, "E. BIZSOLV ADMIN COST", comp.getAdminCost(), 16645.67*comp.getAdminCost()/100.0);
         table.addCell(space);
         addHeader(table, "F. CONTRACT COST/MONTH", 18643.15);
         return table;
@@ -358,11 +370,11 @@ public class GeneratePDF extends PdfPageEventHelper implements View {
     }
 
 
-    public void setData(String location, String type, double basicSalary, int workingDays, int daysOfIncentiveLeave, double allowance) {
+    public void setData(String location, String type, double basicSalary, int workingDays, int daysOfIncentiveLeave, double allowance, double admin) {
         if(type.equalsIgnoreCase("daily")) {
-            comp = new ComputationDaily(location, workingDays, daysOfIncentiveLeave, allowance);
+            comp = new ComputationDaily(location, workingDays, daysOfIncentiveLeave, allowance, admin);
         } else if(type.equalsIgnoreCase("province")) {
-            comp = new ComputationMonthly(location, basicSalary, workingDays, daysOfIncentiveLeave, allowance);
+            comp = new ComputationMonthly(location, basicSalary, workingDays, daysOfIncentiveLeave, allowance, admin);
         }
         basic.add(new Data("Service Fee", comp.getBasicSalary()));
         basic.add(new Data("Bonus (13th Month)", comp.getMonthBonus()));
@@ -405,6 +417,7 @@ public class GeneratePDF extends PdfPageEventHelper implements View {
         name.getSelectionModel().select(0);
         locations.setItems(locationList);
         rateType.setItems(rateTypeList);
+        rateType.getSelectionModel().select(0);
         allowance.setItems(allowanceList);
     }
 }
