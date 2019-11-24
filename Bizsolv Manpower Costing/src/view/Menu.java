@@ -26,7 +26,7 @@ public class Menu implements View {
 
         generate.setOnAction(event -> {
             Stage stage = (Stage) generate.getScene().getWindow();
-            NewFile newFile = new NewFile(stage, master);
+            GeneratePDF generatePDF = new GeneratePDF(stage, master);
         });
 
         generate.setOnMouseEntered(event -> {
@@ -51,8 +51,8 @@ public class Menu implements View {
         });
 
         load.setOnAction(event -> {
-//            Stage stage = (Stage) load.getScene().getWindow();
-//            NewFile load = new NewFile(stage);
+            Stage stage = (Stage) load.getScene().getWindow();
+            LoadFile load = new LoadFile(stage, master);
         });
 
         load.setOnMouseEntered(event -> {

@@ -7,7 +7,9 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import model.*;
 
@@ -22,6 +24,10 @@ import java.text.DecimalFormat;
 public class GeneratePDF extends PdfPageEventHelper implements View {
 
     @FXML
+    private TextField address, adminCost, fileName, workingDays, incentiveLeave;
+    @FXML
+    private ComboBox<String> name, locations, rateType, allowance;
+    @FXML
     private Button generate;
 
     private Master master;
@@ -32,7 +38,8 @@ public class GeneratePDF extends PdfPageEventHelper implements View {
     private PdfWriter writer;
     private Font regular, bold, small;
     private Computation comp;
-    private ObservableList<String> locationList, allowanceList, rateTypeList;
+    private ObservableList<String> allowanceList, rateTypeList, locationList, nameList;
+    private double basicSalary, allowanceValue;
 
     public GeneratePDF(Stage stage, Master master) {
         this.stage = stage;
@@ -47,6 +54,19 @@ public class GeneratePDF extends PdfPageEventHelper implements View {
         generate.setDefaultButton(true);
         generate.setOnAction(event -> {
             boolean done = true;
+            if(address.getText().trim().isEmpty()) {
+                Toast.makeText(stage, "Address is empty", 2000, 1000, 1000, -250, 5, Color.RED);
+                done = false;
+            } else if(workingDays.getText().trim().isEmpty()) {
+                Toast.makeText(stage, "Working days is empty", 2000, 1000, 1000, -250, 5, Color.RED);
+                done = false;
+            } else if(adminCost.getText().trim().isEmpty()) {
+                Toast.makeText(stage, "Admin cost is empty", 2000, 1000, 1000, -250, 5, Color.RED);
+                done = false;
+            } else if(fileName.getText().trim().isEmpty()) {
+                Toast.makeText(stage, "File name is empty", 2000, 1000, 1000, -250, 5, Color.RED);
+                done = false;
+            }
 
             if(done) {
                 try {
@@ -72,6 +92,39 @@ public class GeneratePDF extends PdfPageEventHelper implements View {
         generate.setOnMouseExited(event -> {
             generate.setStyle("-fx-background-color: lightgrey");
         });
+
+        adminCost.textProperty().addListener((observable, oldValue, newValue) -> {
+            if(!newValue.matches("\\d{0,100}([\\.]\\d{0,100})?")) {
+                adminCost.setText(oldValue);
+            }
+        });
+
+        incentiveLeave.textProperty().addListener((observable, oldValue, newValue) -> {
+            if(!newValue.matches("\\d*")) {
+                incentiveLeave.setText(newValue.replaceAll("[^\\d]",""));
+            }
+        });
+
+        workingDays.textProperty().addListener((observable, oldValue, newValue) -> {
+            if(!newValue.matches("\\d*")) {
+                workingDays.setText(newValue.replaceAll("[^\\d]",""));
+            }
+        });
+
+        name.valueProperty().addListener((observable, oldValue, newValue) -> {
+            if(newValue != null) {
+                int index = name.getSelectionModel().getSelectedIndex();
+                master.setCurrentEmployee(master.getAllEmployees().get(index));
+                address.setText(master.getCurrentEmployee().getAddress());
+                locations.getSelectionModel().select(master.getCurrentEmployee().getProvince());
+                fileName.setText(master.getCurrentEmployee().getLastname() + "_" + master.getCurrentEmployee().getFirstname());
+                int loc = locations.getSelectionModel().getSelectedIndex();
+                if(loc == -1) {
+                    loc = 0;
+                }
+                basicSalary = master.getAllProvinces().get(loc).getSalarymin();
+            }
+        });
     }
 
     public void generate() throws IOException, DocumentException, URISyntaxException {
@@ -80,7 +133,7 @@ public class GeneratePDF extends PdfPageEventHelper implements View {
         image.scaleToFit(100, 100);
 
         Document document = new Document();
-        writer = PdfWriter.getInstance(document, new FileOutputStream(master.getFileName() + ".pdf"));
+        writer = PdfWriter.getInstance(document, new FileOutputStream(fileName.getText() + ".pdf"));
         document.setPageSize(PageSize.LETTER);
         document.open();
 
@@ -92,8 +145,8 @@ public class GeneratePDF extends PdfPageEventHelper implements View {
         para.add(Chunk.NEWLINE);
         document.add(para);
         document.add(NEWLINE);
-        setData("NCR", "Daily", 537.00, 314, 0, 0);
-        PdfPTable table = createTable("Daily", 314);
+        setData(locations.getSelectionModel().getSelectedItem(), rateType.getSelectionModel().getSelectedItem(), basicSalary, Integer.parseInt(workingDays.getText()), Integer.parseInt(incentiveLeave.getText()), allowanceValue);
+        PdfPTable table = createTable(rateType.getSelectionModel().getSelectedItem(), Integer.parseInt(workingDays.getText()));
         document.add(table);
         document.add(NEWLINE);
         document.add(NEWLINE);
@@ -339,5 +392,19 @@ public class GeneratePDF extends PdfPageEventHelper implements View {
         regular = FontFactory.getFont(FontFactory.HELVETICA, 10);
         bold = FontFactory.getFont(FontFactory.HELVETICA, 10, Font.BOLD);
         small = FontFactory.getFont(FontFactory.HELVETICA, 10);
+        setupComboBox();
+    }
+
+    private void setupComboBox() {
+        nameList = master.getAllEmployeesName();
+        locationList = master.getAllProvincesNames();
+        allowanceList = FXCollections.observableArrayList("None");
+        rateTypeList = FXCollections.observableArrayList("Daily", "Monthly");
+
+        name.setItems(nameList);
+        name.getSelectionModel().select(0);
+        locations.setItems(locationList);
+        rateType.setItems(rateTypeList);
+        allowance.setItems(allowanceList);
     }
 }
