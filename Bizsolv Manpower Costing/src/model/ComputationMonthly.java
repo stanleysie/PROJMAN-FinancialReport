@@ -5,8 +5,8 @@ public class ComputationMonthly extends Computation {
     private int daysOfIncentiveLeave;
     private double allowance, subTotal, adminCost;
 
-    public ComputationMonthly(String location, double basicSalary, int workingDays, int daysOfIncentiveLeave, double allowance, double adminCost) {
-        super(location, workingDays);
+    public ComputationMonthly(double basicSalary, int workingDays, int daysOfIncentiveLeave, double allowance, double adminCost) {
+        super(basicSalary, workingDays);
         this.setBasicSalary(basicSalary);
         this.allowance = allowance;
         this.daysOfIncentiveLeave = daysOfIncentiveLeave;

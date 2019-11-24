@@ -5,8 +5,8 @@ public class ComputationDaily extends Computation {
     private int daysOfIncentiveLeave;
     private double allowance, subTotal, adminCost;
 
-    public ComputationDaily(String location, int workingDays, int daysOfIncentiveLeave, double allowance, double adminCost) {
-        super(location, workingDays);
+    public ComputationDaily(double basicSalary, int workingDays, int daysOfIncentiveLeave, double allowance, double adminCost) {
+        super(basicSalary, workingDays);
         this.allowance = allowance;
         this.daysOfIncentiveLeave = daysOfIncentiveLeave;
         this.subTotal = this.getBasicSalary() + this.getMonthBonus() + getNumOfDayIncentive() + this.allowance;

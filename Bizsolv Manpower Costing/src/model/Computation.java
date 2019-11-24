@@ -2,26 +2,12 @@ package model;
 
 public abstract class Computation {
 
-    private String location;
     private int workingDays;
     private double basicSalary;
 
-    public Computation(String location, int workingDays) {
-        this.location = location;
-        if(this.location.equalsIgnoreCase("ncr")) {
-            setBasicSalary(537);
-        } else if(this.location.equalsIgnoreCase("provincial")) {
-            setBasicSalary(600);
-        }
+    public Computation(double basicSalary, int workingDays) {
+        this.basicSalary = basicSalary;
         this.workingDays = workingDays;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
     }
 
     public int getWorkingDays() {

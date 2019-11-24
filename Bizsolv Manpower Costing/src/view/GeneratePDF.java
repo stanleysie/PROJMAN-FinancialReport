@@ -134,7 +134,7 @@ public class GeneratePDF extends PdfPageEventHelper implements View {
                 if(loc == -1) {
                     loc = 0;
                 }
-                basicSalary = master.getAllProvinces().get(loc).getSalarymin();
+                basicSalary = master.getAllProvinces().get(loc).getSalarymax();
             }
         });
     }
@@ -157,7 +157,7 @@ public class GeneratePDF extends PdfPageEventHelper implements View {
         para.add(Chunk.NEWLINE);
         document.add(para);
         document.add(NEWLINE);
-        setData(locations.getSelectionModel().getSelectedItem(), rateType.getSelectionModel().getSelectedItem(), basicSalary, Integer.parseInt(workingDays.getText()), incentiveValue, allowanceValue, Double.parseDouble(adminCost.getText()));
+        setData(rateType.getSelectionModel().getSelectedItem(), basicSalary, Integer.parseInt(workingDays.getText()), incentiveValue, allowanceValue, Double.parseDouble(adminCost.getText()));
         PdfPTable table = createTable(rateType.getSelectionModel().getSelectedItem(), Integer.parseInt(workingDays.getText()));
         document.add(table);
         document.add(NEWLINE);
@@ -370,11 +370,11 @@ public class GeneratePDF extends PdfPageEventHelper implements View {
     }
 
 
-    public void setData(String location, String type, double basicSalary, int workingDays, int daysOfIncentiveLeave, double allowance, double admin) {
+    public void setData(String type, double basicSalary, int workingDays, int daysOfIncentiveLeave, double allowance, double admin) {
         if(type.equalsIgnoreCase("daily")) {
-            comp = new ComputationDaily(location, workingDays, daysOfIncentiveLeave, allowance, admin);
-        } else if(type.equalsIgnoreCase("province")) {
-            comp = new ComputationMonthly(location, basicSalary, workingDays, daysOfIncentiveLeave, allowance, admin);
+            comp = new ComputationDaily(basicSalary, workingDays, daysOfIncentiveLeave, allowance, admin);
+        } else if(type.equalsIgnoreCase("monthly")) {
+            comp = new ComputationMonthly(basicSalary, workingDays, daysOfIncentiveLeave, allowance, admin);
         }
         basic.add(new Data("Service Fee", comp.getBasicSalary()));
         basic.add(new Data("Bonus (13th Month)", comp.getMonthBonus()));
