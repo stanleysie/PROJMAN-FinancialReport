@@ -15,11 +15,12 @@ public class EmployeeService {
     private final String EMPLOYEE_FIRSTNAME = "employeefirstname";
     private final String EMPLOYEE_LASTNAME = "employeelastname";
     private final String PROVINCE = "province";
+    private final String ADDRESS = "address";
 
     public boolean add(Employee emp) throws SQLException {
         // Get a connection:
         Connection connection = pool.checkOut();
-        String query = "INSERT INTO employee VALUE (?, ?, ?, ?)";
+        String query = "INSERT INTO employee VALUE (?, ?, ?, ?, ?)";
         PreparedStatement statement = connection.prepareStatement(query);
         try {
             Employee temp = getEmployeeLast();
@@ -27,6 +28,7 @@ public class EmployeeService {
             statement.setString(2, emp.getFirstname());
             statement.setString(3, emp.getLastname());
             statement.setString(4, emp.getProvince());
+            statement.setString(5, emp.getAddress());
 
             boolean added = statement.execute();
 
@@ -58,6 +60,7 @@ public class EmployeeService {
                 a.setFirstname(rs.getString(EMPLOYEE_FIRSTNAME));
                 a.setLastname(rs.getString(EMPLOYEE_LASTNAME));
                 a.setProvince(rs.getString(PROVINCE));
+                a.setAddress(rs.getString(ADDRESS));
                 employess.add(a);
             }
             return employess;
@@ -87,6 +90,7 @@ public class EmployeeService {
                 emp.setFirstname(rs.getString(EMPLOYEE_FIRSTNAME));
                 emp.setLastname(rs.getString(EMPLOYEE_LASTNAME));
                 emp.setProvince(rs.getString(PROVINCE));
+                emp.setAddress(rs.getString(ADDRESS));
             }
             return emp;
         } catch (SQLException e){
@@ -115,6 +119,7 @@ public class EmployeeService {
                 emp.setFirstname(rs.getString(EMPLOYEE_FIRSTNAME));
                 emp.setLastname(rs.getString(EMPLOYEE_LASTNAME));
                 emp.setProvince(rs.getString(PROVINCE));
+                emp.setAddress(rs.getString(ADDRESS));
             }
             return emp;
         } catch (SQLException e){
@@ -156,7 +161,8 @@ public class EmployeeService {
         String query = "UPDATE employee SET "
                 + EMPLOYEE_FIRSTNAME +" = ?, "
                 + EMPLOYEE_LASTNAME +" = ?, "
-                + PROVINCE +" = ? "
+                + PROVINCE +" = ?, "
+                + ADDRESS +" = ? "
                 + "WHERE username= ?";
         PreparedStatement statement = connection.prepareStatement(query);
         try {
@@ -164,7 +170,8 @@ public class EmployeeService {
             statement.setString(1, emp.getFirstname());
             statement.setString(2, emp.getLastname());
             statement.setString(3, emp.getProvince());
-            statement.setInt(4, idemployee);
+            statement.setString(4, emp.getAddress());
+            statement.setInt(5, idemployee);
 
             statement.executeUpdate();
 
