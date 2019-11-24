@@ -57,7 +57,7 @@
             <font>
                 <Font name="Corbel Light" size="24.0" />
             </font></Label>
-        <TextField layoutX="265.0" layoutY="150.0" stylesheets="@GeneratePDF.css" />
+        <TextField fx:id="fileName" layoutX="265.0" layoutY="150.0" stylesheets="@GeneratePDF.css" />
         <Button fx:id="back" layoutX="581.0" layoutY="455.0" mnemonicParsing="false" stylesheets="@Login.css" text="Back" textFill="WHITE">
             <font>
                 <Font name="Open Sans Light" size="12.0" />

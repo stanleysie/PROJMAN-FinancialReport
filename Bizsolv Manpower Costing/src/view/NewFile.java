@@ -1,8 +1,6 @@
 package view;
 
 import com.itextpdf.text.DocumentException;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -10,12 +8,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import model.Master;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.text.DecimalFormat;
 
 public class NewFile implements View {
 
@@ -29,6 +29,8 @@ public class NewFile implements View {
     private Stage stage;
     private Master master;
     private ObservableList<String> allowanceList, rateTypeList, locationList, nameList;
+    private DecimalFormat format;
+    private String num;
 
     public NewFile(Stage stage, Master master) {
         this.stage = stage;
@@ -36,6 +38,8 @@ public class NewFile implements View {
         Scene scene = FXMLClass.getScene("/view/NewFile.fxml", this);
         this.stage.setScene(scene);
         this.stage.show();
+
+        format = new DecimalFormat("#,###.00");
         setupComboBox();
     }
 
@@ -44,12 +48,16 @@ public class NewFile implements View {
         generate.setOnAction(event -> {
             boolean done = true;
             if(address.getText().trim().isEmpty()) {
+                Toast.makeText(stage, "Address is empty", 2000, 1000, 1000, -250, 5, Color.RED);
                 done = false;
             } else if(workingDays.getText().trim().isEmpty()) {
+                Toast.makeText(stage, "Working days is empty", 2000, 1000, 1000, -250, 5, Color.RED);
                 done = false;
             } else if(adminCost.getText().trim().isEmpty()) {
+                Toast.makeText(stage, "Admin cost is empty", 2000, 1000, 1000, -250, 5, Color.RED);
                 done = false;
             } else if(fileName.getText().trim().isEmpty()) {
+                Toast.makeText(stage, "File name is empty", 2000, 1000, 1000, -250, 5, Color.RED);
                 done = false;
             }
 
@@ -93,16 +101,35 @@ public class NewFile implements View {
             back.setStyle("-fx-background-color: #ef5350");
         });
 
+        adminCost.textProperty().addListener((observable, oldValue, newValue) -> {
+            if(!newValue.matches("\\d{0,100}([\\.]\\d{0,100})?")) {
+                adminCost.setText(oldValue);
+            }
+        });
+
+        incentiveLeave.textProperty().addListener((observable, oldValue, newValue) -> {
+            if(!newValue.matches("\\d*")) {
+                adminCost.setText(oldValue);
+            }
+        });
+
         name.valueProperty().addListener((observable, oldValue, newValue) -> {
-            int index = name.getSelectionModel().getSelectedIndex();
-            
+            if(newValue != null) {
+                int index = name.getSelectionModel().getSelectedIndex();
+                master.setCurrentEmployee(master.getAllEmployees().get(index));
+                master.setFileName(master.getCurrentEmployee().getLastname() + "_" + master.getCurrentEmployee().getFirstname());
+                address.setText(master.getCurrentEmployee().getAddress());
+                locations.getSelectionModel().select(master.getCurrentEmployee().getProvince());
+                fileName.setText(master.getFileName());
+            }
         });
     }
 
     private void setData() {
         master.setName(name.getSelectionModel().getSelectedItem());
         master.setAddress(address.getText().trim());
-
+        master.setLocation(locations.getSelectionModel().getSelectedItem());
+        master.setAdminCost(Double.parseDouble(adminCost.getText()));
     }
 
     private void setupComboBox() {

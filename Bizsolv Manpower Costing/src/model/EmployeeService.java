@@ -11,7 +11,7 @@ import java.sql.SQLException;
 public class EmployeeService {
     private JDBCConnectionPool pool;
 
-    private final String ID_EMPLOYEE = "idempoloyee";
+    private final String ID_EMPLOYEE = "idemployee";
     private final String EMPLOYEE_FIRSTNAME = "employeefirstname";
     private final String EMPLOYEE_LASTNAME = "employeelastname";
     private final String PROVINCE = "province";

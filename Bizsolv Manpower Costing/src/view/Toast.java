@@ -14,7 +14,7 @@ import javafx.util.Duration;
 
 public final class Toast {
 
-    public static void makeText(Stage owner, String message, int delay, int fadeIn, int fadeOut, int addWidth, int addHeight) {
+    public static void makeText(Stage owner, String message, int delay, int fadeIn, int fadeOut, int addWidth, int addHeight, Color color) {
         Stage toast = new Stage();
         toast.initOwner(owner);
         toast.initStyle(StageStyle.TRANSPARENT);
@@ -23,7 +23,7 @@ public final class Toast {
 
         Text text = new Text(message);
         text.setFont(Font.font("Verdana", 15));
-        text.setFill(Color.WHITE);
+        text.setFill(color);
 
         StackPane root = new StackPane(text);
         root.setStyle("-fx-background-radius: 20; -fx-background-color: rgba(0.2, 0.2, 0.2, 0.2); -fx-padding: 20px;");

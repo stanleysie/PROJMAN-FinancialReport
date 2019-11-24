@@ -11,19 +11,19 @@
 <AnchorPane prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #ef5350 #ef5350;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="500.0" stroke="WHITE" strokeType="INSIDE" width="500.0" />
-      <Label layoutX="105.0" layoutY="220.0" text="(File Name) has been Generated!">
+      <Label fx:id="fileName" layoutX="105.0" layoutY="220.0" text="(File Name) has been Generated!">
          <font>
             <Font name="Open Sans Light" size="20.0" />
          </font></Label>
-      <Label layoutX="70.0" layoutY="260.0" text="(File Name) has been saved at (Location)">
+      <Label fx:id="fileLocation" layoutX="70.0" layoutY="260.0" text="(File Name) has been saved at (Location)" wrapText="true">
          <font>
             <Font name="Open Sans Light" size="20.0" />
          </font></Label>
-      <Label layoutX="125.0" layoutY="335.0" text="(Date &amp; Time of Generation)">
+      <Label fx:id="fileTime" layoutX="125.0" layoutY="335.0" text="(Date &amp; Time of Generation)">
          <font>
             <Font name="Open Sans Light" size="18.0" />
          </font></Label>
-      <Label layoutX="120.0" layoutY="365.0" text="(Document Version Number)">
+      <Label fx:id="fileVersion" layoutX="120.0" layoutY="365.0" text="(Document Version Number)">
          <font>
             <Font name="Open Sans Light" size="18.0" />
          </font></Label>

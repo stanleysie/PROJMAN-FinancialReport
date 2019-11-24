@@ -5,6 +5,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import model.Master;
 
@@ -34,10 +35,10 @@ public class Login implements View{
         loginBtn.setOnAction(event -> {
             boolean done = true;
             if(username.getText().trim().isEmpty()) {
-                Toast.makeText(this.stage, "Please input a valid username", 2000, 1000, 1000, 15, 0);
+                Toast.makeText(this.stage, "Please input a valid username", 2000, 1000, 1000, 15, 0, Color.WHITE);
                 done = false;
             } else if(password.getText().trim().isEmpty()) {
-                Toast.makeText(this.stage, "Please input a valid password", 2000, 1000, 1000, 15, 0);
+                Toast.makeText(this.stage, "Please input a valid password", 2000, 1000, 1000, 15, 0, Color.WHITE);
                 done = false;
             }
             if(done) {
@@ -62,11 +63,11 @@ public class Login implements View{
             if(password.getText().equalsIgnoreCase("admin")) {
                 return true;
             } else {
-                Toast.makeText(this.stage, "Invalid password", 2000, 1000, 1000, 65, 0);
+                Toast.makeText(this.stage, "Invalid password", 2000, 1000, 1000, 65, 0, Color.WHITE);
                 return false;
             }
         } else {
-            Toast.makeText(this.stage, "Invalid username", 2000, 1000, 1000, 65, 0);
+            Toast.makeText(this.stage, "Invalid username", 2000, 1000, 1000, 65, 0, Color.WHITE);
             return false;
         }
     }
