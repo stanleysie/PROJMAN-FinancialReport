@@ -1,6 +1,8 @@
 package view;
 
 import com.itextpdf.text.DocumentException;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -9,7 +11,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import model.Employee;
 import model.Master;
 
 import java.io.FileNotFoundException;
@@ -19,15 +20,15 @@ import java.net.URISyntaxException;
 public class NewFile implements View {
 
     @FXML
-    private TextField name, address, adminCost, fileName, workingDays, incentiveLeave;
+    private TextField address, adminCost, fileName, workingDays, incentiveLeave;
     @FXML
-    private ComboBox<String> location, rateType, allowance;
+    private ComboBox<String> name, locations, rateType, allowance;
     @FXML
     private Button generate, back;
 
     private Stage stage;
     private Master master;
-    private ObservableList<String> allowanceList, rateTypeList, locationList;
+    private ObservableList<String> allowanceList, rateTypeList, locationList, nameList;
 
     public NewFile(Stage stage, Master master) {
         this.stage = stage;
@@ -42,7 +43,15 @@ public class NewFile implements View {
         generate.setDefaultButton(true);
         generate.setOnAction(event -> {
             boolean done = true;
-
+            if(address.getText().trim().isEmpty()) {
+                done = false;
+            } else if(workingDays.getText().trim().isEmpty()) {
+                done = false;
+            } else if(adminCost.getText().trim().isEmpty()) {
+                done = false;
+            } else if(fileName.getText().trim().isEmpty()) {
+                done = false;
+            }
 
             if(done) {
                 setData();
@@ -83,21 +92,28 @@ public class NewFile implements View {
         back.setOnMouseExited(event -> {
             back.setStyle("-fx-background-color: #ef5350");
         });
+
+        name.valueProperty().addListener((observable, oldValue, newValue) -> {
+            int index = name.getSelectionModel().getSelectedIndex();
+            
+        });
     }
 
     private void setData() {
-        Employee emp = new Employee("Stanley", "Sie", "NCR");
-        master.setCurrentEmployee(emp);
+        master.setName(name.getSelectionModel().getSelectedItem());
+        master.setAddress(address.getText().trim());
+
     }
 
     private void setupComboBox() {
-        locationList = FXCollections.observableArrayList("NCR", "CAR", "REGION I", "REGIION II", "REGION III", "REGION IV-A",
-                "REGION IV-B", "REGION V", "REGION VII", "REGION VIII", "REGION IX", "REGION X", "REGION XI",
-                "REGION XII", "REGION XIII", "ARMM");
-        allowanceList = FXCollections.observableArrayList("Daily", "Monthly");
-        rateTypeList = FXCollections.observableArrayList("None");
+        nameList = master.getAllEmployeesName();
+        locationList = master.getAllProvincesNames();
+        allowanceList = FXCollections.observableArrayList("None");
+        rateTypeList = FXCollections.observableArrayList("Daily", "Monthly");
 
-        location.setItems(locationList);
+        name.setItems(nameList);
+        name.getSelectionModel().select(0);
+        locations.setItems(locationList);
         rateType.setItems(rateTypeList);
         allowance.setItems(allowanceList);
     }

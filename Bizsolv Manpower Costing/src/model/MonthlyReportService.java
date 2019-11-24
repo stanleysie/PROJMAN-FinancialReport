@@ -58,6 +58,10 @@ public class MonthlyReportService {
     private final String NET_PAYROLL = "net_payroll";
     private final String VERSION = "version";
 
+    public MonthlyReportService() {
+        pool = new JDBCConnectionPool();
+    }
+
     public boolean add(MonthlyReport m, Employee employee) throws SQLException {
         // Get a connection:
         Connection connection = pool.checkOut();

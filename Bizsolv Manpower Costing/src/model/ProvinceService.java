@@ -16,6 +16,10 @@ public class ProvinceService {
     private final String SALARY_MINIMUM= "salarymin";
     private final String SALARY_MAXIMUM = "salarymax";
 
+    public ProvinceService() {
+        pool = new JDBCConnectionPool();
+    }
+
     public boolean add(Province p) throws SQLException {
         // Get a connection:
         Connection connection = pool.checkOut();

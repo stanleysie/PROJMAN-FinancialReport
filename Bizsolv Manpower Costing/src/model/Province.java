@@ -6,7 +6,10 @@ public class Province {
     private String provincename;
     private float salarymin, Salarymax;
 
-    public Province() {
+    public Province() {}
+
+    public Province(String name) {
+        this.provincename = name;
     }
 
     public int getIdprovince() {
@@ -39,5 +42,11 @@ public class Province {
 
     public void setSalarymax(float Salarymax) {
         this.Salarymax = Salarymax;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        Province p = (Province) obj;
+        return p.getProvincename().equalsIgnoreCase(this.provincename);
     }
 }

@@ -55,6 +55,10 @@ public class DailyReportService {
     private final String NET_PAYROLL = "net_payroll";
     private final String VERSION = "version";
 
+    public DailyReportService() {
+        pool = new JDBCConnectionPool();
+    }
+
     public boolean add(DailyReport m, Employee employee) throws SQLException {
         // Get a connection:
         Connection connection = pool.checkOut();

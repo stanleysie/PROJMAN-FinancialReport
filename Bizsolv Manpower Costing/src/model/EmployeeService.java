@@ -16,6 +16,10 @@ public class EmployeeService {
     private final String EMPLOYEE_LASTNAME = "employeelastname";
     private final String PROVINCE = "province";
 
+    public EmployeeService() {
+        pool = new JDBCConnectionPool();
+    }
+
     public boolean add(Employee emp) throws SQLException {
         // Get a connection:
         Connection connection = pool.checkOut();

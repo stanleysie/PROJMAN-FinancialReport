@@ -2,117 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/External_Libraries.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/Master.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/NewFile.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/Toast.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PROJMAN Manpower Costing/.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PROJMAN Manpower Costing/.idea/description.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PROJMAN Manpower Costing/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PROJMAN Manpower Costing/.idea/gradle.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PROJMAN Manpower Costing/.idea/libraries/itextpdf_5_5_13_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PROJMAN Manpower Costing/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PROJMAN Manpower Costing/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PROJMAN Manpower Costing/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PROJMAN Manpower Costing/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PROJMAN Manpower Costing/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PROJMAN Manpower Costing/PROJMAN Manpower Costing.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PROJMAN Manpower Costing/Testing.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PROJMAN Manpower Costing/_DS_Store" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PROJMAN Manpower Costing/out/production/PROJMAN Manpower Costing/_DS_Store" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PROJMAN Manpower Costing/out/production/PROJMAN Manpower Costing/driver/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PROJMAN Manpower Costing/out/production/PROJMAN Manpower Costing/files/logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PROJMAN Manpower Costing/out/production/PROJMAN Manpower Costing/files/pdf.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PROJMAN Manpower Costing/out/production/PROJMAN Manpower Costing/files/side.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PROJMAN Manpower Costing/out/production/PROJMAN Manpower Costing/itextpdf-5.5.13.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PROJMAN Manpower Costing/out/production/PROJMAN Manpower Costing/model/Computation.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PROJMAN Manpower Costing/out/production/PROJMAN Manpower Costing/model/ComputationDaily.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PROJMAN Manpower Costing/out/production/PROJMAN Manpower Costing/model/ComputationMonthly.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PROJMAN Manpower Costing/out/production/PROJMAN Manpower Costing/model/Data.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PROJMAN Manpower Costing/out/production/PROJMAN Manpower Costing/view/AddUser.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PROJMAN Manpower Costing/out/production/PROJMAN Manpower Costing/view/AddUserView.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PROJMAN Manpower Costing/out/production/PROJMAN Manpower Costing/view/FXMLClass.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PROJMAN Manpower Costing/out/production/PROJMAN Manpower Costing/view/Load.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PROJMAN Manpower Costing/out/production/PROJMAN Manpower Costing/view/LoadView.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PROJMAN Manpower Costing/out/production/PROJMAN Manpower Costing/view/Login.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PROJMAN Manpower Costing/out/production/PROJMAN Manpower Costing/view/Login.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PROJMAN Manpower Costing/out/production/PROJMAN Manpower Costing/view/LoginView.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PROJMAN Manpower Costing/out/production/PROJMAN Manpower Costing/view/Maintenance.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PROJMAN Manpower Costing/out/production/PROJMAN Manpower Costing/view/MaintenanceView.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PROJMAN Manpower Costing/out/production/PROJMAN Manpower Costing/view/Menu.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PROJMAN Manpower Costing/out/production/PROJMAN Manpower Costing/view/MenuView.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PROJMAN Manpower Costing/out/production/PROJMAN Manpower Costing/view/SSSRates.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PROJMAN Manpower Costing/out/production/PROJMAN Manpower Costing/view/SSSRatesView.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PROJMAN Manpower Costing/out/production/PROJMAN Manpower Costing/view/Success.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PROJMAN Manpower Costing/out/production/PROJMAN Manpower Costing/view/SuccessView.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PROJMAN Manpower Costing/out/production/PROJMAN Manpower Costing/view/Testing.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PROJMAN Manpower Costing/out/production/PROJMAN Manpower Costing/view/Testing.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PROJMAN Manpower Costing/out/production/PROJMAN Manpower Costing/view/Testing.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PROJMAN Manpower Costing/out/production/PROJMAN Manpower Costing/view/View.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PROJMAN Manpower Costing/src/_DS_Store" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PROJMAN Manpower Costing/src/driver/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PROJMAN Manpower Costing/src/files/logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PROJMAN Manpower Costing/src/files/pdf.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PROJMAN Manpower Costing/src/files/side.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PROJMAN Manpower Costing/src/itextpdf-5.5.13.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PROJMAN Manpower Costing/src/model/Computation.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PROJMAN Manpower Costing/src/model/ComputationDaily.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PROJMAN Manpower Costing/src/model/ComputationMonthly.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PROJMAN Manpower Costing/src/model/Data.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PROJMAN Manpower Costing/src/view/AddUser.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PROJMAN Manpower Costing/src/view/AddUserView.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PROJMAN Manpower Costing/src/view/FXMLClass.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PROJMAN Manpower Costing/src/view/GeneratePDF.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PROJMAN Manpower Costing/src/view/GeneratePDF.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PROJMAN Manpower Costing/src/view/GeneratePDF.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PROJMAN Manpower Costing/src/view/Load.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PROJMAN Manpower Costing/src/view/LoadView.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PROJMAN Manpower Costing/src/view/Login.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PROJMAN Manpower Costing/src/view/Login.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PROJMAN Manpower Costing/src/view/LoginView.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PROJMAN Manpower Costing/src/view/Maintenance.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PROJMAN Manpower Costing/src/view/MaintenanceView.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PROJMAN Manpower Costing/src/view/Menu.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PROJMAN Manpower Costing/src/view/MenuView.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PROJMAN Manpower Costing/src/view/SSSRates.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PROJMAN Manpower Costing/src/view/SSSRatesView.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PROJMAN Manpower Costing/src/view/Success.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PROJMAN Manpower Costing/src/view/SuccessView.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PROJMAN Manpower Costing/src/view/View.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/Lib/itextpdf-5.5.13.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/Lib/mysql-connector-java-8.0.12.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/driver/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/files/logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/files/side.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/model/Computation.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/model/ComputationDaily.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/model/ComputationMonthly.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/model/DailyReport.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/model/DailyReportService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/model/Data.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/model/Employee.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/model/EmplyeeService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/model/JDBCConnectionPool.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/model/MonthlyReport.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/model/MonthlyReportService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/model/ObjectPool.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/view/AddUser.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/view/AddUserView.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/view/FXMLClass.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/view/GeneratePDF.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/view/GeneratePDF.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/view/Login.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/view/Login.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/view/LoginView.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/view/Maintenance.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/view/MaintenanceView.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/view/SSSRates.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/view/SSSRatesView.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/view/Success.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/view/SuccessView.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/view/Testing.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/view/Testing.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/view/View.java" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/itextpdf_5_5_13_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/mysql_connector_java_8_0_17.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/External_Libraries.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bizsolv Manpower Costing.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Bizsolv Manpower Costing.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Bizsolv Manpower Costing/model/EmployeeService.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Bizsolv Manpower Costing/model/EmployeeService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/DailyReportService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/DailyReportService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/EmployeeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/EmployeeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Master.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Master.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/MonthlyReportService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/MonthlyReportService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Province.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Province.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/ProvinceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/ProvinceService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/NewFile.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/NewFile.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/NewFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/NewFile.java" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -175,13 +78,50 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/model/Master.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="630">
-              <caret line="32" column="42" selection-start-line="32" selection-start-column="42" selection-end-line="32" selection-end-column="42" />
+            <state relative-caret-position="315">
+              <caret line="36" column="50" lean-forward="true" selection-start-line="36" selection-start-column="50" selection-end-line="36" selection-end-column="50" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#761#762#0" expanded="true" />
                 <element signature="e#799#800#0" expanded="true" />
                 <element signature="e#863#864#0" expanded="true" />
                 <element signature="e#917#918#0" expanded="true" />
+                <element signature="e#2148#2149#0" expanded="true" />
+                <element signature="e#2175#2176#0" expanded="true" />
+                <element signature="e#2215#2216#0" expanded="true" />
+                <element signature="e#2247#2248#0" expanded="true" />
+                <element signature="e#2281#2282#0" expanded="true" />
+                <element signature="e#2311#2312#0" expanded="true" />
+                <element signature="e#2357#2358#0" expanded="true" />
+                <element signature="e#2395#2396#0" expanded="true" />
+                <element signature="e#2430#2431#0" expanded="true" />
+                <element signature="e#2461#2462#0" expanded="true" />
+                <element signature="e#2509#2510#0" expanded="true" />
+                <element signature="e#2549#2550#0" expanded="true" />
+                <element signature="e#2584#2585#0" expanded="true" />
+                <element signature="e#2615#2616#0" expanded="true" />
+                <element signature="e#2663#2664#0" expanded="true" />
+                <element signature="e#2703#2704#0" expanded="true" />
+                <element signature="e#2741#2742#0" expanded="true" />
+                <element signature="e#2775#2776#0" expanded="true" />
+                <element signature="e#2829#2830#0" expanded="true" />
+                <element signature="e#2875#2876#0" expanded="true" />
+                <element signature="e#2911#2912#0" expanded="true" />
+                <element signature="e#2943#2944#0" expanded="true" />
+                <element signature="e#2993#2994#0" expanded="true" />
+                <element signature="e#3035#3036#0" expanded="true" />
+                <element signature="e#3071#3072#0" expanded="true" />
+                <element signature="e#3103#3104#0" expanded="true" />
+                <element signature="e#3153#3154#0" expanded="true" />
+                <element signature="e#3195#3196#0" expanded="true" />
+                <element signature="e#3230#3231#0" expanded="true" />
+                <element signature="e#3264#3265#0" expanded="true" />
+                <element signature="e#3315#3316#0" expanded="true" />
+                <element signature="e#3361#3362#0" expanded="true" />
+                <element signature="e#3399#3400#0" expanded="true" />
+                <element signature="e#3436#3437#0" expanded="true" />
+                <element signature="e#3493#3494#0" expanded="true" />
+                <element signature="e#3545#3546#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -190,8 +130,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/view/GeneratePDF.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="273">
-              <caret line="39" column="53" selection-start-line="39" selection-start-column="53" selection-end-line="39" selection-end-column="53" />
+            <state relative-caret-position="274">
+              <caret line="133" column="20" selection-start-line="133" selection-start-column="20" selection-end-line="133" selection-end-column="20" />
             </state>
           </provider>
         </entry>
@@ -199,8 +139,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/view/NewFile.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="147">
-              <caret line="70" column="63" lean-forward="true" selection-start-line="70" selection-start-column="63" selection-end-line="70" selection-end-column="63" />
+            <state relative-caret-position="233">
+              <caret line="96" column="13" selection-start-line="96" selection-start-column="13" selection-end-line="96" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -211,8 +151,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/view/Menu.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="134">
-              <caret line="18" column="29" selection-start-line="18" selection-start-column="29" selection-end-line="18" selection-end-column="29" />
+            <state relative-caret-position="113">
+              <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
             </state>
           </provider>
         </entry>
@@ -231,6 +171,7 @@
     <findStrings>
       <find>location</find>
       <find>setData</find>
+      <find>admin</find>
     </findStrings>
   </component>
   <component name="FindManager">
@@ -254,15 +195,20 @@
         <option value="$PROJECT_DIR$/src/view/SSSRates.java" />
         <option value="$PROJECT_DIR$/src/view/Maintenance.java" />
         <option value="$PROJECT_DIR$/src/view/Success.java" />
-        <option value="$PROJECT_DIR$/src/model/Master.java" />
         <option value="$PROJECT_DIR$/src/model/Employee.java" />
         <option value="$PROJECT_DIR$/src/view/GeneratePDF.java" />
         <option value="$PROJECT_DIR$/src/view/NewPDF.java" />
         <option value="$PROJECT_DIR$/src/view/NewPDFView.fxml" />
         <option value="$PROJECT_DIR$/src/view/NewFile.fxml" />
-        <option value="$PROJECT_DIR$/src/view/NewFile.java" />
         <option value="$PROJECT_DIR$/src/view/GeneratePDF.css" />
         <option value="$PROJECT_DIR$/src/view/FXMLClass.java" />
+        <option value="$PROJECT_DIR$/src/model/ProvinceService.java" />
+        <option value="$PROJECT_DIR$/src/model/EmployeeService.java" />
+        <option value="$PROJECT_DIR$/src/model/DailyReportService.java" />
+        <option value="$PROJECT_DIR$/src/model/MonthlyReportService.java" />
+        <option value="$PROJECT_DIR$/src/model/Province.java" />
+        <option value="$PROJECT_DIR$/src/model/Master.java" />
+        <option value="$PROJECT_DIR$/src/view/NewFile.java" />
       </list>
     </option>
   </component>
@@ -298,12 +244,6 @@
               <item name="Bizsolv Manpower Costing" type="b2602c69:ProjectViewProjectNode" />
               <item name="Bizsolv Manpower Costing" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="driver" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Bizsolv Manpower Costing" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Bizsolv Manpower Costing" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="model" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -332,9 +272,9 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="dynamic.classpath" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/lib/mysql-connector-java-8.0.12.jar!/" />
-    <property name="project.structure.last.edited" value="SDKs" />
-    <property name="project.structure.proportion" value="0.0" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../mysql-connector-java-8.0.17.jar!/" />
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.proportion" value="0.15317073" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="recentsLimit" value="5" />
   </component>
@@ -448,13 +388,13 @@
       <window_info id="Image Layers" order="1" />
       <window_info id="UI Designer" order="2" />
       <window_info id="Capture Tool" order="3" />
-      <window_info content_ui="combo" id="Project" order="4" sideWeight="0.6703755" visible="true" weight="0.2579425" />
+      <window_info active="true" content_ui="combo" id="Project" order="4" sideWeight="0.6703755" visible="true" weight="0.1785174" />
       <window_info id="Learn" order="5" weight="0.32980332" />
       <window_info id="Structure" order="6" weight="0.25" />
       <window_info id="Favorites" order="7" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32872504" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.33333334" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.33333334" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39938557" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -569,13 +509,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/EmployeeService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="36" column="52" lean-forward="true" selection-start-line="36" selection-start-column="52" selection-end-line="36" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/view/SSSRates.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="792">
@@ -636,26 +569,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/Master.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="630">
-          <caret line="32" column="42" selection-start-line="32" selection-start-column="42" selection-end-line="32" selection-end-column="42" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#799#800#0" expanded="true" />
-            <element signature="e#863#864#0" expanded="true" />
-            <element signature="e#917#918#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/Menu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="134">
-          <caret line="18" column="29" selection-start-line="18" selection-start-column="29" selection-end-line="18" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/view/NewFileView.fxml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="630">
@@ -671,13 +584,6 @@
         </state>
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/GeneratePDF.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="39" column="53" selection-start-line="39" selection-start-column="53" selection-end-line="39" selection-end-column="53" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/view/NewFile.fxml">
       <provider selected="true" editor-type-id="text-editor">
@@ -703,15 +609,148 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/view/FXMLClass.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="134">
-          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
+        <state relative-caret-position="199">
+          <caret line="14" column="37" selection-start-line="14" selection-start-column="37" selection-end-line="14" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/EmployeeService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="19" column="40" selection-start-line="19" selection-start-column="40" selection-end-line="19" selection-end-column="40" />
+          <folding>
+            <element signature="e#554#555#0" expanded="true" />
+            <element signature="e#601#602#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/DailyReportService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1113">
+          <caret line="59" column="5" lean-forward="true" selection-start-line="59" selection-start-column="5" selection-end-line="59" selection-end-column="5" />
+          <folding>
+            <element signature="e#2813#2814#0" expanded="true" />
+            <element signature="e#2860#2861#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/Menu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="113">
+          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/MonthlyReportService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="61" column="18" selection-start-line="61" selection-start-column="18" selection-end-line="61" selection-end-column="18" />
+          <folding>
+            <element signature="e#2998#2999#0" expanded="true" />
+            <element signature="e#3041#3042#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/MonthlyReport.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="11" column="53" lean-forward="true" selection-start-line="11" selection-start-column="53" selection-end-line="11" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/ComputationDaily.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/GeneratePDF.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="274">
+          <caret line="133" column="20" selection-start-line="133" selection-start-column="20" selection-end-line="133" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/ProvinceService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1512">
+          <caret line="19" column="40" selection-start-line="19" selection-start-column="40" selection-end-line="19" selection-end-column="40" />
+          <folding>
+            <element signature="e#539#540#0" expanded="true" />
+            <element signature="e#586#587#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/Province.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="21">
+          <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
+          <folding>
+            <element signature="e#176#177#0" expanded="true" />
+            <element signature="e#216#217#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/Master.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="36" column="50" lean-forward="true" selection-start-line="36" selection-start-column="50" selection-end-line="36" selection-end-column="50" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#761#762#0" expanded="true" />
+            <element signature="e#799#800#0" expanded="true" />
+            <element signature="e#863#864#0" expanded="true" />
+            <element signature="e#917#918#0" expanded="true" />
+            <element signature="e#2148#2149#0" expanded="true" />
+            <element signature="e#2175#2176#0" expanded="true" />
+            <element signature="e#2215#2216#0" expanded="true" />
+            <element signature="e#2247#2248#0" expanded="true" />
+            <element signature="e#2281#2282#0" expanded="true" />
+            <element signature="e#2311#2312#0" expanded="true" />
+            <element signature="e#2357#2358#0" expanded="true" />
+            <element signature="e#2395#2396#0" expanded="true" />
+            <element signature="e#2430#2431#0" expanded="true" />
+            <element signature="e#2461#2462#0" expanded="true" />
+            <element signature="e#2509#2510#0" expanded="true" />
+            <element signature="e#2549#2550#0" expanded="true" />
+            <element signature="e#2584#2585#0" expanded="true" />
+            <element signature="e#2615#2616#0" expanded="true" />
+            <element signature="e#2663#2664#0" expanded="true" />
+            <element signature="e#2703#2704#0" expanded="true" />
+            <element signature="e#2741#2742#0" expanded="true" />
+            <element signature="e#2775#2776#0" expanded="true" />
+            <element signature="e#2829#2830#0" expanded="true" />
+            <element signature="e#2875#2876#0" expanded="true" />
+            <element signature="e#2911#2912#0" expanded="true" />
+            <element signature="e#2943#2944#0" expanded="true" />
+            <element signature="e#2993#2994#0" expanded="true" />
+            <element signature="e#3035#3036#0" expanded="true" />
+            <element signature="e#3071#3072#0" expanded="true" />
+            <element signature="e#3103#3104#0" expanded="true" />
+            <element signature="e#3153#3154#0" expanded="true" />
+            <element signature="e#3195#3196#0" expanded="true" />
+            <element signature="e#3230#3231#0" expanded="true" />
+            <element signature="e#3264#3265#0" expanded="true" />
+            <element signature="e#3315#3316#0" expanded="true" />
+            <element signature="e#3361#3362#0" expanded="true" />
+            <element signature="e#3399#3400#0" expanded="true" />
+            <element signature="e#3436#3437#0" expanded="true" />
+            <element signature="e#3493#3494#0" expanded="true" />
+            <element signature="e#3545#3546#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/view/NewFile.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="70" column="63" lean-forward="true" selection-start-line="70" selection-start-column="63" selection-end-line="70" selection-end-column="63" />
+        <state relative-caret-position="233">
+          <caret line="96" column="13" selection-start-line="96" selection-start-column="13" selection-end-line="96" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -735,6 +774,7 @@
       </state>
       <state key="FacetStructureConfigurable.UI">
         <settings>
+          <last-edited>No facets are configured</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -780,7 +820,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>External Libraries</last-edited>
+          <last-edited>mysql-connector-java-8.0.17</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
