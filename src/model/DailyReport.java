@@ -1,7 +1,7 @@
 package model;
 
 public class DailyReport {
-    int idreport, nAbscence;
+    int idreport, nAbscence, version;
     String employeename;
     float basicRate, nWorkingDays, tDaysReported, lateHours, lateRate,
             lateDeduction, undertimeHours, undertimeRate, undertimeDeduction, totalDeduction,
@@ -348,5 +348,13 @@ public class DailyReport {
 
     public void setNet_payroll(float net_payroll) {
         this.net_payroll = net_payroll;
+    }
+
+    public int getVersion() {
+        return version;
+    }
+
+    public void setVersion(int version) {
+        this.version = version;
     }
 }
