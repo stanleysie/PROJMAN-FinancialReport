@@ -19,7 +19,11 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.Timestamp;
 import java.text.DecimalFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 public class GeneratePDF extends PdfPageEventHelper implements View {
 
@@ -40,7 +44,10 @@ public class GeneratePDF extends PdfPageEventHelper implements View {
     private Computation comp;
     private ObservableList<String> allowanceList, rateTypeList, locationList, nameList;
     private double basicSalary, allowanceValue;
-    private int incentiveValue;
+    private int incentiveValue, sssIndex;
+
+    private final String MONTH_NAME[] = {"January", "February", "March", "April", "May", "June", "July", "August", "September",
+                                    "October", "November", "December"};
 
     public GeneratePDF(Stage stage, Master master) {
         this.stage = stage;
@@ -145,7 +152,10 @@ public class GeneratePDF extends PdfPageEventHelper implements View {
         image.scaleToFit(100, 100);
 
         Document document = new Document();
-        writer = PdfWriter.getInstance(document, new FileOutputStream(fileName.getText() + ".pdf"));
+        String destination = "D:\\" + fileName.getText() + ".pdf";
+        master.setFileDestination(destination);
+        master.setFileName(fileName.getText() + ".pdf");
+        writer = PdfWriter.getInstance(document, new FileOutputStream(destination));
         document.setPageSize(PageSize.LETTER);
         document.open();
 
@@ -153,7 +163,7 @@ public class GeneratePDF extends PdfPageEventHelper implements View {
         Paragraph para = new Paragraph();
         para.add(new Chunk(master.getCurrentEmployee().getName(), FontFactory.getFont(FontFactory.HELVETICA_BOLD, 11))); // add name
         para.add(Chunk.NEWLINE);
-        para.add(new Chunk(master.getCurrentEmployee().getProvince(), FontFactory.getFont(FontFactory.HELVETICA_BOLD, 11))); // add address
+        para.add(new Chunk(address.getText(), FontFactory.getFont(FontFactory.HELVETICA_BOLD, 11))); // add address
         para.add(Chunk.NEWLINE);
         document.add(para);
         document.add(NEWLINE);
@@ -187,15 +197,15 @@ public class GeneratePDF extends PdfPageEventHelper implements View {
 
         addHeader(table, "A. Basic Salary per day");
         addRows(table, basic);
-        addHeader(table, "B. Equivalent Monthly Cost", 15222.46);
+        addHeader(table, "B. Equivalent Monthly Cost", comp.getEquivalentMonthlyCost());
         addRows(table, monthlyCost);
         addHeader(table, "C. Government Requirements");
         addRows(table, governmental);
-        addHeader(table, "D. Total Monthly Labor Cost", 16645.67);
+        addHeader(table, "D. Total Monthly Labor Cost", comp.getTotalLaborCost());
         table.addCell(space);
-        addHeader(table, "E. BIZSOLV ADMIN COST", comp.getAdminCost(), 16645.67*comp.getAdminCost()/100.0);
+        addHeader(table, "E. BIZSOLV ADMIN COST", comp.getAdminCost(), comp.getBizsolvAdminCost());
         table.addCell(space);
-        addHeader(table, "F. CONTRACT COST/MONTH", 18643.15);
+        addHeader(table, "F. CONTRACT COST/MONTH", comp.getContractCost());
         return table;
     }
 
@@ -357,7 +367,7 @@ public class GeneratePDF extends PdfPageEventHelper implements View {
 
             // add current page count
             footer.getDefaultCell().setHorizontalAlignment(Element.ALIGN_RIGHT);
-            footer.addCell(new Phrase(String.format("Version 1.0.1") , new Font(Font.FontFamily.HELVETICA, 10, Font.BOLD)));
+            footer.addCell(new Phrase(String.format(getVersion()) , new Font(Font.FontFamily.HELVETICA, 10, Font.BOLD)));
 
             // write page
             PdfContentByte canvas = writer.getDirectContent();
@@ -382,11 +392,20 @@ public class GeneratePDF extends PdfPageEventHelper implements View {
         basic.add(new Data("Allowance", comp.getAllowance()));
         basic.add(new Data("Sub-total", comp.getSubTotal()));
         monthlyCost.add(new Data("Effective Monthly Rate", comp.getEffectiveMonthlyRate()));
-        governmental.add(new Data("Associate Benefit-SSS (Mand Payable)", 1120.00));
+        governmental.add(new Data("Associate Benefit-SSS (Mand Payable)", getSSS(comp.getEffectiveMonthlyRate())));
         governmental.add(new Data("Associate Benefit-Philhealth", 193.21));
-        governmental.add(new Data("Associate Benefit-Pag-ibig", 100.00));
-        governmental.add(new Data("Associate Benefit-EC", 10.00));
-        governmental.add(new Data("Sub-total", 1423.21));
+        governmental.add(new Data("Associate Benefit-Pag-ibig", getPagIbig()));
+        governmental.add(new Data("Associate Benefit-EC", getBenefitEC()));
+        double sum = 0;
+        for(int i = 0; i < governmental.size(); i++) {
+            sum += governmental.get(i).getValue();
+        }
+        comp.setGovernmentalCost(sum);
+        governmental.add(new Data("Sub-total", comp.getTotalGovernmentalCost()));
+
+        comp.setTotalLaborCost(comp.getEquivalentMonthlyCost() + comp.getTotalGovernmentalCost());
+        comp.setBizsolvAdminCost(comp.getAdminCost()*comp.getTotalLaborCost()/100);
+        comp.setContractCost(comp.getTotalLaborCost() + comp.getBizsolvAdminCost());
     }
 
     private void setup() {
@@ -419,5 +438,36 @@ public class GeneratePDF extends PdfPageEventHelper implements View {
         rateType.setItems(rateTypeList);
         rateType.getSelectionModel().select(0);
         allowance.setItems(allowanceList);
+    }
+
+    public double getSSS(double value) {
+        for(int i = 0; i < master.getSSS().size(); i++) {
+            if(value >= master.getSSS().get(i).getMinRange() && value <= master.getSSS().get(i).getMaxRange()) {
+                sssIndex = i;
+                return master.getSSS().get(i).getER();
+            }
+        }
+        return 0;
+    }
+
+    public double getBenefitEC() {
+        return master.getSSS().get(sssIndex).getEC();
+    }
+
+    public double getPagIbig() {
+        if(comp.getEffectiveMonthlyRate() * 2/100.0 > 100.0) {
+            return 100.00;
+        }
+        return comp.getEffectiveMonthlyRate() * 2/100.0;
+    }
+
+    public String getVersion() {
+        LocalDateTime date = LocalDateTime.now();
+        String str = "Version " + date.getYear() + date.getMonthValue() + date.getDayOfMonth() + "-001";
+        master.setFileTime(MONTH_NAME[date.getMonthValue()] + " " + date.getDayOfMonth() + ", " + date.getYear() + " " +
+                        String.format("%02d", date.getHour()) + ":" + String.format("%02d", date.getMinute()) + ":" +
+                        String.format("%02d", date.getSecond()));
+        master.setVersion(str);
+        return str;
     }
 }

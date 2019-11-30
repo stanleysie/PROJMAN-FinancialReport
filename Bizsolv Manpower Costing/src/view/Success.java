@@ -4,11 +4,14 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import model.Master;
 
 public class Success implements View{
 
+    @FXML
+    private Label fileNames, fileLocation, fileTime, fileVersion;
     @FXML
     private Button generateNew, exit;
 
@@ -21,6 +24,7 @@ public class Success implements View{
         Scene scene = FXMLClass.getScene("/view/SuccessView.fxml", this);
         this.stage.setScene(scene);
         this.stage.show();
+        setData();
     }
 
     public void initialize(){
@@ -48,5 +52,12 @@ public class Success implements View{
         exit.setOnMouseExited(event -> {
             exit.setStyle("-fx-background-color: #ef5350");
         });
+    }
+
+    private void setData() {
+        fileNames.setText(master.getFileName() + " has been generated!");
+        fileLocation.setText(master.getFileName() + " has been saved at " + master.getFileDestination());
+        fileTime.setText(master.getFileTime());
+        fileVersion.setText(master.getVersion());
     }
 }

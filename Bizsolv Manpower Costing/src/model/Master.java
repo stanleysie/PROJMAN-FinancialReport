@@ -1,5 +1,6 @@
 package model;
 
+import controller.SSSReader;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -9,20 +10,28 @@ public class Master {
     private EmployeeService employeeService;
     private ProvinceService provinceService;
     private Employee currentEmployee;
+    private SSSReader sssReader;
 
     // data needed for generating new pdf
-    private String fileName, name, address, rateType, location;
-    private double basicSalary, adminCost, allowance;
-    private int workingDays, incentiveLeave;
+    private String fileName, fileDestination, version, fileTime;
 
     private ObservableList<Employee> employees;
     private ObservableList<Province> provinces;
+    private ObservableList<SSS> sss;
 
     public Master() {
         this.employeeService = new EmployeeService();
         this.provinceService = new ProvinceService();
+        this.sssReader = new SSSReader(this);
         employees = FXCollections.observableArrayList();
         provinces = FXCollections.observableArrayList();
+        sss = FXCollections.observableArrayList();
+        this.sssReader.readSSS();
+    }
+
+    public ObservableList<SSS> getSSS() {
+
+        return sss;
     }
 
     public ObservableList<Employee> getAllEmployees() {
@@ -84,4 +93,20 @@ public class Master {
     public void setCurrentEmployee(Employee currentEmployee) {
         this.currentEmployee = currentEmployee;
     }
+
+    public void setFileDestination(String dest) { this.fileDestination = dest; }
+
+    public String getFileDestination() { return this.fileDestination; }
+
+    public String getFileName() { return fileName; }
+
+    public void setFileName(String fileName) { this.fileName = fileName; }
+
+    public String getVersion() { return version; }
+
+    public void setVersion(String version) { this.version = version; }
+
+    public String getFileTime() { return fileTime; }
+
+    public void setFileTime(String fileTime) { this.fileTime = fileTime; }
 }
