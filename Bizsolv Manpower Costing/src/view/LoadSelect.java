@@ -3,13 +3,17 @@ package view;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import model.Master;
 
 public class LoadSelect implements View {
 
     @FXML
-    Button load, backs;
+    Button load, menu, back;
+    
+    @FXML
+    Label employee;
 
     private Stage stage;
     private Master master;
@@ -37,17 +41,32 @@ public class LoadSelect implements View {
             load.setStyle("-fx-background-color: #ef5350");
         });
 
-        backs.setOnAction(event ->{
-            Stage stage = (Stage) backs.getScene().getWindow();
-            Menu menu = new Menu(stage, master);
+        menu.setOnAction(event ->{
+            Stage stage = (Stage) menu.getScene().getWindow();
+            Maintenance maintenance = new Maintenance(stage, master);
         });
 
-        backs.setOnMouseEntered(event -> {
-            backs.setStyle("-fx-background-color: #535353");
+        menu.setOnMouseEntered(event -> {
+            menu.setStyle("-fx-background-color: #535353");
         });
 
-        backs.setOnMouseExited(event -> {
-            backs.setStyle("-fx-background-color: #ef5350");
+        menu.setOnMouseExited(event -> {
+            menu.setStyle("-fx-background-color: #ef5350");
+        });
+
+        back.setOnAction(event ->{
+
+
+        });
+
+        back.setOnMouseEntered(event -> {
+            back.setStyle("-fx-background-color: #ef5350");
+            back.setStyle("-fx-color: white");
+        });
+
+        back.setOnMouseExited(event -> {
+            back.setStyle("-fx-background-color: white");
+            back.setStyle("-fx-color: #ef5350");
         });
     }
 

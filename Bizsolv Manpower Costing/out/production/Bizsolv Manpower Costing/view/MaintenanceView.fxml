@@ -9,14 +9,6 @@
 <AnchorPane prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #ef5350 #ef5350 #ef5350 #ef5350;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="500.0" stroke="WHITE" strokeType="INSIDE" width="500.0" />
-      <Button fx:id="sss" layoutX="160.0" layoutY="200.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="175.0" style="-fx-border-color: #ef5350;" stylesheets="@Login.css" text="SSS Rates">
-         <font>
-            <Font name="Open Sans Light" size="20.0" />
-         </font></Button>
-      <Button fx:id="pagibig" layoutX="160.0" layoutY="280.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="175.0" style="-fx-border-color: #ef5350;" stylesheets="@Login.css" text="Pagibig Rates">
-         <font>
-            <Font name="Open Sans Light" size="20.0" />
-         </font></Button>
       <Button fx:id="provincial" layoutX="160.0" layoutY="360.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="175.0" style="-fx-border-color: #ef5350;" stylesheets="@Login.css" text="Provincial Rates">
          <font>
             <Font name="Open Sans Light" size="20.0" />
