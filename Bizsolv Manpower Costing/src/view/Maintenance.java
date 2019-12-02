@@ -9,7 +9,7 @@ import model.Master;
 public class Maintenance implements View{
 
     @FXML
-    private Button provincial, back, addUser, logout;
+    private Button back, addEmployee, logout;
 
     private Stage stage;
     private Master master;
@@ -22,7 +22,7 @@ public class Maintenance implements View{
         this.stage.show();
     }
 
-        public void initialize(){
+    public void initialize(){
         back.setOnAction(event ->{
             Stage stage = (Stage) back.getScene().getWindow();
             Menu menu = new Menu(stage, master);
@@ -36,32 +36,18 @@ public class Maintenance implements View{
             back.setStyle("-fx-background-color: #ef5350");
         });
         
-        addUser.setOnAction(event -> {
-            Stage stage = (Stage) addUser.getScene().getWindow();
-            AddUser addUser = new AddUser(stage, master);
+        addEmployee.setOnAction(event -> {
+            Stage stage = (Stage) addEmployee.getScene().getWindow();
+            AddEmployee addEmployee = new AddEmployee(stage, master);
         });
 
-        addUser.setOnMouseEntered(event -> {
-            addUser.setStyle("-fx-background-color: #ef5350");
+        addEmployee.setOnMouseEntered(event -> {
+            addEmployee.setStyle("-fx-background-color: #ef5350");
         });
 
-        addUser.setOnMouseExited(event -> {
-            addUser.setStyle("-fx-background-color: #ffffff");
-            addUser.setStyle("-fx-border-color: #ef5350");
-        });
-
-        provincial.setOnAction(event -> {
-            Stage stage = (Stage) this.provincial.getScene().getWindow();
-            Provincial provincial = new Provincial(stage, master);
-        });
-
-        provincial.setOnMouseEntered(event -> {
-            provincial.setStyle("-fx-background-color: #ef5350");
-        });
-
-        provincial.setOnMouseExited(event -> {
-            provincial.setStyle("-fx-background-color: #ffffff");
-            provincial.setStyle("-fx-border-color: #ef5350");
+        addEmployee.setOnMouseExited(event -> {
+            addEmployee.setStyle("-fx-background-color: #ffffff");
+            addEmployee.setStyle("-fx-border-color: #ef5350");
         });
 
         logout.setOnAction(event ->{
@@ -70,11 +56,11 @@ public class Maintenance implements View{
         });
 
         logout.setOnMouseEntered(event -> {
-            logout.setStyle("-fx-logoutground-color: #535353");
+            logout.setStyle("-fx-background-color: #535353");
         });
 
         logout.setOnMouseExited(event -> {
-            logout.setStyle("-fx-logoutground-color: #ef5350");
+            logout.setStyle("-fx-background-color: #ef5350");
         });
     }
 }

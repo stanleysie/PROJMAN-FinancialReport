@@ -1,4 +1,4 @@
-.text-field {
+.text-field, .text-area {
     -fx-background-color: transparent;
     -fx-border-color: #ef5350;
     -fx-border-width: 0 0 2 0;

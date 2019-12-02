@@ -65,6 +65,7 @@ public class EmployeeService {
                 a.setLastname(rs.getString(EMPLOYEE_LASTNAME));
                 a.setProvince(rs.getString(PROVINCE));
                 a.setAddress(rs.getString(ADDRESS));
+                a.setName(a.getLastname() + ", " + a.getFirstname());
                 employess.add(a);
             }
             return employess;

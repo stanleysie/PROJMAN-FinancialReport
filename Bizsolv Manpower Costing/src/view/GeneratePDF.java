@@ -19,11 +19,8 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.sql.Timestamp;
 import java.text.DecimalFormat;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 public class GeneratePDF extends PdfPageEventHelper implements View {
 
@@ -32,7 +29,7 @@ public class GeneratePDF extends PdfPageEventHelper implements View {
     @FXML
     private ComboBox<String> name, locations, rateType, allowance;
     @FXML
-    private Button generate;
+    private Button generate, back;
 
     private Master master;
     private Stage stage;
@@ -43,7 +40,7 @@ public class GeneratePDF extends PdfPageEventHelper implements View {
     private Font regular, bold, small;
     private Computation comp;
     private ObservableList<String> allowanceList, rateTypeList, locationList, nameList;
-    private double basicSalary, allowanceValue;
+    private float basicSalary, allowanceValue;
     private int incentiveValue, sssIndex;
 
     private final String MONTH_NAME[] = {"January", "February", "March", "April", "May", "June", "July", "August", "September",
@@ -77,9 +74,9 @@ public class GeneratePDF extends PdfPageEventHelper implements View {
             }
 
             if(allowance.getSelectionModel().getSelectedItem() == "" || allowance.getSelectionModel().getSelectedItem() == null) {
-                allowanceValue = 0.00;
+                allowanceValue = 0;
             } else {
-                allowanceValue = Double.parseDouble(allowance.getSelectionModel().getSelectedItem());
+                allowanceValue = Float.parseFloat(allowance.getSelectionModel().getSelectedItem());
             }
             if(incentiveLeave.getText().isEmpty()) {
                 incentiveValue = 0;
@@ -110,6 +107,19 @@ public class GeneratePDF extends PdfPageEventHelper implements View {
 
         generate.setOnMouseExited(event -> {
             generate.setStyle("-fx-background-color: lightgrey");
+        });
+
+        back.setOnAction(event ->{
+            Stage stage = (Stage) back.getScene().getWindow();
+            Menu menu = new Menu(stage, master);
+        });
+
+        back.setOnMouseEntered(event -> {
+            back.setStyle("-fx-background-color: #535353");
+        });
+
+        back.setOnMouseExited(event -> {
+            back.setStyle("-fx-background-color: #ef5350");
         });
 
         adminCost.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -152,7 +162,7 @@ public class GeneratePDF extends PdfPageEventHelper implements View {
         image.scaleToFit(100, 100);
 
         Document document = new Document();
-        String destination = "D:\\" + fileName.getText() + ".pdf";
+        String destination = "E:\\" + fileName.getText().trim() + ".pdf";
         master.setFileDestination(destination);
         master.setFileName(fileName.getText() + ".pdf");
         writer = PdfWriter.getInstance(document, new FileOutputStream(destination));
@@ -167,7 +177,7 @@ public class GeneratePDF extends PdfPageEventHelper implements View {
         para.add(Chunk.NEWLINE);
         document.add(para);
         document.add(NEWLINE);
-        setData(rateType.getSelectionModel().getSelectedItem(), basicSalary, Integer.parseInt(workingDays.getText()), incentiveValue, allowanceValue, Double.parseDouble(adminCost.getText()));
+        setData(rateType.getSelectionModel().getSelectedItem(), basicSalary, Integer.parseInt(workingDays.getText()), incentiveValue, allowanceValue, Float.parseFloat(adminCost.getText()));
         PdfPTable table = createTable(rateType.getSelectionModel().getSelectedItem(), Integer.parseInt(workingDays.getText()));
         document.add(table);
         document.add(NEWLINE);
@@ -175,6 +185,46 @@ public class GeneratePDF extends PdfPageEventHelper implements View {
         signatories(document);
         addFooter(writer, document);
         document.close();
+
+        if(comp instanceof ComputationDaily) {
+            DailyReport daily = new DailyReport();
+            daily.setEmployeename(master.getCurrentEmployee().getName());
+            daily.setBasicRate(comp.getBasicSalary());
+            daily.setnWorkingDays(comp.getWorkingDays());
+            daily.setequivalentMonthlyCost(comp.getEquivalentMonthlyCost());
+            daily.seteffectiveMonthlyRate(comp.getEffectiveMonthlyRate());
+            daily.setStatutory_sss(getSSS(comp.getEffectiveMonthlyRate()));
+            daily.setStatutory_pagibig(getPagIbig());
+            daily.setStatutory_philhealth(Float.parseFloat("" + 193.21));
+            daily.setStatutory_escola(getBenefitEC());
+            daily.setTotalStatutory(comp.getTotalGovernmentalCost());
+            daily.setThirteenth_month(comp.getMonthBonus());
+            daily.setIncentive(comp.getNumOfDayIncentive());
+            daily.setTotal(comp.getTotalLaborCost());
+            daily.setadmin_cost(comp.getAdminCost());
+            daily.setcontractCost(comp.getContractCost());
+            daily.setVersion(getVersion());
+            master.addDailyReport(daily);
+        } else if(comp instanceof ComputationMonthly) {
+            MonthlyReport monthly = new MonthlyReport();
+            monthly.setEmployeename(master.getCurrentEmployee().getName());
+            monthly.setBasicRate(comp.getBasicSalary());
+            monthly.setnWorkingDays(comp.getWorkingDays());
+            monthly.setequivalentMonthlyCost(comp.getEquivalentMonthlyCost());
+            monthly.seteffectiveMonthlyRate(comp.getEffectiveMonthlyRate());
+            monthly.setStatutory_sss(getSSS(comp.getEffectiveMonthlyRate()));
+            monthly.setStatutory_pagibig(getPagIbig());
+            monthly.setStatutory_philhealth(Float.parseFloat("" + 618.75));
+            monthly.setStatutory_escola(getBenefitEC());
+            monthly.setTotalStatutory(comp.getTotalGovernmentalCost());
+            monthly.setThirteenth_month(comp.getMonthBonus());
+            monthly.setIncentive(comp.getNumOfDayIncentive());
+            monthly.setTotal(comp.getTotalLaborCost());
+            monthly.setadmin_cost(comp.getAdminCost());
+            monthly.setcontractCost(comp.getContractCost());
+            monthly.setVersion(getVersion());
+            master.addMonthlyReport(monthly);
+        }
     }
 
     private PdfPTable createTable(String type, int workingDays) {
@@ -380,7 +430,7 @@ public class GeneratePDF extends PdfPageEventHelper implements View {
     }
 
 
-    public void setData(String type, double basicSalary, int workingDays, int daysOfIncentiveLeave, double allowance, double admin) {
+    public void setData(String type, float basicSalary, int workingDays, int daysOfIncentiveLeave, float allowance, float admin) {
         if(type.equalsIgnoreCase("daily")) {
             comp = new ComputationDaily(basicSalary, workingDays, daysOfIncentiveLeave, allowance, admin);
         } else if(type.equalsIgnoreCase("monthly")) {
@@ -396,7 +446,7 @@ public class GeneratePDF extends PdfPageEventHelper implements View {
         governmental.add(new Data("Associate Benefit-Philhealth", 193.21));
         governmental.add(new Data("Associate Benefit-Pag-ibig", getPagIbig()));
         governmental.add(new Data("Associate Benefit-EC", getBenefitEC()));
-        double sum = 0;
+        float sum = 0;
         for(int i = 0; i < governmental.size(); i++) {
             sum += governmental.get(i).getValue();
         }
@@ -440,7 +490,7 @@ public class GeneratePDF extends PdfPageEventHelper implements View {
         allowance.setItems(allowanceList);
     }
 
-    public double getSSS(double value) {
+    public float getSSS(float value) {
         for(int i = 0; i < master.getSSS().size(); i++) {
             if(value >= master.getSSS().get(i).getMinRange() && value <= master.getSSS().get(i).getMaxRange()) {
                 sssIndex = i;
@@ -450,21 +500,21 @@ public class GeneratePDF extends PdfPageEventHelper implements View {
         return 0;
     }
 
-    public double getBenefitEC() {
+    public float getBenefitEC() {
         return master.getSSS().get(sssIndex).getEC();
     }
 
-    public double getPagIbig() {
+    public float getPagIbig() {
         if(comp.getEffectiveMonthlyRate() * 2/100.0 > 100.0) {
-            return 100.00;
+            return 100;
         }
-        return comp.getEffectiveMonthlyRate() * 2/100.0;
+        return comp.getEffectiveMonthlyRate() * 2/100;
     }
 
     public String getVersion() {
         LocalDateTime date = LocalDateTime.now();
         String str = "Version " + date.getYear() + date.getMonthValue() + date.getDayOfMonth() + "-001";
-        master.setFileTime(MONTH_NAME[date.getMonthValue()] + " " + date.getDayOfMonth() + ", " + date.getYear() + " " +
+        master.setFileTime(MONTH_NAME[date.getMonthValue() - 1] + " " + date.getDayOfMonth() + ", " + date.getYear() + " " +
                         String.format("%02d", date.getHour()) + ":" + String.format("%02d", date.getMinute()) + ":" +
                         String.format("%02d", date.getSecond()));
         master.setVersion(str);

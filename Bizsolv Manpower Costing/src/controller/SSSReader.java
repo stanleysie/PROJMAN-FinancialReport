@@ -18,13 +18,15 @@ public class SSSReader {
 
     public void readSSS() {
         String line = "";
-        try (BufferedReader br = new BufferedReader(new FileReader("src/files/SSS.psv"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("src/files/SSS.csv"))) {
             while ((line = br.readLine()) != null) {
                 // use pipe as separator
-                String[] data = line.split("\\|");
-                master.getSSS().add(new SSS(Double.parseDouble(data[0]), Double.parseDouble(data[1]), Double.parseDouble(data[2]),
-                                        Double.parseDouble(data[3]), Double.parseDouble(data[4]), Double.parseDouble(data[5]),
-                                        Double.parseDouble(data[6])));
+                String[] data = line.split(",");
+                if(!data[0].equalsIgnoreCase("Min Compensation")) {
+                    master.getSSS().add(new SSS(Float.parseFloat(data[0]), Float.parseFloat(data[1]), Float.parseFloat(data[2]),
+                            Float.parseFloat(data[3]), Float.parseFloat(data[4]), Float.parseFloat(data[5]),
+                            Float.parseFloat(data[6])));
+                }
             }
 
         } catch (IOException e) {

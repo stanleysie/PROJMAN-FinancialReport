@@ -3,9 +3,9 @@ package model;
 public class ComputationDaily extends Computation {
 
     private int daysOfIncentiveLeave;
-    private double allowance, subTotal, adminCost;
+    private float allowance, subTotal, adminCost;
 
-    public ComputationDaily(double basicSalary, int workingDays, int daysOfIncentiveLeave, double allowance, double adminCost) {
+    public ComputationDaily(float basicSalary, int workingDays, int daysOfIncentiveLeave, float allowance, float adminCost) {
         super(basicSalary, workingDays);
         this.allowance = allowance;
         this.daysOfIncentiveLeave = daysOfIncentiveLeave;
@@ -13,25 +13,25 @@ public class ComputationDaily extends Computation {
         this.adminCost = adminCost;
     }
 
-    public double getNumOfDayIncentive() {
+    public float getNumOfDayIncentive() {
         return (this.daysOfIncentiveLeave * this.getBasicSalary())/12;
     }
 
-    public double getEquivalentMonthlyCost() {
+    public float getEquivalentMonthlyCost() {
         return (this.subTotal * this.getWorkingDays())/12;
     }
 
-    public double getEffectiveMonthlyRate() {
+    public float getEffectiveMonthlyRate() {
         return (this.getBasicSalary() * this.getWorkingDays())/12;
     }
 
-    public double getAllowance() {
+    public float getAllowance() {
         return allowance;
     }
 
-    public double getSubTotal() {
+    public float getSubTotal() {
         return subTotal;
     }
 
-    public double getAdminCost() { return adminCost; }
+    public float getAdminCost() { return adminCost; }
 }

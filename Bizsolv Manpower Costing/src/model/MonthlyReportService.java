@@ -2,6 +2,7 @@ package model;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.effect.Effect;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,21 +14,20 @@ public class MonthlyReportService {
 
     private final String ID_REPORT = "idreport";
     private final String EMPLOYEE_NAME = "employeename";
-    private final String MONTHLY_RATE = "monthly_rate";
     private final String BASIC_RATE = "basic_rate";
     private final String NO_WORKING_DAYS = "no_working_days";
-    private final String DAYS_RENDERED = "total_days_rendered";
-    private final String GROSS_PAY = "gross_pay";
+    private final String EQUIVALENT_MONTHLY_COST = "equivalent_monthly_cost";
+    private final String EFFECTIVE_MONTHLY_RATE = "effective_monthly_rate";
     private final String STATUTORY_SSS = "statutory_sss";
     private final String STATUTORY_PAGIBIG = "statutory_pagibig";
     private final String STATUTORY_PHILHEALTH = "statutory_philhealth";
-    private final String STATUTORY_ESCOLA = "statutory_escola";
+    private final String STATUTORY_ECOLA = "statutory_ecola";
     private final String TOTAL_STATUTORY = "total_statutory";
     private final String THIRTHEENTH_MONTH_PAY = "13th_month";
     private final String INCENTIVE = "incentive";
-    private final String TOTAL = "total";
-    private final String ADMIN_FEE = "admin_fee";
-    private final String NET_PAYROLL = "net_payroll";
+    private final String TOTAL_LABOR_COST = "total_labor_cost";
+    private final String ADMIN_COST = "admin_cost";
+    private final String CONTRACT_COST = "contract_cost";
     private final String VERSION = "version";
 
     public MonthlyReportService() {
@@ -37,29 +37,33 @@ public class MonthlyReportService {
     public boolean add(MonthlyReport m, Employee employee) throws SQLException {
         // Get a connection:
         Connection connection = pool.checkOut();
-        String query = "INSERT INTO monthly_report VALUE (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO monthly_report VALUE (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement statement = connection.prepareStatement(query);
         try {
             MonthlyReport temp = getLast();
-            statement.setInt(1, temp.getIdreport() + 1);
-            statement.setString(2,employee.getFirstname() + " " + employee.getLastname());
-            statement.setFloat(3, m.getmRate());
-            statement.setFloat(4, m.getBasicRate());
-            statement.setFloat(5, m.getnWorkingDays());
-            statement.setFloat(6, m.gettDaysReported());
-            statement.setFloat(7, m.getGrossPay());
-            statement.setFloat(8, m.getStatutory_sss());
-            statement.setFloat(9, m.getStatutory_pagibig());
-            statement.setFloat(10, m.getStatutory_philhealth());
-            statement.setFloat(11, m.getStatutory_escola());
-            statement.setFloat(12, m.getTotalStatutory());
-            statement.setFloat(13, m.getThirteenth_month());
-            statement.setFloat(14, m.getIncentive());
-            statement.setFloat(15, m.getTotal());
-            statement.setFloat(16, m.getAdmin_fee());
-            statement.setFloat(17, m.getNet_payroll());
+            m.setIdreport(temp.getIdreport() + 1);
+            statement.setInt(1, m.getIdreport());
+            statement.setString(2,employee.getLastname() + ", " + employee.getFirstname());
+            statement.setFloat(3, m.getBasicRate());
+            statement.setFloat(4, m.getnWorkingDays());
+            statement.setFloat(5, m.getequivalentMonthlyCost());
+            statement.setFloat(6, m.geteffectiveMonthlyRate());
+            statement.setFloat(7, m.getStatutory_sss());
+            statement.setFloat(8, m.getStatutory_pagibig());
+            statement.setFloat(9, m.getStatutory_philhealth());
+            statement.setFloat(10, m.getStatutory_escola());
+            statement.setFloat(11, m.getTotalStatutory());
+            statement.setFloat(12, m.getThirteenth_month());
+            statement.setFloat(13, m.getIncentive());
+            statement.setFloat(14, m.getTotal());
+            statement.setFloat(15, m.getadmin_cost());
+            statement.setFloat(16, m.getcontractCost());
             temp = getEmployeeLastVersions(m.getEmployeename());
-            statement.setInt(18, temp.getVersion() + 1);
+            if(temp != null) {
+                statement.setString(17, temp.getVersion() + 1);
+            } else {
+                statement.setString(17, m.getVersion());
+            }
 
             boolean added = statement.execute();
 
@@ -90,22 +94,21 @@ public class MonthlyReportService {
 
                 mr.setIdreport(rs.getInt(ID_REPORT));
                 mr.setEmployeename(rs.getString(EMPLOYEE_NAME));
-                mr.setmRate(rs.getFloat(MONTHLY_RATE));
                 mr.setBasicRate(rs.getFloat(BASIC_RATE));
                 mr.setnWorkingDays(rs.getFloat(NO_WORKING_DAYS));
-                mr.settDaysReported(rs.getFloat(DAYS_RENDERED));
-                mr.setGrossPay(rs.getFloat(GROSS_PAY));
+                mr.setequivalentMonthlyCost(rs.getFloat(EQUIVALENT_MONTHLY_COST));
+                mr.seteffectiveMonthlyRate(rs.getFloat(EFFECTIVE_MONTHLY_RATE));
                 mr.setStatutory_sss(rs.getFloat(STATUTORY_SSS));
                 mr.setStatutory_pagibig(rs.getFloat(STATUTORY_PAGIBIG));
                 mr.setStatutory_philhealth(rs.getFloat(STATUTORY_PHILHEALTH));
-                mr.setStatutory_escola(rs.getFloat(STATUTORY_ESCOLA));
+                mr.setStatutory_escola(rs.getFloat(STATUTORY_ECOLA));
                 mr.setTotalStatutory(rs.getFloat(TOTAL_STATUTORY));
                 mr.setThirteenth_month(rs.getFloat(THIRTHEENTH_MONTH_PAY));
                 mr.setIncentive(rs.getFloat(INCENTIVE));
-                mr.setTotal(rs.getFloat(TOTAL));
-                mr.setAdmin_fee(rs.getFloat(ADMIN_FEE));
-                mr.setNet_payroll(rs.getFloat(NET_PAYROLL));
-                mr.setVersion(rs.getInt(VERSION));
+                mr.setTotal(rs.getFloat(TOTAL_LABOR_COST));
+                mr.setadmin_cost(rs.getFloat(ADMIN_COST));
+                mr.setcontractCost(rs.getFloat(CONTRACT_COST));
+                mr.setVersion(rs.getString(VERSION));
 
                 monthlyReports.add(mr);
             }
@@ -135,22 +138,21 @@ public class MonthlyReportService {
 
                 mr.setIdreport(rs.getInt(ID_REPORT));
                 mr.setEmployeename(rs.getString(EMPLOYEE_NAME));
-                mr.setmRate(rs.getFloat(MONTHLY_RATE));
                 mr.setBasicRate(rs.getFloat(BASIC_RATE));
                 mr.setnWorkingDays(rs.getFloat(NO_WORKING_DAYS));
-                mr.settDaysReported(rs.getFloat(DAYS_RENDERED));
-                mr.setGrossPay(rs.getFloat(GROSS_PAY));
+                mr.setequivalentMonthlyCost(rs.getFloat(EQUIVALENT_MONTHLY_COST));
+                mr.seteffectiveMonthlyRate(rs.getFloat(EFFECTIVE_MONTHLY_RATE));
                 mr.setStatutory_sss(rs.getFloat(STATUTORY_SSS));
                 mr.setStatutory_pagibig(rs.getFloat(STATUTORY_PAGIBIG));
                 mr.setStatutory_philhealth(rs.getFloat(STATUTORY_PHILHEALTH));
-                mr.setStatutory_escola(rs.getFloat(STATUTORY_ESCOLA));
+                mr.setStatutory_escola(rs.getFloat(STATUTORY_ECOLA));
                 mr.setTotalStatutory(rs.getFloat(TOTAL_STATUTORY));
                 mr.setThirteenth_month(rs.getFloat(THIRTHEENTH_MONTH_PAY));
                 mr.setIncentive(rs.getFloat(INCENTIVE));
-                mr.setTotal(rs.getFloat(TOTAL));
-                mr.setAdmin_fee(rs.getFloat(ADMIN_FEE));
-                mr.setNet_payroll(rs.getFloat(NET_PAYROLL));
-                mr.setVersion(rs.getInt(VERSION));
+                mr.setTotal(rs.getFloat(TOTAL_LABOR_COST));
+                mr.setadmin_cost(rs.getFloat(ADMIN_COST));
+                mr.setcontractCost(rs.getFloat(CONTRACT_COST));
+                mr.setVersion(rs.getString(VERSION));
 
             }
             return mr;
@@ -179,22 +181,21 @@ public class MonthlyReportService {
 
                 mr.setIdreport(rs.getInt(ID_REPORT));
                 mr.setEmployeename(rs.getString(EMPLOYEE_NAME));
-                mr.setmRate(rs.getFloat(MONTHLY_RATE));
                 mr.setBasicRate(rs.getFloat(BASIC_RATE));
                 mr.setnWorkingDays(rs.getFloat(NO_WORKING_DAYS));
-                mr.settDaysReported(rs.getFloat(DAYS_RENDERED));
-                mr.setGrossPay(rs.getFloat(GROSS_PAY));
+                mr.setequivalentMonthlyCost(rs.getFloat(EQUIVALENT_MONTHLY_COST));
+                mr.seteffectiveMonthlyRate(rs.getFloat(EFFECTIVE_MONTHLY_RATE));
                 mr.setStatutory_sss(rs.getFloat(STATUTORY_SSS));
                 mr.setStatutory_pagibig(rs.getFloat(STATUTORY_PAGIBIG));
                 mr.setStatutory_philhealth(rs.getFloat(STATUTORY_PHILHEALTH));
-                mr.setStatutory_escola(rs.getFloat(STATUTORY_ESCOLA));
+                mr.setStatutory_escola(rs.getFloat(STATUTORY_ECOLA));
                 mr.setTotalStatutory(rs.getFloat(TOTAL_STATUTORY));
                 mr.setThirteenth_month(rs.getFloat(THIRTHEENTH_MONTH_PAY));
                 mr.setIncentive(rs.getFloat(INCENTIVE));
-                mr.setTotal(rs.getFloat(TOTAL));
-                mr.setAdmin_fee(rs.getFloat(ADMIN_FEE));
-                mr.setNet_payroll(rs.getFloat(NET_PAYROLL));
-                mr.setVersion(rs.getInt(VERSION));
+                mr.setTotal(rs.getFloat(TOTAL_LABOR_COST));
+                mr.setadmin_cost(rs.getFloat(ADMIN_COST));
+                mr.setcontractCost(rs.getFloat(CONTRACT_COST));
+                mr.setVersion(rs.getString(VERSION));
 
             }
             return mr;
@@ -216,28 +217,27 @@ public class MonthlyReportService {
 
 
         String query = "UPDATE monthly_report SET "
-                + EMPLOYEE_NAME + " = ?, "  + MONTHLY_RATE + " = ?, "  + BASIC_RATE + " = ?, "
-                + NO_WORKING_DAYS + " = ?, "  + DAYS_RENDERED + " = ?, "
-                + GROSS_PAY + " = ?, "
+                + EMPLOYEE_NAME + " = ?, "  + BASIC_RATE + " = ?, "
+                + NO_WORKING_DAYS + " = ?, "  + EQUIVALENT_MONTHLY_COST + " = ?, "
+                + EFFECTIVE_MONTHLY_RATE + " = ?, "
                 + STATUTORY_SSS + " = ?, " + STATUTORY_PAGIBIG + " = ?, "
-                + STATUTORY_PHILHEALTH + " = ?, " + STATUTORY_ESCOLA + " = ?, "
+                + STATUTORY_PHILHEALTH + " = ?, " + STATUTORY_ECOLA + " = ?, "
                 + TOTAL_STATUTORY + " = ?, "
                 + THIRTHEENTH_MONTH_PAY + " = ?, "
                 + INCENTIVE + " = ?, "
-                + TOTAL + " = ?, "
-                + ADMIN_FEE + " = ?, "
-                + NET_PAYROLL + " = ?, "
+                + TOTAL_LABOR_COST + " = ?, "
+                + ADMIN_COST + " = ?, "
+                + CONTRACT_COST + " = ?, "
                 + VERSION + " = ? "
                 + "WHERE "+ ID_REPORT + " = ?";
         PreparedStatement statement = connection.prepareStatement(query);
         try {
 
             statement.setString(1, m.getEmployeename());
-            statement.setFloat(2, m.getmRate());
             statement.setFloat(3, m.getBasicRate());
             statement.setFloat(4, m.getnWorkingDays());
-            statement.setFloat(5, m.gettDaysReported());
-            statement.setFloat(6, m.getGrossPay());
+            statement.setFloat(5, m.getequivalentMonthlyCost());
+            statement.setFloat(6, m.geteffectiveMonthlyRate());
             statement.setFloat(7, m.getStatutory_sss());
             statement.setFloat(8, m.getStatutory_pagibig());
             statement.setFloat(9, m.getStatutory_philhealth());
@@ -246,9 +246,9 @@ public class MonthlyReportService {
             statement.setFloat(12, m.getThirteenth_month());
             statement.setFloat(13, m.getIncentive());
             statement.setFloat(14, m.getTotal());
-            statement.setFloat(15, m.getAdmin_fee());
-            statement.setFloat(16, m.getNet_payroll());
-            statement.setInt(17, m.getVersion());
+            statement.setFloat(15, m.getadmin_cost());
+            statement.setFloat(16, m.getcontractCost());
+            statement.setString(17, m.getVersion());
             statement.setInt(18, m.getIdreport());
 
             statement.executeUpdate();

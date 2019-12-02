@@ -2,16 +2,17 @@ package model;
 
 public class Employee {
     private int idemployee;
-    private String firstname, lastname, province, address;
+    private String firstname, lastname, province, address, name;
 
     public Employee() {
     }
 
-    public Employee(String firstname, String lastname, String province) {
+    public Employee(String firstname, String lastname, String province, String address) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.province = province;
-
+        this.address = address;
+        this.name = this.lastname + ", " + this.firstname;
     }
 
     public int getIdemployee() {
@@ -46,8 +47,10 @@ public class Employee {
         this.province = province;
     }
 
+    public void setName(String name) { this.name = name; }
+
     public String getName() {
-        return this.lastname + ", " + this.firstname;
+        return this.name;
     }
 
     public String getAddress() {

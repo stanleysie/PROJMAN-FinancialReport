@@ -9,6 +9,8 @@ import java.sql.SQLException;
 public class Master {
     private EmployeeService employeeService;
     private ProvinceService provinceService;
+    private DailyReportService dailyReportService;
+    private MonthlyReportService monthlyReportService;
     private Employee currentEmployee;
     private SSSReader sssReader;
 
@@ -22,6 +24,8 @@ public class Master {
     public Master() {
         this.employeeService = new EmployeeService();
         this.provinceService = new ProvinceService();
+        this.dailyReportService = new DailyReportService();
+        this.monthlyReportService = new MonthlyReportService();
         this.sssReader = new SSSReader(this);
         employees = FXCollections.observableArrayList();
         provinces = FXCollections.observableArrayList();
@@ -30,7 +34,6 @@ public class Master {
     }
 
     public ObservableList<SSS> getSSS() {
-
         return sss;
     }
 
@@ -68,6 +71,53 @@ public class Master {
             names.add(provinces.get(i).getProvincename());
         }
         return names;
+    }
+
+    public ObservableList<Report> getEmployeesVersion(String name) {
+        ObservableList<DailyReport> daily = getEmployeeDailyVersion(name);
+        ObservableList<MonthlyReport> monthly = getEmployeeMonthlyVersion(name);
+        ObservableList<Report> versions = FXCollections.observableArrayList();
+        for(int i = 0; i < daily.size(); i++) {
+            versions.add(daily.get(i));
+        }
+        for(int i = 0; i < monthly.size(); i++) {
+            versions.add(monthly.get(i));
+        }
+        return versions;
+    }
+
+    public ObservableList<DailyReport> getEmployeeDailyVersion(String name) {
+        try {
+            return dailyReportService.getEmployeeVersions(name);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public ObservableList<MonthlyReport> getEmployeeMonthlyVersion(String name) {
+        try {
+            return monthlyReportService.getEmployeeVersions(name);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public void addDailyReport(DailyReport daily) {
+        try {
+            dailyReportService.add(daily, currentEmployee);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void addMonthlyReport(MonthlyReport monthly) {
+        try {
+            monthlyReportService.add(monthly, currentEmployee);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public void updateProvinceList() {

@@ -1,11 +1,11 @@
 package model;
 
-public class MonthlyReport {
-    int idreport, version;
-    String employeename;
-    float mRate, basicRate, nWorkingDays, tDaysReported, grossPay, statutory_sss,
+public class MonthlyReport implements Report {
+    int idreport;
+    String employeename, version;
+    float basicRate, nWorkingDays, equivalentMonthlyCost, effectiveMonthlyRate, statutory_sss,
             statutory_pagibig, statutory_philhealth,statutory_escola, totalStatutory, thirteenth_month,
-            incentive, total, admin_fee, net_payroll;
+            incentive, totalLaborCost, admin_cost, contractCost;
 
     public MonthlyReport() {
     }
@@ -26,14 +26,6 @@ public class MonthlyReport {
         this.employeename = employeename;
     }
 
-    public float getmRate() {
-        return mRate;
-    }
-
-    public void setmRate(float mRate) {
-        this.mRate = mRate;
-    }
-
     public float getBasicRate() {
         return basicRate;
     }
@@ -50,20 +42,20 @@ public class MonthlyReport {
         this.nWorkingDays = nWorkingDays;
     }
 
-    public float gettDaysReported() {
-        return tDaysReported;
+    public float getequivalentMonthlyCost() {
+        return equivalentMonthlyCost;
     }
 
-    public void settDaysReported(float tDaysReported) {
-        this.tDaysReported = tDaysReported;
+    public void setequivalentMonthlyCost(float equivalentMonthlyCost) {
+        this.equivalentMonthlyCost = equivalentMonthlyCost;
     }
 
-    public float getGrossPay() {
-        return grossPay;
+    public float geteffectiveMonthlyRate() {
+        return effectiveMonthlyRate;
     }
 
-    public void setGrossPay(float grossPay) {
-        this.grossPay = grossPay;
+    public void seteffectiveMonthlyRate(float effectiveMonthlyRate) {
+        this.effectiveMonthlyRate = effectiveMonthlyRate;
     }
 
     public float getStatutory_sss() {
@@ -123,34 +115,34 @@ public class MonthlyReport {
     }
 
     public float getTotal() {
-        return total;
+        return totalLaborCost;
     }
 
     public void setTotal(float total) {
-        this.total = total;
+        this.totalLaborCost = total;
     }
 
-    public float getAdmin_fee() {
-        return admin_fee;
+    public float getadmin_cost() {
+        return admin_cost;
     }
 
-    public void setAdmin_fee(float admin_fee) {
-        this.admin_fee = admin_fee;
+    public void setadmin_cost(float admin_cost) {
+        this.admin_cost = admin_cost;
     }
 
-    public float getNet_payroll() {
-        return net_payroll;
+    public float getcontractCost() {
+        return contractCost;
     }
 
-    public void setNet_payroll(float net_payroll) {
-        this.net_payroll = net_payroll;
+    public void setcontractCost(float contractCost) {
+        this.contractCost = contractCost;
     }
 
-    public int getVersion() {
+    public String getVersion() {
         return version;
     }
 
-    public void setVersion(int version) {
+    public void setVersion(String version) {
         this.version = version;
     }
 }

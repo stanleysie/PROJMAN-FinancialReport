@@ -1,9 +1,9 @@
 package model;
 
 public class SSS {
-    private double minRange, maxRange, monthlySalaryCredit, ER, EE, total, EC;
+    private float minRange, maxRange, monthlySalaryCredit, ER, EE, total, EC;
 
-    public SSS(double minRange, double maxRange, double monthlySalaryCredit, double ER, double EE, double total, double EC) {
+    public SSS(float minRange, float maxRange, float monthlySalaryCredit, float ER, float EE, float total, float EC) {
         this.minRange = minRange;
         this.maxRange = maxRange;
         this.monthlySalaryCredit = monthlySalaryCredit;
@@ -13,31 +13,31 @@ public class SSS {
         this.EC = EC;
     }
 
-    public double getMinRange() {
+    public float getMinRange() {
         return minRange;
     }
 
-    public double getMaxRange() {
+    public float getMaxRange() {
         return maxRange;
     }
 
-    public double getMonthlySalaryCredit() {
+    public float getMonthlySalaryCredit() {
         return monthlySalaryCredit;
     }
 
-    public double getER() {
+    public float getER() {
         return ER;
     }
 
-    public double getEE() {
+    public float getEE() {
         return EE;
     }
 
-    public double getTotal() {
+    public float getTotal() {
         return total;
     }
 
-    public double getEC() {
+    public float getEC() {
         return EC;
     }
 }

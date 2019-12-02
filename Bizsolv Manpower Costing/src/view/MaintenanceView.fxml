@@ -6,19 +6,15 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #ef5350 #ef5350 #ef5350 #ef5350;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #ef5350 #ef5350 #ef5350 #ef5350;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="500.0" stroke="WHITE" strokeType="INSIDE" width="500.0" />
-      <Button fx:id="provincial" layoutX="160.0" layoutY="360.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="175.0" style="-fx-border-color: #ef5350;" stylesheets="@Login.css" text="Provincial Rates">
+      <Label layoutX="119.0" layoutY="143.0" text="Admin Maintenance">
          <font>
-            <Font name="Open Sans Light" size="20.0" />
-         </font></Button>
-      <Label layoutX="120.0" layoutY="40.0" text="Admin Maintenance">
-         <font>
-            <Font name="Open Sans Light" size="27.0" />
+            <Font name="System Bold" size="27.0" />
          </font>
       </Label>
-      <Button fx:id="addUser" layoutX="160.0" layoutY="120.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="175.0" style="-fx-border-color: #ef5350;" stylesheets="@Login.css" text="Add User">
+      <Button fx:id="addEmployee" layoutX="160.0" layoutY="220.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="175.0" style="-fx-border-color: #ef5350;" stylesheets="@Login.css" text="Add Employee">
          <font>
             <Font name="Open Sans Light" size="20.0" />
          </font></Button>
