@@ -5,9 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import model.Master;
@@ -15,6 +13,7 @@ import model.Master;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.Optional;
 
 public class LoadFile implements View {
 
@@ -41,7 +40,18 @@ public class LoadFile implements View {
     public void initialize() {
         saveChanges.setDefaultButton(true);
         saveChanges.setOnAction(event -> {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmation");
+            alert.setHeaderText("Load File");
+            alert.setContentText("Are you sure you want to save the changes?");
 
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK){
+                Stage stage = (Stage) saveChanges.getScene().getWindow();
+                Menu menu = new Menu(stage, master);
+            } else {
+                // ... user chose CANCEL or closed the dialog
+            }
         });
 
         saveChanges.setOnMouseEntered(event -> {
@@ -54,7 +64,7 @@ public class LoadFile implements View {
 
         back.setOnAction(event ->{
             Stage stage = (Stage) back.getScene().getWindow();
-            Menu menu = new Menu(stage, master);
+            LoadSelect loadSelect = new LoadSelect(stage, master);
         });
 
         back.setOnMouseEntered(event -> {
