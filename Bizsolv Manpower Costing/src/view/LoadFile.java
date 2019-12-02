@@ -1,18 +1,11 @@
 package view;
 
-import com.itextpdf.text.DocumentException;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import model.Master;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.Optional;
 
 public class LoadFile implements View {
@@ -30,7 +23,7 @@ public class LoadFile implements View {
     public LoadFile(Stage stage, Master master) {
         this.stage = stage;
         this.master = master;
-        Scene scene = FXMLClass.getScene("/view/LoadFile.fxml", this);
+        Scene scene = FXMLClass.getScene("/view/LoadFile.fxml", this)   ;
         this.stage.setScene(scene);
         this.stage.show();
 
