@@ -9,7 +9,7 @@ import model.Master;
 public class Maintenance implements View{
 
     @FXML
-    private Button sss, pagibig, provincial, back, addUser, logout;
+    private Button provincial, back, addUser, logout;
 
     private Stage stage;
     private Master master;
@@ -37,7 +37,7 @@ public class Maintenance implements View{
         });
         
         addUser.setOnAction(event -> {
-            Stage stage = (Stage) sss.getScene().getWindow();
+            Stage stage = (Stage) addUser.getScene().getWindow();
             AddUser addUser = new AddUser(stage, master);
         });
 
@@ -50,37 +50,9 @@ public class Maintenance implements View{
             addUser.setStyle("-fx-border-color: #ef5350");
         });
 
-        sss.setOnAction(event -> {
-            Stage stage = (Stage) sss.getScene().getWindow();
-            SSSRates sssRates = new SSSRates(stage, master);
-        });
-
-        sss.setOnMouseEntered(event -> {
-            sss.setStyle("-fx-background-color: #ef5350");
-        });
-
-        sss.setOnMouseExited(event -> {
-            sss.setStyle("-fx-background-color: #ffffff");
-            sss.setStyle("-fx-border-color: #ef5350");
-        });
-
-        pagibig.setOnAction(event -> {
-            Stage stage = (Stage) pagibig.getScene().getWindow();
-            SSSRates sssRates = new SSSRates(stage, master);
-        });
-
-        pagibig.setOnMouseEntered(event -> {
-            pagibig.setStyle("-fx-background-color: #ef5350");
-        });
-
-        pagibig.setOnMouseExited(event -> {
-            pagibig.setStyle("-fx-background-color: #ffffff");
-            pagibig.setStyle("-fx-border-color: #ef5350");
-        });
-
         provincial.setOnAction(event -> {
-            Stage stage = (Stage) provincial.getScene().getWindow();
-            SSSRates sssRates = new SSSRates(stage, master);
+            Stage stage = (Stage) this.provincial.getScene().getWindow();
+            Provincial provincial = new Provincial(stage, master);
         });
 
         provincial.setOnMouseEntered(event -> {

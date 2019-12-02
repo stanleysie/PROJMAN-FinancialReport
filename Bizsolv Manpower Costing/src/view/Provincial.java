@@ -10,7 +10,7 @@ import model.Master;
 
 import java.util.Optional;
 
-public class SSSRates implements View{
+public class Provincial implements View{
 
     @FXML
     private Button back, save;
@@ -18,10 +18,10 @@ public class SSSRates implements View{
     private Stage stage;
     private Master master;
 
-    public SSSRates(Stage stage, Master master) {
+    public Provincial(Stage stage, Master master) {
         this.stage = stage;
         this.master = master;
-        Scene scene = FXMLClass.getScene("/view/SSSRatesView.fxml", this);
+        Scene scene = FXMLClass.getScene("/view/ProvincialView.fxml", this);
         this.stage.setScene(scene);
         this.stage.show();
     }
@@ -43,7 +43,7 @@ public class SSSRates implements View{
         save.setOnAction(event -> {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Confirmation");
-            alert.setHeaderText("SSS Rates");
+            alert.setHeaderText("Provincial");
             alert.setContentText("Are you sure you want to save the changes?");
 
             Optional<ButtonType> result = alert.showAndWait();

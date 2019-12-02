@@ -52,7 +52,7 @@ public class Menu implements View {
 
         load.setOnAction(event -> {
             Stage stage = (Stage) load.getScene().getWindow();
-            LoadFile load = new LoadFile(stage, master);
+            LoadSelect load = new LoadSelect(stage, master);
         });
 
         load.setOnMouseEntered(event -> {
