@@ -29,6 +29,7 @@ public class MonthlyReportService {
     private final String ADMIN_COST = "admin_cost";
     private final String CONTRACT_COST = "contract_cost";
     private final String VERSION = "version";
+    private final String ALLOWANCE = "allowance";
 
     public MonthlyReportService() {
         pool = new JDBCConnectionPool();
@@ -37,7 +38,7 @@ public class MonthlyReportService {
     public boolean add(MonthlyReport m, Employee employee) throws SQLException {
         // Get a connection:
         Connection connection = pool.checkOut();
-        String query = "INSERT INTO monthly_report VALUE (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO monthly_report VALUE (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement statement = connection.prepareStatement(query);
         try {
             MonthlyReport temp = getLast();
@@ -58,12 +59,12 @@ public class MonthlyReportService {
             statement.setFloat(14, m.getTotal());
             statement.setFloat(15, m.getadmin_cost());
             statement.setFloat(16, m.getcontractCost());
-            temp = getEmployeeLastVersions(m.getEmployeename());
-            if(temp != null) {
-                statement.setString(17, temp.getVersion() + 1);
+            if(temp.getVersion() != null) {
+                statement.setString(17, temp.getVersion() + "-1");
             } else {
                 statement.setString(17, m.getVersion());
             }
+            statement.setFloat(18, m.getAllowance());
 
             boolean added = statement.execute();
 
@@ -109,6 +110,7 @@ public class MonthlyReportService {
                 mr.setadmin_cost(rs.getFloat(ADMIN_COST));
                 mr.setcontractCost(rs.getFloat(CONTRACT_COST));
                 mr.setVersion(rs.getString(VERSION));
+                mr.setAllowance(rs.getFloat(ALLOWANCE));
 
                 monthlyReports.add(mr);
             }
@@ -123,19 +125,18 @@ public class MonthlyReportService {
         return monthlyReports;
     }
 
-    public MonthlyReport getEmployeeLastVersions(String employeename) throws SQLException {
+    public MonthlyReport getEmployeeMontlyReport(String version) throws SQLException {
         // Get a connection:
         Connection connection = pool.checkOut();
-        MonthlyReport mr = new MonthlyReport();
+        MonthlyReport mr = null;
 
-        String query ="SELECT * FROM monthly_report WHERE employeename = '" + employeename + "' ORDER BY " + ID_REPORT
-                + " DESC  LIMIT 1";
+        String query ="SELECT * FROM monthly_report WHERE version = '" + version + "'";
         PreparedStatement statement = connection.prepareStatement(query);
         try {
 
             ResultSet rs = statement.executeQuery();
             while (rs.next()){
-
+                mr = new MonthlyReport();
                 mr.setIdreport(rs.getInt(ID_REPORT));
                 mr.setEmployeename(rs.getString(EMPLOYEE_NAME));
                 mr.setBasicRate(rs.getFloat(BASIC_RATE));
@@ -153,6 +154,7 @@ public class MonthlyReportService {
                 mr.setadmin_cost(rs.getFloat(ADMIN_COST));
                 mr.setcontractCost(rs.getFloat(CONTRACT_COST));
                 mr.setVersion(rs.getString(VERSION));
+                mr.setAllowance(rs.getFloat(ALLOWANCE));
 
             }
             return mr;
@@ -196,6 +198,7 @@ public class MonthlyReportService {
                 mr.setadmin_cost(rs.getFloat(ADMIN_COST));
                 mr.setcontractCost(rs.getFloat(CONTRACT_COST));
                 mr.setVersion(rs.getString(VERSION));
+                mr.setAllowance(rs.getFloat(ALLOWANCE));
 
             }
             return mr;
@@ -210,59 +213,57 @@ public class MonthlyReportService {
     }
 
     //pass the username of the account that wants to be change and an account class with COMPLETE information including the updates
-    public boolean update(String employeename, MonthlyReport m) throws SQLException {
-        //UPDATE
-        // Get a connection:
-        Connection connection = pool.checkOut();
-
-
-        String query = "UPDATE monthly_report SET "
-                + EMPLOYEE_NAME + " = ?, "  + BASIC_RATE + " = ?, "
-                + NO_WORKING_DAYS + " = ?, "  + EQUIVALENT_MONTHLY_COST + " = ?, "
-                + EFFECTIVE_MONTHLY_RATE + " = ?, "
-                + STATUTORY_SSS + " = ?, " + STATUTORY_PAGIBIG + " = ?, "
-                + STATUTORY_PHILHEALTH + " = ?, " + STATUTORY_ECOLA + " = ?, "
-                + TOTAL_STATUTORY + " = ?, "
-                + THIRTHEENTH_MONTH_PAY + " = ?, "
-                + INCENTIVE + " = ?, "
-                + TOTAL_LABOR_COST + " = ?, "
-                + ADMIN_COST + " = ?, "
-                + CONTRACT_COST + " = ?, "
-                + VERSION + " = ? "
-                + "WHERE "+ ID_REPORT + " = ?";
-        PreparedStatement statement = connection.prepareStatement(query);
-        try {
-
-            statement.setString(1, m.getEmployeename());
-            statement.setFloat(3, m.getBasicRate());
-            statement.setFloat(4, m.getnWorkingDays());
-            statement.setFloat(5, m.getequivalentMonthlyCost());
-            statement.setFloat(6, m.geteffectiveMonthlyRate());
-            statement.setFloat(7, m.getStatutory_sss());
-            statement.setFloat(8, m.getStatutory_pagibig());
-            statement.setFloat(9, m.getStatutory_philhealth());
-            statement.setFloat(10, m.getStatutory_escola());
-            statement.setFloat(11, m.getTotalStatutory());
-            statement.setFloat(12, m.getThirteenth_month());
-            statement.setFloat(13, m.getIncentive());
-            statement.setFloat(14, m.getTotal());
-            statement.setFloat(15, m.getadmin_cost());
-            statement.setFloat(16, m.getcontractCost());
-            statement.setString(17, m.getVersion());
-            statement.setInt(18, m.getIdreport());
-
-            statement.executeUpdate();
-
-            return true;
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            if(statement != null) statement.close();
-            if(connection != null)  connection.close();
-        }
-        pool.checkIn(connection);
-        return false;
-    }
-
-
+//    public boolean update(String employeename, MonthlyReport m) throws SQLException {
+//        //UPDATE
+//        // Get a connection:
+//        Connection connection = pool.checkOut();
+//
+//
+//        String query = "UPDATE monthly_report SET "
+//                + EMPLOYEE_NAME + " = ?, "  + BASIC_RATE + " = ?, "
+//                + NO_WORKING_DAYS + " = ?, "  + EQUIVALENT_MONTHLY_COST + " = ?, "
+//                + EFFECTIVE_MONTHLY_RATE + " = ?, "
+//                + STATUTORY_SSS + " = ?, " + STATUTORY_PAGIBIG + " = ?, "
+//                + STATUTORY_PHILHEALTH + " = ?, " + STATUTORY_ECOLA + " = ?, "
+//                + TOTAL_STATUTORY + " = ?, "
+//                + THIRTHEENTH_MONTH_PAY + " = ?, "
+//                + INCENTIVE + " = ?, "
+//                + TOTAL_LABOR_COST + " = ?, "
+//                + ADMIN_COST + " = ?, "
+//                + CONTRACT_COST + " = ?, "
+//                + VERSION + " = ? "
+//                + "WHERE "+ ID_REPORT + " = ?";
+//        PreparedStatement statement = connection.prepareStatement(query);
+//        try {
+//            MonthlyReport temp = getLast();
+//            statement.setString(1, m.getEmployeename());
+//            statement.setFloat(3, m.getBasicRate());
+//            statement.setFloat(4, m.getnWorkingDays());
+//            statement.setFloat(5, m.getequivalentMonthlyCost());
+//            statement.setFloat(6, m.geteffectiveMonthlyRate());
+//            statement.setFloat(7, m.getStatutory_sss());
+//            statement.setFloat(8, m.getStatutory_pagibig());
+//            statement.setFloat(9, m.getStatutory_philhealth());
+//            statement.setFloat(10, m.getStatutory_escola());
+//            statement.setFloat(11, m.getTotalStatutory());
+//            statement.setFloat(12, m.getThirteenth_month());
+//            statement.setFloat(13, m.getIncentive());
+//            statement.setFloat(14, m.getTotal());
+//            statement.setFloat(15, m.getadmin_cost());
+//            statement.setFloat(16, m.getcontractCost());
+//            statement.setString(17, temp.getVersion() + "-1");
+//            statement.setInt(18, m.getIdreport());
+//
+//            statement.executeUpdate();
+//
+//            return true;
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        } finally {
+//            if(statement != null) statement.close();
+//            if(connection != null)  connection.close();
+//        }
+//        pool.checkIn(connection);
+//        return false;
+//    }
 }

@@ -5,7 +5,7 @@ public class MonthlyReport implements Report {
     String employeename, version;
     float basicRate, nWorkingDays, equivalentMonthlyCost, effectiveMonthlyRate, statutory_sss,
             statutory_pagibig, statutory_philhealth,statutory_escola, totalStatutory, thirteenth_month,
-            incentive, totalLaborCost, admin_cost, contractCost;
+            incentive, totalLaborCost, admin_cost, contractCost, allowance;
 
     public MonthlyReport() {
     }
@@ -144,6 +144,14 @@ public class MonthlyReport implements Report {
 
     public void setVersion(String version) {
         this.version = version;
+    }
+
+    public float getAllowance() {
+        return allowance;
+    }
+
+    public void setAllowance(float allowance) {
+        this.allowance = allowance;
     }
 }
 

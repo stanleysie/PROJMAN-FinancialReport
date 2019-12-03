@@ -42,6 +42,7 @@ CREATE TABLE `daily_report` (
   `admin_cost` float DEFAULT NULL,
   `contract_cost` float DEFAULT NULL,
   `version` varchar(45) DEFAULT NULL,
+  `allowance` float DEFAULT NULL,
   PRIMARY KEY (`idreport`),
   KEY `emplyeename_idx` (`employeename`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -53,7 +54,7 @@ CREATE TABLE `daily_report` (
 
 LOCK TABLES `daily_report` WRITE;
 /*!40000 ALTER TABLE `daily_report` DISABLE KEYS */;
-INSERT INTO `daily_report` VALUES (1,'Felongco, Silverio Gil Tansiongco',537,314,15222.5,14051.5,1120,100,193.21,10,1423.21,44.75,0,16645.7,12,18643.1,'null1'),(2,'Padilla, Yessenia Margaret Tanhehco',315,314,8929.38,8242.5,640,100,193.21,10,943.21,26.25,0,9872.58,12,11057.3,'null1');
+INSERT INTO `daily_report` VALUES (1,'Felongco, Silverio Gil Tansiongco',537,314,15222.5,14051.5,1120,100,193.21,10,1423.21,44.75,0,16645.7,12,18643.1,'2019124-76885',0),(2,'Felongco, Silverio Gil Tansiongco',537,300,14543.8,13425,1080,100,193.21,10,1383.21,44.75,0,15927,12,17838.2,'2019124-76885-1',0);
 /*!40000 ALTER TABLE `daily_report` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -109,6 +110,7 @@ CREATE TABLE `monthly_report` (
   `admin_cost` float DEFAULT NULL,
   `contract_cost` float DEFAULT NULL,
   `version` varchar(45) DEFAULT NULL,
+  `allowance` float DEFAULT NULL,
   PRIMARY KEY (`idreport`),
   KEY `emplyeename_idx` (`employeename`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -120,6 +122,7 @@ CREATE TABLE `monthly_report` (
 
 LOCK TABLES `monthly_report` WRITE;
 /*!40000 ALTER TABLE `monthly_report` DISABLE KEYS */;
+INSERT INTO `monthly_report` VALUES (1,'Reoja, Julian Forrest Iitaoka',396,314,429,396,160,7.92,618.75,10,371.13,33,0,800.13,12,896.146,'2019124-71553',NULL);
 /*!40000 ALTER TABLE `monthly_report` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -166,4 +169,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-12-03  0:48:40
+-- Dump completed on 2019-12-04  2:28:01

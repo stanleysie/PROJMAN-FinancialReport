@@ -84,10 +84,15 @@ public class LoadSelect implements View {
         table.setOnMouseClicked(event -> {
             if(!employee.isVisible()) {
                 String name = ((Employee) table.getSelectionModel().getSelectedItem()).getName();
+                master.setCurrentEmployee((Employee) table.getSelectionModel().getSelectedItem());
                 setVersions(name);
             } else {
                 if(table.getSelectionModel().getSelectedItem() != null) {
-                    String version = table.getSelectionModel().getSelectedItem().toString();
+                    if(table.getSelectionModel().getSelectedItem() instanceof DailyReport) {
+                        master.getReport(((DailyReport) table.getSelectionModel().getSelectedItem()).getVersion());
+                    } else if(table.getSelectionModel().getSelectedItem() instanceof MonthlyReport) {
+                        master.getReport(((MonthlyReport) table.getSelectionModel().getSelectedItem()).getVersion());
+                    }
                 }
             }
         });

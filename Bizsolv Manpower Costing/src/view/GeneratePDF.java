@@ -203,7 +203,8 @@ public class GeneratePDF extends PdfPageEventHelper implements View {
             daily.setTotal(comp.getTotalLaborCost());
             daily.setadmin_cost(comp.getAdminCost());
             daily.setcontractCost(comp.getContractCost());
-            daily.setVersion(getVersion());
+            daily.setVersion(getVersion().split(" ")[1]);
+            daily.setAllowance(allowanceValue);
             master.addDailyReport(daily);
         } else if(comp instanceof ComputationMonthly) {
             MonthlyReport monthly = new MonthlyReport();
@@ -222,7 +223,8 @@ public class GeneratePDF extends PdfPageEventHelper implements View {
             monthly.setTotal(comp.getTotalLaborCost());
             monthly.setadmin_cost(comp.getAdminCost());
             monthly.setcontractCost(comp.getContractCost());
-            monthly.setVersion(getVersion());
+            monthly.setVersion(getVersion().split(" ")[1]);
+            monthly.setAllowance(allowanceValue);
             master.addMonthlyReport(monthly);
         }
     }
@@ -513,11 +515,15 @@ public class GeneratePDF extends PdfPageEventHelper implements View {
 
     public String getVersion() {
         LocalDateTime date = LocalDateTime.now();
-        String str = "Version " + date.getYear() + date.getMonthValue() + date.getDayOfMonth() + "-001";
+        String str = "Version " + date.getYear() + date.getMonthValue() + date.getDayOfMonth() + "-" + getRandomFiveNumbers();
         master.setFileTime(MONTH_NAME[date.getMonthValue() - 1] + " " + date.getDayOfMonth() + ", " + date.getYear() + " " +
                         String.format("%02d", date.getHour()) + ":" + String.format("%02d", date.getMinute()) + ":" +
                         String.format("%02d", date.getSecond()));
         master.setVersion(str);
         return str;
+    }
+
+    public int getRandomFiveNumbers() {
+        return (int)(Math.random() * ((99999 - 10000) + 1));
     }
 }

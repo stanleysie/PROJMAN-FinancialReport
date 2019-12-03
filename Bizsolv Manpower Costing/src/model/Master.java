@@ -12,6 +12,7 @@ public class Master {
     private DailyReportService dailyReportService;
     private MonthlyReportService monthlyReportService;
     private Employee currentEmployee;
+    private Report currentReport;
     private SSSReader sssReader;
 
     // data needed for generating new pdf
@@ -120,6 +121,25 @@ public class Master {
         }
     }
 
+    public void getReport(String version) {
+        Report daily = null, monthly = null;
+        try {
+            daily = dailyReportService.getEmployeeDailyReport(version);
+            monthly = monthlyReportService.getEmployeeMontlyReport(version);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        if(daily != null) {
+            setVersion(((DailyReport) daily).getVersion());
+            setFileName(((DailyReport) daily).getEmployeename().replace(", ", "_"));
+            currentReport = daily;
+        } else if(monthly != null) {
+            setVersion(((MonthlyReport) monthly).getVersion());
+            setFileName(((MonthlyReport) monthly).getEmployeename().replace(", ", "_"));
+            currentReport = monthly;
+        }
+    }
+
     public void updateProvinceList() {
         try {
             provinces = provinceService.getAll();
@@ -143,6 +163,8 @@ public class Master {
     public void setCurrentEmployee(Employee currentEmployee) {
         this.currentEmployee = currentEmployee;
     }
+
+    public Report getCurrentReport() { return this.currentReport; }
 
     public void setFileDestination(String dest) { this.fileDestination = dest; }
 
