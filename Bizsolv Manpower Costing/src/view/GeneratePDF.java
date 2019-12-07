@@ -25,9 +25,9 @@ import java.time.LocalDateTime;
 public class GeneratePDF extends PdfPageEventHelper implements View {
 
     @FXML
-    private TextField address, adminCost, fileName, workingDays, incentiveLeave;
+    private TextField address, adminCost, fileName, workingDays, incentiveLeave, username, allowance;
     @FXML
-    private ComboBox<String> name, locations, rateType, allowance;
+    private ComboBox<String> name, locations, rateType;
     @FXML
     private Button generate, back;
 
@@ -39,7 +39,7 @@ public class GeneratePDF extends PdfPageEventHelper implements View {
     private PdfWriter writer;
     private Font regular, bold, small;
     private Computation comp;
-    private ObservableList<String> allowanceList, rateTypeList, locationList, nameList;
+    private ObservableList<String> rateTypeList, locationList, nameList;
     private float basicSalary, allowanceValue;
     private int incentiveValue, sssIndex;
 
@@ -73,10 +73,10 @@ public class GeneratePDF extends PdfPageEventHelper implements View {
                 done = false;
             }
 
-            if(allowance.getSelectionModel().getSelectedItem() == "" || allowance.getSelectionModel().getSelectedItem() == null) {
+            if(allowance.getText().isEmpty()) {
                 allowanceValue = 0;
             } else {
-                allowanceValue = Float.parseFloat(allowance.getSelectionModel().getSelectedItem());
+                allowanceValue = Integer.parseInt(allowance.getText());
             }
             if(incentiveLeave.getText().isEmpty()) {
                 incentiveValue = 0;
@@ -102,11 +102,11 @@ public class GeneratePDF extends PdfPageEventHelper implements View {
         });
 
         generate.setOnMouseEntered(event -> {
-            generate.setStyle("-fx-background-color: darkgrey");
+            generate.setStyle("-fx-background-color: #535353");
         });
 
         generate.setOnMouseExited(event -> {
-            generate.setStyle("-fx-background-color: lightgrey");
+            generate.setStyle("-fx-background-color: #ef5350");
         });
 
         back.setOnAction(event ->{
@@ -162,7 +162,7 @@ public class GeneratePDF extends PdfPageEventHelper implements View {
         image.scaleToFit(100, 100);
 
         Document document = new Document();
-        String destination = "E:\\" + fileName.getText().trim() + ".pdf";
+        String destination = "C:\\Users\\jeffc\\Desktop\\" + fileName.getText().trim() + ".pdf";
         master.setFileDestination(destination);
         master.setFileName(fileName.getText() + ".pdf");
         writer = PdfWriter.getInstance(document, new FileOutputStream(destination));
@@ -481,7 +481,6 @@ public class GeneratePDF extends PdfPageEventHelper implements View {
     private void setupComboBox() {
         nameList = master.getAllEmployeesName();
         locationList = master.getAllProvincesNames();
-        allowanceList = FXCollections.observableArrayList("None");
         rateTypeList = FXCollections.observableArrayList("Daily", "Monthly");
 
         name.setItems(nameList);
@@ -489,7 +488,6 @@ public class GeneratePDF extends PdfPageEventHelper implements View {
         locations.setItems(locationList);
         rateType.setItems(rateTypeList);
         rateType.getSelectionModel().select(0);
-        allowance.setItems(allowanceList);
     }
 
     public float getSSS(float value) {

@@ -72,13 +72,13 @@ public class LoadSelect implements View {
         });
 
         back.setOnMouseEntered(event -> {
-            back.setStyle("-fx-background-color: #ef5350");
-            back.setStyle("-fx-color: white");
+            System.out.println("Testing in");
+            back.setStyle("-fx-border-color: #535353; -fx-background-color: #535353");
         });
 
         back.setOnMouseExited(event -> {
-            back.setStyle("-fx-background-color: white");
-            back.setStyle("-fx-color: #ef5350");
+            System.out.println("Testin out");
+            back.setStyle("-fx-background-color: #FFFFFF");
         });
 
         table.setOnMouseClicked(event -> {
@@ -101,7 +101,7 @@ public class LoadSelect implements View {
     public void setup() {
         back.setVisible(false);
         employee.setVisible(false);
-        tableColumn = new TableColumn("Employees");
+        tableColumn = new TableColumn("Clients");
         tableColumn.setCellValueFactory(new PropertyValueFactory("name"));
         tableColumn.setPrefWidth(450);
         tableColumn.setStyle("-fx-alignment: CENTER;");
