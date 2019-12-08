@@ -9,7 +9,7 @@ import model.Master;
 public class Maintenance implements View{
 
     @FXML
-    private Button back, addEmployee, logout;
+    private Button back, addEmployee, listEmployee, logout;
 
     private Stage stage;
     private Master master;
@@ -48,6 +48,20 @@ public class Maintenance implements View{
         addEmployee.setOnMouseExited(event -> {
             addEmployee.setStyle("-fx-background-color: #ffffff");
             addEmployee.setStyle("-fx-border-color: #ef5350");
+        });
+
+        listEmployee.setOnAction(event -> {
+            Stage stage = (Stage) addEmployee.getScene().getWindow();
+            EmployeeList list = new EmployeeList(stage, master);
+        });
+
+        listEmployee.setOnMouseEntered(event -> {
+            listEmployee.setStyle("-fx-background-color: #ef5350");
+        });
+
+        listEmployee.setOnMouseExited(event -> {
+            listEmployee.setStyle("-fx-background-color: #ffffff");
+            listEmployee.setStyle("-fx-border-color: #ef5350");
         });
 
         logout.setOnAction(event ->{

@@ -134,6 +134,12 @@ public class GeneratePDF extends PdfPageEventHelper implements View {
             }
         });
 
+        allowance.textProperty().addListener((observable, oldValue, newValue) -> {
+            if(!newValue.matches("\\d*")) {
+                allowance.setText(newValue.replaceAll("[^\\d]",""));
+            }
+        });
+
         workingDays.textProperty().addListener((observable, oldValue, newValue) -> {
             if(!newValue.matches("\\d*")) {
                 workingDays.setText(newValue.replaceAll("[^\\d]",""));
@@ -444,7 +450,7 @@ public class GeneratePDF extends PdfPageEventHelper implements View {
         basic.add(new Data("Allowance", comp.getAllowance()));
         basic.add(new Data("Sub-total", comp.getSubTotal()));
         monthlyCost.add(new Data("Effective Monthly Rate", comp.getEffectiveMonthlyRate()));
-        governmental.add(new Data("Associate Benefit-SSS (Mand Payable)", getSSS(comp.getEffectiveMonthlyRate())));
+        governmental.add(new Data("Associate Benefit-SSS", getSSS(comp.getEffectiveMonthlyRate())));
         governmental.add(new Data("Associate Benefit-Philhealth", 193.21));
         governmental.add(new Data("Associate Benefit-Pag-ibig", getPagIbig()));
         governmental.add(new Data("Associate Benefit-EC", getBenefitEC()));

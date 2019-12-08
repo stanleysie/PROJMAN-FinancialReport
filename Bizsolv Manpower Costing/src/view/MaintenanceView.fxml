@@ -9,12 +9,12 @@
 <AnchorPane prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #ef5350 #ef5350 #ef5350 #ef5350;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="500.0" stroke="WHITE" strokeType="INSIDE" width="500.0" />
-      <Label layoutX="119.0" layoutY="143.0" text="Admin Maintenance">
+      <Label layoutX="122.0" layoutY="131.0" text="Admin Maintenance">
          <font>
             <Font name="System Bold" size="27.0" />
          </font>
       </Label>
-      <Button fx:id="addEmployee" layoutX="160.0" layoutY="220.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="175.0" style="-fx-border-color: #ef5350;" stylesheets="@Login.css" text="Add Employee">
+      <Button fx:id="addEmployee" layoutX="163.0" layoutY="208.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="175.0" style="-fx-border-color: #ef5350;" stylesheets="@Login.css" text="Add Employee">
          <font>
             <Font name="Open Sans Light" size="20.0" />
          </font></Button>
@@ -26,6 +26,11 @@
       <Button fx:id="logout" layoutX="570.0" layoutY="455.0" mnemonicParsing="false" stylesheets="@Login.css" text="Log Out" textFill="WHITE">
          <font>
             <Font name="Open Sans Light" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="listEmployee" layoutX="163.0" layoutY="279.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="175.0" style="-fx-border-color: #ef5350;" stylesheets="@Login.css" text="Employee List">
+         <font>
+            <Font name="Open Sans Light" size="20.0" />
          </font>
       </Button>
    </children>

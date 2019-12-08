@@ -1,8 +1,8 @@
 package model;
 
 public class Employee {
-    private int idemployee;
-    private String firstname, lastname, province, address, name;
+    private int idemployee, status;
+    private String firstname, lastname, province, address, name, statusLabel;
 
     public Employee() {
     }
@@ -12,6 +12,7 @@ public class Employee {
         this.lastname = lastname;
         this.province = province;
         this.address = address;
+        this.status = 1;
         this.name = this.lastname + ", " + this.firstname;
     }
 
@@ -59,5 +60,26 @@ public class Employee {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+        if(status == 0) {
+            setStatusLabel("Freeze");
+        } else {
+            setStatusLabel("Active");
+        }
+    }
+
+    public String getStatusLabel() {
+        return statusLabel;
+    }
+
+    public void setStatusLabel(String statusLabel) {
+        this.statusLabel = statusLabel;
     }
 }

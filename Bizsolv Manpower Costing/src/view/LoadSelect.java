@@ -26,7 +26,7 @@ public class LoadSelect implements View {
 
     private Stage stage;
     private Master master;
-    private TableColumn tableColumn;
+    private TableColumn tableColumn, version, report;
     private ObservableList<Employee> employees;
 
     public LoadSelect(Stage stage, Master master) {
@@ -72,12 +72,10 @@ public class LoadSelect implements View {
         });
 
         back.setOnMouseEntered(event -> {
-            System.out.println("Testing in");
             back.setStyle("-fx-border-color: #535353; -fx-background-color: #535353");
         });
 
         back.setOnMouseExited(event -> {
-            System.out.println("Testin out");
             back.setStyle("-fx-background-color: #FFFFFF");
         });
 
@@ -102,9 +100,9 @@ public class LoadSelect implements View {
         back.setVisible(false);
         employee.setVisible(false);
         tableColumn = new TableColumn("Clients");
-        tableColumn.setCellValueFactory(new PropertyValueFactory("name"));
         tableColumn.setPrefWidth(450);
         tableColumn.setStyle("-fx-alignment: CENTER;");
+        tableColumn.setCellValueFactory(new PropertyValueFactory("name"));
         tableColumn.setResizable(false);
         table.getColumns().clear();
         table.getColumns().add(tableColumn);
@@ -115,13 +113,18 @@ public class LoadSelect implements View {
         employee.setVisible(true);
         back.setVisible(true);
         employee.setText(name);
-        tableColumn = new TableColumn("Document Versions");
-        tableColumn.setPrefWidth(450);
-        tableColumn.setStyle("-fx-alignment: CENTER;");
-        tableColumn.setCellValueFactory(new PropertyValueFactory("version"));
-        tableColumn.setResizable(false);
+        version = new TableColumn("Document Version");
+        version.setCellValueFactory(new PropertyValueFactory("version"));
+        version.setPrefWidth(300);
+        version.setStyle("-fx-alignment: CENTER;");
+        version.setResizable(false);
+        report = new TableColumn("Report Type");
+        report.setCellValueFactory(new PropertyValueFactory("type"));
+        report.setPrefWidth(150);
+        report.setStyle("-fx-alignment: CENTER;");
+        report.setResizable(false);
         table.getColumns().clear();
-        table.getColumns().add(tableColumn);
+        table.getColumns().addAll(version, report);
         table.setItems(master.getEmployeesVersion(name));
     }
 }

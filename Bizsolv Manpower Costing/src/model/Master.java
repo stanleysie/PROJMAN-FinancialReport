@@ -1,5 +1,6 @@
 package model;
 
+import controller.ProvinceReader;
 import controller.SSSReader;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -8,12 +9,12 @@ import java.sql.SQLException;
 
 public class Master {
     private EmployeeService employeeService;
-    private ProvinceService provinceService;
     private DailyReportService dailyReportService;
     private MonthlyReportService monthlyReportService;
     private Employee currentEmployee;
     private Report currentReport;
     private SSSReader sssReader;
+    private ProvinceReader provinceReader;
 
     // data needed for generating new pdf
     private String fileName, fileDestination, version, fileTime;
@@ -24,14 +25,15 @@ public class Master {
 
     public Master() {
         this.employeeService = new EmployeeService();
-        this.provinceService = new ProvinceService();
         this.dailyReportService = new DailyReportService();
         this.monthlyReportService = new MonthlyReportService();
         this.sssReader = new SSSReader(this);
+        this.provinceReader = new ProvinceReader(this);
         employees = FXCollections.observableArrayList();
         provinces = FXCollections.observableArrayList();
         sss = FXCollections.observableArrayList();
         this.sssReader.readSSS();
+        this.provinceReader.readProvince();
     }
 
     public ObservableList<SSS> getSSS() {
@@ -44,10 +46,15 @@ public class Master {
     }
 
     public ObservableList<String> getAllEmployeesName() {
-        updateEmployeeList();
+        ObservableList<Employee> emp = FXCollections.observableArrayList();
+        try {
+            emp = employeeService.getUnfreezeEmployees();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         ObservableList<String> names = FXCollections.observableArrayList();
-        for(int i = 0; i < employees.size(); i++) {
-            names.add(employees.get(i).getName());
+        for(int i = 0; i < emp.size(); i++) {
+            names.add(emp.get(i).getName());
         }
         return names;
     }
@@ -60,13 +67,20 @@ public class Master {
         }
     }
 
+    public void updateEmployee(Employee employee) {
+        try {
+            employeeService.update(employee);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public ObservableList<Province> getAllProvinces() {
-        updateProvinceList();
         return provinces;
     }
 
     public ObservableList<String> getAllProvincesNames() {
-        updateProvinceList();
+        provinceReader.readProvince();
         ObservableList<String> names = FXCollections.observableArrayList();
         for(int i = 0; i < provinces.size(); i++) {
             names.add(provinces.get(i).getProvincename());
@@ -137,14 +151,6 @@ public class Master {
             setVersion(((MonthlyReport) monthly).getVersion());
             setFileName(((MonthlyReport) monthly).getEmployeename().replace(", ", "_"));
             currentReport = monthly;
-        }
-    }
-
-    public void updateProvinceList() {
-        try {
-            provinces = provinceService.getAll();
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
     }
 

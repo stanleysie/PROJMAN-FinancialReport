@@ -2,12 +2,13 @@ package model;
 
 public class DailyReport implements Report {
     int idreport;
-    String employeename, version;
+    String employeename, version, type;
     float basicRate, nWorkingDays, equivalentMonthlyCost, effectiveMonthlyRate, statutory_sss,
             statutory_pagibig, statutory_philhealth,statutory_escola, totalStatutory, thirteenth_month,
             incentive, totalLaborCost, admin_cost, contractCost, allowance;
 
     public DailyReport() {
+        this.type = "Daily";
     }
 
     public int getIdreport() {
@@ -150,5 +151,13 @@ public class DailyReport implements Report {
 
     public void setAllowance(float allowance) {
         this.allowance = allowance;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

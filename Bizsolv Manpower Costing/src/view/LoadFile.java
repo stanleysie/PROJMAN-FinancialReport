@@ -24,9 +24,9 @@ import java.util.Optional;
 public class LoadFile implements View {
 
     @FXML
-    private TextField address, adminCost, fileName, workingDays, incentiveLeave, name, locations;
+    private TextField address, adminCost, fileName, workingDays, incentiveLeave, name, locations, allowance;
     @FXML
-    private ComboBox<String> rateType, allowance;
+    private ComboBox<String> rateType;
     @FXML
     private Button saveChanges, back;
 
@@ -38,7 +38,7 @@ public class LoadFile implements View {
     private PdfWriter writer;
     private Font regular, bold, small;
     private Computation comp;
-    private ObservableList<String> allowanceList, rateTypeList;
+    private ObservableList<String> rateTypeList;
     private float basicSalary, allowanceValue;
     private int incentiveValue, sssIndex;
 
@@ -109,10 +109,10 @@ public class LoadFile implements View {
             done = false;
         }
 
-        if(allowance.getSelectionModel().getSelectedItem() == "None" || allowance.getSelectionModel().getSelectedItem() == null) {
+        if(allowance.getText().isEmpty()) {
             allowanceValue = 0;
         } else {
-            allowanceValue = Float.parseFloat(allowance.getSelectionModel().getSelectedItem());
+            allowanceValue = Float.parseFloat(allowance.getText());
         }
         if(incentiveLeave.getText().isEmpty()) {
             incentiveValue = 0;
@@ -185,6 +185,7 @@ public class LoadFile implements View {
             daily.setadmin_cost(comp.getAdminCost());
             daily.setcontractCost(comp.getContractCost());
             daily.setVersion(master.getVersion() + "-1");
+            daily.setAllowance(allowanceValue);
             master.addDailyReport(daily);
         } else if(comp instanceof ComputationMonthly) {
             MonthlyReport monthly = new MonthlyReport();
@@ -204,6 +205,7 @@ public class LoadFile implements View {
             monthly.setadmin_cost(comp.getAdminCost());
             monthly.setcontractCost(comp.getContractCost());
             monthly.setVersion(master.getVersion() + "-1");
+            monthly.setAllowance(allowanceValue);
             master.addMonthlyReport(monthly);
         }
     }
@@ -458,11 +460,9 @@ public class LoadFile implements View {
     }
 
     private void setupComboBox() {
-        allowanceList = FXCollections.observableArrayList("None");
         rateTypeList = FXCollections.observableArrayList("Daily", "Monthly");
 
         rateType.setItems(rateTypeList);
-        allowance.setItems(allowanceList);
         initData();
     }
 
@@ -478,11 +478,7 @@ public class LoadFile implements View {
             if(((DailyReport) master.getCurrentReport()).getIncentive() != 0.0) {
                 incentiveLeave.setText("" + (int)((DailyReport) master.getCurrentReport()).getIncentive());
             }
-            if(((DailyReport) master.getCurrentReport()).getAllowance() == 0) {
-                allowance.getSelectionModel().select(0);
-            } else {
-                allowance.getSelectionModel().select(((DailyReport) master.getCurrentReport()).getAllowance() + "");
-            }
+            allowance.setText("" + ((DailyReport) master.getCurrentReport()).getAllowance());
         } else if(master.getCurrentReport() instanceof MonthlyReport) {
             rateType.getSelectionModel().select(1);
             workingDays.setText("" + (int)((MonthlyReport) master.getCurrentReport()).getnWorkingDays());
@@ -490,11 +486,7 @@ public class LoadFile implements View {
             if(((MonthlyReport) master.getCurrentReport()).getIncentive() != 0.0) {
                 incentiveLeave.setText("" + (int)((MonthlyReport) master.getCurrentReport()).getIncentive());
             }
-            if(((MonthlyReport) master.getCurrentReport()).getAllowance() == 0) {
-                allowance.getSelectionModel().select(0);
-            } else {
-                allowance.getSelectionModel().select(((MonthlyReport) master.getCurrentReport()).getAllowance() + "");
-            }
+            allowance.setText("" + ((MonthlyReport) master.getCurrentReport()).getAllowance());
         }
     }
 

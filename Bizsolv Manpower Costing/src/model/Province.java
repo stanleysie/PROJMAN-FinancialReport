@@ -1,23 +1,15 @@
 package model;
 
 public class Province {
-
-    private int idprovince;
     private String provincename;
-    private float salarymin, Salarymax;
+    private float salarymin, salarymax;
 
     public Province() {}
 
-    public Province(String name) {
+    public Province(String name, float min, float max) {
         this.provincename = name;
-    }
-
-    public int getIdprovince() {
-        return idprovince;
-    }
-
-    public void setIdprovince(int idprovince) {
-        this.idprovince = idprovince;
+        this.salarymin = min;
+        this.salarymax = max;
     }
 
     public String getProvincename() {
@@ -37,11 +29,11 @@ public class Province {
     }
 
     public float getSalarymax() {
-        return Salarymax;
+        return salarymax;
     }
 
-    public void setSalarymax(float Salarymax) {
-        this.Salarymax = Salarymax;
+    public void setSalarymax(float salarymax) {
+        this.salarymax = salarymax;
     }
 
     @Override

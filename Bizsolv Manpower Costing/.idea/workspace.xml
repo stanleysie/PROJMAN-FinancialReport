@@ -2,13 +2,36 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/src/controller/ProvinceReader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/EmployeeList.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/EmployeeList.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Bizsolv Manpower Costing/model/DailyReport.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Bizsolv Manpower Costing/model/DailyReport.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Bizsolv Manpower Costing/model/JDBCConnectionPool.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Bizsolv Manpower Costing/model/JDBCConnectionPool.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Bizsolv Manpower Costing/model/Master.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Bizsolv Manpower Costing/model/Master.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Bizsolv Manpower Costing/model/MonthlyReport.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Bizsolv Manpower Costing/model/MonthlyReport.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Bizsolv Manpower Costing/model/Province.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Bizsolv Manpower Costing/model/Province.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Bizsolv Manpower Costing/model/ProvinceService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Bizsolv Manpower Costing/view/GeneratePDF.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Bizsolv Manpower Costing/view/GeneratePDF.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Bizsolv Manpower Costing/view/LoadFile.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Bizsolv Manpower Costing/view/LoadFile.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Bizsolv Manpower Costing/view/LoadFile.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Bizsolv Manpower Costing/view/LoadFile.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Bizsolv Manpower Costing/view/LoadSelect.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Bizsolv Manpower Costing/view/LoadSelect.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Bizsolv Manpower Costing/view/LoadSelectView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Bizsolv Manpower Costing/view/LoadSelectView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Bizsolv Manpower Costing/view/MaintenanceView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Bizsolv Manpower Costing/view/MaintenanceView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/DailyReport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/DailyReport.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Employee.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/EmployeeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/EmployeeService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/JDBCConnectionPool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/JDBCConnectionPool.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/GeneratePDF.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/GeneratePDF.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Master.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Master.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/MonthlyReport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/MonthlyReport.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Province.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Province.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/ProvinceService.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/GeneratePDF.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/GeneratePDF.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/LoadFile.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/LoadFile.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/LoadFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/LoadFile.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/LoadSelect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/LoadSelect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/LoadSelectView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/LoadSelectView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/Maintenance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Maintenance.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/MaintenanceView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/MaintenanceView.fxml" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -68,65 +91,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/view/GeneratePDF.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="56" lean-forward="true" selection-start-line="56" selection-end-line="56" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/view/LoadSelect.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="66" column="54" selection-start-line="66" selection-start-column="54" selection-end-line="66" selection-end-column="54" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/view/Menu.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="36" column="53" selection-start-line="36" selection-start-column="53" selection-end-line="36" selection-end-column="60" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/model/JDBCConnectionPool.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="18" selection-start-line="18" selection-end-line="18" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/driver/Main.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/model/Master.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2958">
-              <caret line="184" selection-start-line="184" selection-end-line="184" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="-5546">
+              <caret line="219" column="60" selection-start-line="219" selection-start-column="60" selection-end-line="219" selection-end-column="60" />
             </state>
           </provider>
         </entry>
@@ -136,8 +105,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="FxmlFile" />
         <option value="Class" />
+        <option value="FxmlFile" />
       </list>
     </option>
   </component>
@@ -159,6 +128,8 @@
       <find>|</find>
       <find>basicSa</find>
       <find>incentiveValue</find>
+      <find>allowancevalue</find>
+      <find>allowance</find>
     </findStrings>
     <replaceStrings>
       <replace>total</replace>
@@ -188,7 +159,6 @@
         <option value="$PROJECT_DIR$/src/view/NewFile.fxml" />
         <option value="$PROJECT_DIR$/src/view/FXMLClass.java" />
         <option value="$PROJECT_DIR$/src/model/ProvinceService.java" />
-        <option value="$PROJECT_DIR$/src/model/Province.java" />
         <option value="$PROJECT_DIR$/src/view/Toast.java" />
         <option value="$PROJECT_DIR$/src/view/Login.java" />
         <option value="$PROJECT_DIR$/src/view/NewFile.java" />
@@ -198,9 +168,7 @@
         <option value="$PROJECT_DIR$/src/files/SSS.psv" />
         <option value="$PROJECT_DIR$/src/view/Menu.java" />
         <option value="$PROJECT_DIR$/src/view/LoadSelectView.fxml" />
-        <option value="$PROJECT_DIR$/src/model/EmployeeService.java" />
         <option value="$PROJECT_DIR$/src/view/GeneratePDF.css" />
-        <option value="$PROJECT_DIR$/src/model/Employee.java" />
         <option value="$PROJECT_DIR$/src/view/AddEmployee.java" />
         <option value="$PROJECT_DIR$/src/view/Provincial.java" />
         <option value="$PROJECT_DIR$/src/model/Computation.java" />
@@ -209,17 +177,23 @@
         <option value="$PROJECT_DIR$/src/model/SSS.java" />
         <option value="$PROJECT_DIR$/src/files/SSS.csv" />
         <option value="$PROJECT_DIR$/src/controller/SSSReader.java" />
-        <option value="$PROJECT_DIR$/src/view/Maintenance.java" />
-        <option value="$PROJECT_DIR$/src/model/MonthlyReport.java" />
-        <option value="$PROJECT_DIR$/src/model/DailyReport.java" />
         <option value="$PROJECT_DIR$/src/model/MonthlyReportService.java" />
         <option value="$PROJECT_DIR$/src/model/DailyReportService.java" />
-        <option value="$PROJECT_DIR$/src/model/Master.java" />
-        <option value="$PROJECT_DIR$/src/view/LoadFile.java" />
         <option value="$PROJECT_DIR$/src/model/Report.java" />
         <option value="$PROJECT_DIR$/src/model/JDBCConnectionPool.java" />
+        <option value="$PROJECT_DIR$/src/model/Province.java" />
+        <option value="$PROJECT_DIR$/src/controller/ProvinceReader.java" />
         <option value="$PROJECT_DIR$/src/view/GeneratePDF.java" />
+        <option value="$PROJECT_DIR$/src/view/LoadFile.java" />
+        <option value="$PROJECT_DIR$/src/model/DailyReport.java" />
+        <option value="$PROJECT_DIR$/src/model/MonthlyReport.java" />
         <option value="$PROJECT_DIR$/src/view/LoadSelect.java" />
+        <option value="$PROJECT_DIR$/src/view/EmployeeList.fxml" />
+        <option value="$PROJECT_DIR$/src/view/Maintenance.java" />
+        <option value="$PROJECT_DIR$/src/model/Employee.java" />
+        <option value="$PROJECT_DIR$/src/view/EmployeeList.java" />
+        <option value="$PROJECT_DIR$/src/model/EmployeeService.java" />
+        <option value="$PROJECT_DIR$/src/model/Master.java" />
       </list>
     </option>
   </component>
@@ -239,7 +213,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -268,6 +242,12 @@
               <item name="Bizsolv Manpower Costing" type="b2602c69:ProjectViewProjectNode" />
               <item name="Bizsolv Manpower Costing" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="files" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Bizsolv Manpower Costing" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Bizsolv Manpower Costing" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="model" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -280,7 +260,7 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -409,9 +389,9 @@
     <option name="totallyTimeSpent" value="10904000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="878" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26510066" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19591528" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -421,7 +401,7 @@
       <window_info id="Favorites" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32872504" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49924356" weight="0.32841823" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49924356" weight="0.32718894" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -443,7 +423,7 @@
       <window_info anchor="right" id="Database" order="8" />
     </layout>
     <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25718608" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19364598" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -453,7 +433,7 @@
       <window_info id="Favorites" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32872504" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49924356" visible="true" weight="0.32872504" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49924356" weight="0.32718894" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -461,7 +441,9 @@
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50075644" side_tool="true" weight="0.32872504" />
-      <window_info anchor="bottom" id="Messages" order="10" weight="0.32872504" />
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.32841823" />
+      <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -470,6 +452,7 @@
       <window_info anchor="right" id="Theme Preview" order="5" />
       <window_info anchor="right" id="Capture Analysis" order="6" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info anchor="right" id="Database" order="8" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -516,17 +499,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/ProvinceService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1512">
-          <caret line="19" column="40" selection-start-line="19" selection-start-column="40" selection-end-line="19" selection-end-column="40" />
-          <folding>
-            <element signature="e#539#540#0" expanded="true" />
-            <element signature="e#586#587#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk-10.0.2/lib/src.zip!/javafx.fxml/javafx/fxml/FXMLLoader.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -545,14 +517,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
           <caret line="14" column="37" selection-start-line="14" selection-start-column="37" selection-end-line="14" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/LoadSelectView.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="10" column="164" selection-start-line="10" selection-start-column="164" selection-end-line="10" selection-end-column="164" />
         </state>
       </provider>
     </entry>
@@ -579,13 +543,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/EmployeeService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="945">
-          <caret line="77" column="33" lean-forward="true" selection-start-line="77" selection-start-column="33" selection-end-line="77" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/view/GeneratePDF.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
@@ -604,13 +561,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/view/ProvincialView.fxml" />
-    <entry file="file://$PROJECT_DIR$/src/model/Province.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="16" column="5" lean-forward="true" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/model/ComputationMonthly.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="488">
@@ -674,55 +624,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/Employee.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="567">
-          <caret line="49" column="52" lean-forward="true" selection-start-line="49" selection-start-column="52" selection-end-line="49" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/files/SSS.csv" />
-    <entry file="file://$PROJECT_DIR$/src/controller/SSSReader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="164">
-          <caret line="18" column="16" selection-start-line="18" selection-start-column="16" selection-end-line="18" selection-end-column="16" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/view/Provincial.java" />
-    <entry file="file://$PROJECT_DIR$/src/view/Maintenance.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
-          <caret line="47" column="47" selection-start-line="47" selection-start-column="47" selection-end-line="47" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/DailyReport.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1693">
-          <caret line="146" column="33" selection-start-line="146" selection-start-column="33" selection-end-line="146" selection-end-column="33" />
-          <folding>
-            <element signature="e#3587#3588#0" expanded="true" />
-            <element signature="e#3636#3637#0" expanded="true" />
-            <element signature="e#3678#3679#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/model/MonthlyReportService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
           <caret line="127" column="18" selection-start-line="127" selection-start-column="18" selection-end-line="127" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/DailyReportService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1071">
-          <caret line="137" column="39" selection-start-line="137" selection-start-column="39" selection-end-line="137" selection-end-column="39" />
         </state>
       </provider>
     </entry>
@@ -745,44 +652,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/MonthlyReport.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1630">
-          <caret line="145" column="16" selection-start-line="145" selection-start-column="16" selection-end-line="145" selection-end-column="16" />
-          <folding>
-            <element signature="e#3571#3572#0" expanded="true" />
-            <element signature="e#3603#3604#0" expanded="true" />
-            <element signature="e#3652#3653#0" expanded="true" />
-            <element signature="e#3694#3695#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/model/Report.java" />
-    <entry file="file://$PROJECT_DIR$/src/view/LoadFile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="149">
-          <caret line="160" column="147" lean-forward="true" selection-start-line="160" selection-start-column="147" selection-end-line="160" selection-end-column="147" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/driver/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
+        <state relative-caret-position="84">
           <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/Master.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2958">
-          <caret line="184" selection-start-line="184" selection-end-line="184" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -791,8 +665,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/model/JDBCConnectionPool.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="18" selection-start-line="18" selection-end-line="18" />
+        <state relative-caret-position="213">
+          <caret line="16" column="53" selection-start-line="16" selection-start-column="53" selection-end-line="16" selection-end-column="53" />
         </state>
       </provider>
     </entry>
@@ -803,20 +677,155 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/GeneratePDF.java">
+    <entry file="file://$PROJECT_DIR$/src/model/ProvinceService.java" />
+    <entry file="file://$PROJECT_DIR$/src/controller/SSSReader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="56" lean-forward="true" selection-start-line="56" selection-end-line="56" />
+        <state relative-caret-position="63">
+          <caret line="10" column="4" selection-start-line="10" selection-start-column="4" selection-end-line="34" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/Province.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="10" column="24" lean-forward="true" selection-start-line="10" selection-start-column="24" selection-end-line="10" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/LoadFile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4410">
+          <caret line="210" column="5" lean-forward="true" selection-start-line="210" selection-start-column="5" selection-end-line="210" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/DailyReport.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="10" column="22" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
+          <folding>
+            <element signature="e#420#421#0" expanded="true" />
+            <element signature="e#455#456#0" expanded="true" />
+            <element signature="e#3517#3518#0" expanded="true" />
+            <element signature="e#3555#3556#0" expanded="true" />
+            <element signature="e#3744#3745#0" expanded="true" />
+            <element signature="e#3771#3772#0" expanded="true" />
+            <element signature="e#3811#3812#0" expanded="true" />
+            <element signature="e#3843#3844#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/MonthlyReport.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="10" column="23" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="23" />
+          <folding>
+            <element signature="e#424#425#0" expanded="true" />
+            <element signature="e#461#462#0" expanded="true" />
+            <element signature="e#3762#3763#0" expanded="true" />
+            <element signature="e#3789#3790#0" expanded="true" />
+            <element signature="e#3829#3830#0" expanded="true" />
+            <element signature="e#3861#3862#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/ProvinceReader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="21" column="25" selection-start-line="21" selection-start-column="25" selection-end-line="21" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/LoadSelectView.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="9" column="60" selection-end-line="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/EmployeeList.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="452">
+          <caret line="43" selection-start-line="43" selection-end-line="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/Maintenance.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="54" column="64" selection-start-line="54" selection-start-column="64" selection-end-line="54" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/Employee.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1155">
+          <caret line="83" column="5" lean-forward="true" selection-start-line="83" selection-start-column="5" selection-end-line="83" selection-end-column="5" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/view/LoadSelect.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="66" column="54" selection-start-line="66" selection-start-column="54" selection-end-line="66" selection-end-column="54" />
+        <state relative-caret-position="-448">
+          <caret line="58" column="27" selection-start-line="58" selection-start-column="27" selection-end-line="58" selection-end-column="27" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/DailyReportService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="21">
+          <caret line="137" column="39" selection-start-line="137" selection-start-column="39" selection-end-line="137" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/EmployeeService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-198">
+          <caret line="90" column="62" selection-start-line="90" selection-start-column="62" selection-end-line="90" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/EmployeeList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="83" column="26" selection-start-line="83" selection-start-column="26" selection-end-line="83" selection-end-column="26" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/Master.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="4" column="40" selection-start-line="4" selection-start-column="40" selection-end-line="4" selection-end-column="40" />
+          <folding>
+            <element signature="e#2049#2050#0" expanded="true" />
+            <element signature="e#2081#2082#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/GeneratePDF.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-5546">
+          <caret line="219" column="60" selection-start-line="219" selection-start-column="60" selection-end-line="219" selection-end-column="60" />
         </state>
       </provider>
     </entry>

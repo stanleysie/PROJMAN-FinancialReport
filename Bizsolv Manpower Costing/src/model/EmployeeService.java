@@ -16,6 +16,7 @@ public class EmployeeService {
     private final String EMPLOYEE_LASTNAME = "employeelastname";
     private final String PROVINCE = "province";
     private final String ADDRESS = "address";
+    private final String STATUS = "status";
 
     public EmployeeService() {
         pool = new JDBCConnectionPool();
@@ -24,7 +25,7 @@ public class EmployeeService {
     public boolean add(Employee emp) throws SQLException {
         // Get a connection:
         Connection connection = pool.checkOut();
-        String query = "INSERT INTO employee VALUE (?, ?, ?, ?, ?)";
+        String query = "INSERT INTO employee VALUE (?, ?, ?, ?, ?, ?)";
         PreparedStatement statement = connection.prepareStatement(query);
         try {
             Employee temp = getEmployeeLast();
@@ -33,6 +34,7 @@ public class EmployeeService {
             statement.setString(3, emp.getLastname());
             statement.setString(4, emp.getProvince());
             statement.setString(5, emp.getAddress());
+            statement.setInt(6, emp.getStatus());
 
             boolean added = statement.execute();
 
@@ -66,6 +68,41 @@ public class EmployeeService {
                 a.setProvince(rs.getString(PROVINCE));
                 a.setAddress(rs.getString(ADDRESS));
                 a.setName(a.getLastname() + ", " + a.getFirstname());
+                a.setStatus(rs.getInt(STATUS));
+
+                employess.add(a);
+            }
+            return employess;
+        } catch (SQLException e){
+            e.printStackTrace();
+        }finally {
+            if(statement != null) statement.close();
+            if(connection != null)  connection.close();
+        }
+        pool.checkIn(connection);
+        return null;
+    }
+
+    public ObservableList<Employee> getUnfreezeEmployees() throws SQLException {
+        // Get a connection:
+        Connection connection = pool.checkOut();
+
+        ObservableList <Employee> employess = FXCollections.observableArrayList();
+        String query ="SELECT * FROM employee WHERE status = 1";
+        PreparedStatement statement = connection.prepareStatement(query);
+        try {
+
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()){
+                Employee a = new Employee();
+                a.setIdemployee(rs.getInt(ID_EMPLOYEE));
+                a.setFirstname(rs.getString(EMPLOYEE_FIRSTNAME));
+                a.setLastname(rs.getString(EMPLOYEE_LASTNAME));
+                a.setProvince(rs.getString(PROVINCE));
+                a.setAddress(rs.getString(ADDRESS));
+                a.setName(a.getLastname() + ", " + a.getFirstname());
+                a.setStatus(rs.getInt(STATUS));
+
                 employess.add(a);
             }
             return employess;
@@ -96,6 +133,7 @@ public class EmployeeService {
                 emp.setLastname(rs.getString(EMPLOYEE_LASTNAME));
                 emp.setProvince(rs.getString(PROVINCE));
                 emp.setAddress(rs.getString(ADDRESS));
+                emp.setStatus(rs.getInt(STATUS));
             }
             return emp;
         } catch (SQLException e){
@@ -125,6 +163,7 @@ public class EmployeeService {
                 emp.setLastname(rs.getString(EMPLOYEE_LASTNAME));
                 emp.setProvince(rs.getString(PROVINCE));
                 emp.setAddress(rs.getString(ADDRESS));
+                emp.setStatus(rs.getInt(STATUS));
             }
             return emp;
         } catch (SQLException e){
@@ -158,7 +197,7 @@ public class EmployeeService {
         return false;
     }
     
-    public boolean update(int idemployee, Employee emp) throws SQLException {
+    public boolean update(Employee emp) throws SQLException {
         //UPDATE
         // Get a connection:
         Connection connection = pool.checkOut();
@@ -167,8 +206,9 @@ public class EmployeeService {
                 + EMPLOYEE_FIRSTNAME +" = ?, "
                 + EMPLOYEE_LASTNAME +" = ?, "
                 + PROVINCE +" = ?, "
-                + ADDRESS +" = ? "
-                + "WHERE username= ?";
+                + ADDRESS +" = ?, "
+                + STATUS +" = ? "
+                + "WHERE idemployee= ?";
         PreparedStatement statement = connection.prepareStatement(query);
         try {
 
@@ -176,7 +216,8 @@ public class EmployeeService {
             statement.setString(2, emp.getLastname());
             statement.setString(3, emp.getProvince());
             statement.setString(4, emp.getAddress());
-            statement.setInt(5, idemployee);
+            statement.setInt(5, emp.getStatus());
+            statement.setInt(6, emp.getIdemployee());
 
             statement.executeUpdate();
 
