@@ -8,9 +8,11 @@ import javafx.collections.ObservableList;
 import java.sql.SQLException;
 
 public class Master {
+    private AccountService accountService;
     private EmployeeService employeeService;
     private DailyReportService dailyReportService;
     private MonthlyReportService monthlyReportService;
+    private Account currentAccount;
     private Employee currentEmployee;
     private Report currentReport;
     private SSSReader sssReader;
@@ -24,6 +26,7 @@ public class Master {
     private ObservableList<SSS> sss;
 
     public Master() {
+        this.accountService = new AccountService();
         this.employeeService = new EmployeeService();
         this.dailyReportService = new DailyReportService();
         this.monthlyReportService = new MonthlyReportService();
@@ -34,6 +37,7 @@ public class Master {
         sss = FXCollections.observableArrayList();
         this.sssReader.readSSS();
         this.provinceReader.readProvince();
+        setup();
     }
 
     public ObservableList<SSS> getSSS() {
@@ -161,6 +165,48 @@ public class Master {
             e.printStackTrace();
         }
     }
+
+    public Account getAccountByUsername(String username) {
+        Account a = null;
+        try {
+            a = accountService.getAccountByUsername(username);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return a;
+    }
+
+    public void addAccount(Account a) {
+        try {
+            accountService.add(a);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void setup() {
+        Account account = null;
+        try {
+            account = accountService.getAccountByUsername("admin");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        if(account == null) {
+            Account a = new Account();
+            a.setAccounttype("admin");
+            a.setUsername("admin");
+            a.setPassword("admin");
+            try {
+                accountService.add(a);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public Account getCurrentAccount() { return currentAccount; }
+
+    public void setCurrentAccount(Account currentAccount) { this.currentAccount = currentAccount; }
 
     public Employee getCurrentEmployee() {
         return currentEmployee;

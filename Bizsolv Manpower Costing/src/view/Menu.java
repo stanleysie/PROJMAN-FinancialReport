@@ -20,6 +20,7 @@ public class Menu implements View {
         Scene scene = FXMLClass.getScene("/view/MenuView.fxml", this);
         this.stage.setScene(scene);
         this.stage.show();
+        setup();
     }
 
     public void initialize(){
@@ -76,5 +77,11 @@ public class Menu implements View {
             adminEdit.setStyle("-fx-background-color: #ef5350");
         });
 
+    }
+
+    private void setup() {
+        if(!master.getCurrentAccount().getAccounttype().equalsIgnoreCase("admin")) {
+            adminEdit.setVisible(false);
+        }
     }
 }

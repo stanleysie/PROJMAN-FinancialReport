@@ -2,7 +2,7 @@ package model;
 
 public class MonthlyReport implements Report {
     int idreport;
-    String employeename, version, type;
+    String employeename, version, type, creator;
     float basicRate, nWorkingDays, equivalentMonthlyCost, effectiveMonthlyRate, statutory_sss,
             statutory_pagibig, statutory_philhealth,statutory_escola, totalStatutory, thirteenth_month,
             incentive, totalLaborCost, admin_cost, contractCost, allowance;
@@ -161,6 +161,14 @@ public class MonthlyReport implements Report {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getCreator() {
+        return creator;
+    }
+
+    public void setCreator(String creator) {
+        this.creator = creator;
     }
 }
 

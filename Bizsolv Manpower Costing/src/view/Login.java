@@ -7,6 +7,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import model.Account;
 import model.Master;
 
 public class Login implements View{
@@ -59,16 +60,18 @@ public class Login implements View{
     }
 
     public boolean loginValidation() {
-        if(username.getText().trim().equalsIgnoreCase("admin")) {
-            if(password.getText().equalsIgnoreCase("admin")) {
+        Account a = master.getAccountByUsername(username.getText().trim());
+        if(a == null) {
+            Toast.makeText(this.stage, "Invalid username", 2000, 1000, 1000, 65, 0, Color.WHITE);
+            return false;
+        } else {
+            if(password.getText().trim().equalsIgnoreCase(a.getPassword())) {
+                master.setCurrentAccount(a);
                 return true;
             } else {
                 Toast.makeText(this.stage, "Invalid password", 2000, 1000, 1000, 65, 0, Color.WHITE);
                 return false;
             }
-        } else {
-            Toast.makeText(this.stage, "Invalid username", 2000, 1000, 1000, 65, 0, Color.WHITE);
-            return false;
         }
     }
 }

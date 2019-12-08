@@ -1,7 +1,7 @@
 package model;
 
 public class Account {
-    private String firstname, lastname, username, password, accounttype;
+    private String username, password, accounttype;
     private int accountid;
 
     public Account() {
@@ -13,22 +13,6 @@ public class Account {
 
     public void setAccountid(int accountid) {
         this.accountid = accountid;
-    }
-
-    public String getFirstname() {
-        return firstname;
-    }
-
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
-
-    public String getLastname() {
-        return lastname;
-    }
-
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
     }
 
     public String getUsername() {

@@ -41,6 +41,7 @@ public class LoadFile implements View {
     private ObservableList<String> rateTypeList;
     private float basicSalary, allowanceValue;
     private int incentiveValue, sssIndex;
+    private String creator;
 
     private final String MONTH_NAME[] = {"January", "February", "March", "April", "May", "June", "July", "August", "September",
             "October", "November", "December"};
@@ -176,7 +177,7 @@ public class LoadFile implements View {
             daily.seteffectiveMonthlyRate(comp.getEffectiveMonthlyRate());
             daily.setStatutory_sss(getSSS(comp.getEffectiveMonthlyRate()));
             daily.setStatutory_pagibig(getPagIbig());
-            daily.setStatutory_philhealth(Float.parseFloat("" + 193.21));
+            daily.setStatutory_philhealth(getPhilhealth());
             daily.setStatutory_escola(getBenefitEC());
             daily.setTotalStatutory(comp.getTotalGovernmentalCost());
             daily.setThirteenth_month(comp.getMonthBonus());
@@ -186,6 +187,7 @@ public class LoadFile implements View {
             daily.setcontractCost(comp.getContractCost());
             daily.setVersion(master.getVersion() + "-1");
             daily.setAllowance(allowanceValue);
+            daily.setCreator(creator);
             master.addDailyReport(daily);
         } else if(comp instanceof ComputationMonthly) {
             MonthlyReport monthly = new MonthlyReport();
@@ -196,7 +198,7 @@ public class LoadFile implements View {
             monthly.seteffectiveMonthlyRate(comp.getEffectiveMonthlyRate());
             monthly.setStatutory_sss(getSSS(comp.getEffectiveMonthlyRate()));
             monthly.setStatutory_pagibig(getPagIbig());
-            monthly.setStatutory_philhealth(Float.parseFloat("" + 618.75));
+            monthly.setStatutory_philhealth(getPhilhealth());
             monthly.setStatutory_escola(getBenefitEC());
             monthly.setTotalStatutory(comp.getTotalGovernmentalCost());
             monthly.setThirteenth_month(comp.getMonthBonus());
@@ -206,6 +208,7 @@ public class LoadFile implements View {
             monthly.setcontractCost(comp.getContractCost());
             monthly.setVersion(master.getVersion() + "-1");
             monthly.setAllowance(allowanceValue);
+            monthly.setCreator(creator);
             master.addMonthlyReport(monthly);
         }
     }
@@ -426,7 +429,7 @@ public class LoadFile implements View {
         basic.add(new Data("Sub-total", comp.getSubTotal()));
         monthlyCost.add(new Data("Effective Monthly Rate", comp.getEffectiveMonthlyRate()));
         governmental.add(new Data("Associate Benefit-SSS (Mand Payable)", getSSS(comp.getEffectiveMonthlyRate())));
-        governmental.add(new Data("Associate Benefit-Philhealth", 193.21));
+        governmental.add(new Data("Associate Benefit-Philhealth", getPhilhealth()));
         governmental.add(new Data("Associate Benefit-Pag-ibig", getPagIbig()));
         governmental.add(new Data("Associate Benefit-EC", getBenefitEC()));
         float sum = 0;
@@ -479,6 +482,7 @@ public class LoadFile implements View {
                 incentiveLeave.setText("" + (int)((DailyReport) master.getCurrentReport()).getIncentive());
             }
             allowance.setText("" + ((DailyReport) master.getCurrentReport()).getAllowance());
+            creator = ((DailyReport) master.getCurrentReport()).getCreator();
         } else if(master.getCurrentReport() instanceof MonthlyReport) {
             rateType.getSelectionModel().select(1);
             workingDays.setText("" + (int)((MonthlyReport) master.getCurrentReport()).getnWorkingDays());
@@ -487,6 +491,7 @@ public class LoadFile implements View {
                 incentiveLeave.setText("" + (int)((MonthlyReport) master.getCurrentReport()).getIncentive());
             }
             allowance.setText("" + ((MonthlyReport) master.getCurrentReport()).getAllowance());
+            creator = ((MonthlyReport) master.getCurrentReport()).getCreator();
         }
     }
 
@@ -509,5 +514,9 @@ public class LoadFile implements View {
             return 100;
         }
         return comp.getEffectiveMonthlyRate() * 2/100;
+    }
+
+    public float getPhilhealth() {
+        return 275*basicSalary/10000;
     }
 }

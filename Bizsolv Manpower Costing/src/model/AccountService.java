@@ -12,8 +12,6 @@ public class AccountService {
     private JDBCConnectionPool pool;
 
     private final String ID_ACCOUNT = "idaccount";
-    private final String FIRSTNAME = "firstname";
-    private final String LASTNAME = "lastname";
     private final String USERNAME = "username";
     private final String PASSWORD = "password";
     private final String ACCOUNTTYPE = "accounttype";
@@ -25,16 +23,14 @@ public class AccountService {
     public boolean add(Account a) throws SQLException {
         // Get a connection:
         Connection connection = pool.checkOut();
-        String query = "INSERT INTO province VALUE (?, ?, ?, ?, ?,?)";
+        String query = "INSERT INTO account VALUE (?, ?, ?, ?)";
         PreparedStatement statement = connection.prepareStatement(query);
         try {
             Account temp = getLast();
             statement.setInt(1, temp.getAccountid() + 1);
-            statement.setString(2, a.getFirstname());
-            statement.setString(3, a.getLastname());
-            statement.setString(4, a.getUsername());
-            statement.setString(5, a.getPassword());
-            statement.setString(6, a.getAccounttype());
+            statement.setString(2, a.getUsername());
+            statement.setString(3, a.getPassword());
+            statement.setString(4, a.getAccounttype());
 
             boolean added = statement.execute();
 
@@ -63,8 +59,6 @@ public class AccountService {
             while (rs.next()){
                 Account a = new Account();
                 a.setAccountid(rs.getInt(ID_ACCOUNT));
-                a.setPassword(rs.getString(FIRSTNAME));
-                a.setLastname(rs.getString(LASTNAME));
                 a.setUsername(rs.getString(USERNAME));
                 a.setPassword(rs.getString(PASSWORD));
                 a.setAccounttype(rs.getString(ACCOUNTTYPE));
@@ -94,8 +88,6 @@ public class AccountService {
             ResultSet rs = statement.executeQuery();
             while (rs.next()){
                 a.setAccountid(rs.getInt(ID_ACCOUNT));
-                a.setPassword(rs.getString(FIRSTNAME));
-                a.setLastname(rs.getString(LASTNAME));
                 a.setUsername(rs.getString(USERNAME));
                 a.setPassword(rs.getString(PASSWORD));
                 a.setAccounttype(rs.getString(ACCOUNTTYPE));;
@@ -114,7 +106,7 @@ public class AccountService {
     public Account getAccountByUsername(String username) throws SQLException {
         // Get a connection:
         Connection connection = pool.checkOut();
-        Account a = new Account();
+        Account a = null;
 
         String query ="SELECT * FROM account WHERE " + USERNAME + " = '" + username
                 + "'";
@@ -123,12 +115,11 @@ public class AccountService {
 
             ResultSet rs = statement.executeQuery();
             while (rs.next()){
+                a = new Account();
                 a.setAccountid(rs.getInt(ID_ACCOUNT));
-                a.setPassword(rs.getString(FIRSTNAME));
-                a.setLastname(rs.getString(LASTNAME));
                 a.setUsername(rs.getString(USERNAME));
                 a.setPassword(rs.getString(PASSWORD));
-                a.setAccounttype(rs.getString(ACCOUNTTYPE));;
+                a.setAccounttype(rs.getString(ACCOUNTTYPE));
             }
             return a;
         } catch (SQLException e){
@@ -169,17 +160,13 @@ public class AccountService {
         Connection connection = pool.checkOut();
 
         String query = "UPDATE account SET "
-                + FIRSTNAME +" = ?, "
-                + LASTNAME +" = ?, "
                 + PASSWORD +" = ?, "
                 + "WHERE username = ?";
         PreparedStatement statement = connection.prepareStatement(query);
         try {
 
-            statement.setString(1, a.getFirstname());
-            statement.setString(2, a.getLastname());
-            statement.setString(3, a.getPassword());
-            statement.setString(4, a.getUsername());
+            statement.setString(1, a.getPassword());
+            statement.setString(2, a.getUsername());
 
             statement.executeUpdate();
             return true;

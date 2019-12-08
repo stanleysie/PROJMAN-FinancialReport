@@ -59,7 +59,10 @@ public class GeneratePDF extends PdfPageEventHelper implements View {
         generate.setDefaultButton(true);
         generate.setOnAction(event -> {
             boolean done = true;
-            if(address.getText().trim().isEmpty()) {
+            if(username.getText().trim().isEmpty()) {
+                Toast.makeText(stage, "Creator is empty", 2000, 1000, 1000, -250, 5, Color.RED);
+                done = false;
+            } else if(address.getText().trim().isEmpty()) {
                 Toast.makeText(stage, "Address is empty", 2000, 1000, 1000, -250, 5, Color.RED);
                 done = false;
             } else if(workingDays.getText().trim().isEmpty()) {
@@ -168,7 +171,7 @@ public class GeneratePDF extends PdfPageEventHelper implements View {
         image.scaleToFit(100, 100);
 
         Document document = new Document();
-        String destination = "C:\\Users\\jeffc\\Desktop\\" + fileName.getText().trim() + ".pdf";
+        String destination = "E:\\" + fileName.getText().trim() + ".pdf";
         master.setFileDestination(destination);
         master.setFileName(fileName.getText() + ".pdf");
         writer = PdfWriter.getInstance(document, new FileOutputStream(destination));
@@ -201,7 +204,7 @@ public class GeneratePDF extends PdfPageEventHelper implements View {
             daily.seteffectiveMonthlyRate(comp.getEffectiveMonthlyRate());
             daily.setStatutory_sss(getSSS(comp.getEffectiveMonthlyRate()));
             daily.setStatutory_pagibig(getPagIbig());
-            daily.setStatutory_philhealth(Float.parseFloat("" + 193.21));
+            daily.setStatutory_philhealth(getPhilhealth());
             daily.setStatutory_escola(getBenefitEC());
             daily.setTotalStatutory(comp.getTotalGovernmentalCost());
             daily.setThirteenth_month(comp.getMonthBonus());
@@ -211,6 +214,7 @@ public class GeneratePDF extends PdfPageEventHelper implements View {
             daily.setcontractCost(comp.getContractCost());
             daily.setVersion(getVersion().split(" ")[1]);
             daily.setAllowance(allowanceValue);
+            daily.setCreator(username.getText().trim());
             master.addDailyReport(daily);
         } else if(comp instanceof ComputationMonthly) {
             MonthlyReport monthly = new MonthlyReport();
@@ -221,7 +225,7 @@ public class GeneratePDF extends PdfPageEventHelper implements View {
             monthly.seteffectiveMonthlyRate(comp.getEffectiveMonthlyRate());
             monthly.setStatutory_sss(getSSS(comp.getEffectiveMonthlyRate()));
             monthly.setStatutory_pagibig(getPagIbig());
-            monthly.setStatutory_philhealth(Float.parseFloat("" + 618.75));
+            monthly.setStatutory_philhealth(getPhilhealth());
             monthly.setStatutory_escola(getBenefitEC());
             monthly.setTotalStatutory(comp.getTotalGovernmentalCost());
             monthly.setThirteenth_month(comp.getMonthBonus());
@@ -231,6 +235,7 @@ public class GeneratePDF extends PdfPageEventHelper implements View {
             monthly.setcontractCost(comp.getContractCost());
             monthly.setVersion(getVersion().split(" ")[1]);
             monthly.setAllowance(allowanceValue);
+            monthly.setCreator(username.getText().trim());
             master.addMonthlyReport(monthly);
         }
     }
@@ -377,7 +382,7 @@ public class GeneratePDF extends PdfPageEventHelper implements View {
         cell1.setPhrase(new Phrase(""));
         cell1.setBorder(Rectangle.BOTTOM);
         addCells(table, cell1, cell2, cell3, smallSpace);
-        cell1.setPhrase(new Phrase(new Chunk("Name", small)));
+        cell1.setPhrase(new Phrase(new Chunk(username.getText().trim(), small)));
         cell1.setBorder(Rectangle.NO_BORDER);
         addCells(table, cell1, cell2, cell3, smallSpace);
         table.addCell(space);
@@ -451,7 +456,7 @@ public class GeneratePDF extends PdfPageEventHelper implements View {
         basic.add(new Data("Sub-total", comp.getSubTotal()));
         monthlyCost.add(new Data("Effective Monthly Rate", comp.getEffectiveMonthlyRate()));
         governmental.add(new Data("Associate Benefit-SSS", getSSS(comp.getEffectiveMonthlyRate())));
-        governmental.add(new Data("Associate Benefit-Philhealth", 193.21));
+        governmental.add(new Data("Associate Benefit-Philhealth", getPhilhealth()));
         governmental.add(new Data("Associate Benefit-Pag-ibig", getPagIbig()));
         governmental.add(new Data("Associate Benefit-EC", getBenefitEC()));
         float sum = 0;
@@ -515,6 +520,10 @@ public class GeneratePDF extends PdfPageEventHelper implements View {
             return 100;
         }
         return comp.getEffectiveMonthlyRate() * 2/100;
+    }
+
+    public float getPhilhealth() {
+        return 275*basicSalary/10000;
     }
 
     public String getVersion() {

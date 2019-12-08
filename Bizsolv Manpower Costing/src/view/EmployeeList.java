@@ -45,10 +45,12 @@ public class EmployeeList implements View {
         });
         table.setOnMouseClicked(event -> {
              Employee emp = (Employee) table.getSelectionModel().getSelectedItem();
-             if(emp.getStatus() == 1) {
-                 freezeEmployee(emp);
-             } else {
-                 unfreezeEmployee(emp);
+             if(emp != null) {
+                 if(emp.getStatus() == 1) {
+                     freezeEmployee(emp);
+                 } else {
+                     unfreezeEmployee(emp);
+                 }
              }
         });
     }

@@ -29,6 +29,7 @@ public class DailyReportService {
     private final String CONTRACT_COST = "contract_cost";
     private final String VERSION = "version";
     private final String ALLOWANCE = "allowance";
+    private final String CREATOR = "creator";
 
     public DailyReportService() {
         pool = new JDBCConnectionPool();
@@ -37,7 +38,7 @@ public class DailyReportService {
     public boolean add(DailyReport m, Employee employee) throws SQLException {
         // Get a connection:
         Connection connection = pool.checkOut();
-        String query = "INSERT INTO daily_report VALUE (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO daily_report VALUE (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement statement = connection.prepareStatement(query);
         try {
             DailyReport temp = getLast();
@@ -64,6 +65,7 @@ public class DailyReportService {
                 statement.setString(17, m.getVersion());
             }
             statement.setFloat(18, m.getAllowance());
+            statement.setString(19, m.getCreator());
 
             boolean added = statement.execute();
 
@@ -110,6 +112,7 @@ public class DailyReportService {
                 mr.setcontractCost(rs.getFloat(CONTRACT_COST));
                 mr.setVersion(rs.getString(VERSION));
                 mr.setAllowance(rs.getFloat(ALLOWANCE));
+                mr.setCreator(rs.getString(CREATOR));
 
                 dailyReports.add(mr);
             }
@@ -154,6 +157,7 @@ public class DailyReportService {
                 mr.setcontractCost(rs.getFloat(CONTRACT_COST));
                 mr.setVersion(rs.getString(VERSION));
                 mr.setAllowance(rs.getFloat(ALLOWANCE));
+                mr.setCreator(rs.getString(CREATOR));
             }
             return mr;
         } catch (SQLException e){
@@ -197,7 +201,7 @@ public class DailyReportService {
                 mr.setcontractCost(rs.getFloat(CONTRACT_COST));
                 mr.setVersion(rs.getString(VERSION));
                 mr.setAllowance(rs.getFloat(ALLOWANCE));
-
+                mr.setCreator(rs.getString(CREATOR));
             }
             return mr;
         } catch (SQLException e){
@@ -209,59 +213,4 @@ public class DailyReportService {
         pool.checkIn(connection);
         return mr;
     }
-
-    //pass the username of the account that wants to be change and an account class with COMPLETE information including the updates
-//    public boolean update(String employeename, DailyReport m) throws SQLException {
-//        //UPDATE
-//        // Get a connection:
-//        Connection connection = pool.checkOut();
-//
-//
-//        String query = "UPDATE daily_report SET "
-//                + EMPLOYEE_NAME + " = ?, "  + BASIC_RATE + " = ?, "
-//                + NO_WORKING_DAYS + " = ?, " + EQUIVALENT_MONTHLY_COST + " = ?, "
-//                + EFFECTIVE_MONTHLY_RATE + " = ?, "
-//                + STATUTORY_SSS + " = ?, " + STATUTORY_PAGIBIG + " = ?, "
-//                + STATUTORY_PHILHEALTH + " = ?, " + STATUTORY_ECOLA + " = ?, "
-//                + TOTAL_STATUTORY + " = ?, "
-//                + THIRTHEENTH_MONTH_PAY + " = ?, "
-//                + INCENTIVE + " = ?, "
-//                + TOTAL_LABOR_COST + " = ?, "
-//                + ADMIN_COST + " = ?, "
-//                + CONTRACT_COST + " = ?, "
-//                + VERSION + " = ? "
-//                + "WHERE "+ ID_REPORT + " = ?";
-//        PreparedStatement statement = connection.prepareStatement(query);
-//        try {
-//
-//            statement.setString(1, m.getEmployeename());
-//            statement.setFloat(2, m.getBasicRate());
-//            statement.setFloat(3, m.getnWorkingDays());
-//            statement.setFloat(4, m.getequivalentMonthlyCost());
-//            statement.setFloat(5, m.geteffectiveMonthlyRate());
-//            statement.setFloat(6, m.getStatutory_sss());
-//            statement.setFloat(7, m.getStatutory_pagibig());
-//            statement.setFloat(8, m.getStatutory_philhealth());
-//            statement.setFloat(9, m.getStatutory_escola());
-//            statement.setFloat(10, m.getTotalStatutory());
-//            statement.setFloat(11, m.getThirteenth_month());
-//            statement.setFloat(12, m.getIncentive());
-//            statement.setFloat(13, m.getTotal());
-//            statement.setFloat(14, m.getadmin_cost());
-//            statement.setFloat(15, m.getcontractCost());
-//            statement.setString(16, m.getVersion());
-//            statement.setInt(17, m.getIdreport());
-//
-//            statement.executeUpdate();
-//
-//            return true;
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        } finally {
-//            if(statement != null) statement.close();
-//            if(connection != null)  connection.close();
-//        }
-//        pool.checkIn(connection);
-//        return false;
-//    }
 }
