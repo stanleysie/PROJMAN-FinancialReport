@@ -171,7 +171,7 @@ public class GeneratePDF extends PdfPageEventHelper implements View {
         image.scaleToFit(100, 100);
 
         Document document = new Document();
-        String destination = "C:\\Users\\jeffc\\Desktop\\" + fileName.getText().trim() + ".pdf";
+        String destination = "E:\\" + fileName.getText().trim() + ".pdf";
         master.setFileDestination(destination);
         master.setFileName(fileName.getText() + ".pdf");
         writer = PdfWriter.getInstance(document, new FileOutputStream(destination));
@@ -212,7 +212,7 @@ public class GeneratePDF extends PdfPageEventHelper implements View {
             daily.setTotal(comp.getTotalLaborCost());
             daily.setadmin_cost(comp.getAdminCost());
             daily.setcontractCost(comp.getContractCost());
-            daily.setVersion(getVersion().split(" ")[1]);
+            daily.setVersion(getVersion());
             daily.setAllowance(allowanceValue);
             daily.setCreator(username.getText().trim());
             master.addDailyReport(daily);
@@ -233,7 +233,7 @@ public class GeneratePDF extends PdfPageEventHelper implements View {
             monthly.setTotal(comp.getTotalLaborCost());
             monthly.setadmin_cost(comp.getAdminCost());
             monthly.setcontractCost(comp.getContractCost());
-            monthly.setVersion(getVersion().split(" ")[1]);
+            monthly.setVersion(getVersion());
             monthly.setAllowance(allowanceValue);
             monthly.setCreator(username.getText().trim());
             master.addMonthlyReport(monthly);
@@ -528,15 +528,16 @@ public class GeneratePDF extends PdfPageEventHelper implements View {
 
     public String getVersion() {
         LocalDateTime date = LocalDateTime.now();
-        String str = "Version " + date.getYear() + date.getMonthValue() + date.getDayOfMonth() + "-" + getRandomFiveNumbers();
+        String str = "" + date.getYear() + date.getMonthValue() + date.getDayOfMonth() + "-";
+        if(comp instanceof ComputationDaily) {
+            str += "D" + (master.getNumberOfDailyReport() + 1) + "-1";
+        } else if(comp instanceof ComputationMonthly) {
+            str += "M" + (master.getNumberOfMonthlyReport() + 1) + "-1";
+        }
         master.setFileTime(MONTH_NAME[date.getMonthValue() - 1] + " " + date.getDayOfMonth() + ", " + date.getYear() + " " +
                         String.format("%02d", date.getHour()) + ":" + String.format("%02d", date.getMinute()) + ":" +
                         String.format("%02d", date.getSecond()));
-        master.setVersion(str);
+        master.setVersion("Version " + str);
         return str;
-    }
-
-    public int getRandomFiveNumbers() {
-        return (int)(Math.random() * ((99999 - 10000) + 1));
     }
 }

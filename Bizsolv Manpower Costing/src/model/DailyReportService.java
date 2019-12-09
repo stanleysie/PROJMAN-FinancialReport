@@ -59,11 +59,7 @@ public class DailyReportService {
             statement.setFloat(14, m.getTotal());
             statement.setFloat(15, m.getadmin_cost());
             statement.setFloat(16, m.getcontractCost());
-            if(temp.getVersion() != null) {
-                statement.setString(17, temp.getVersion() + "-1");
-            } else {
-                statement.setString(17, m.getVersion());
-            }
+            statement.setString(17, m.getVersion());
             statement.setFloat(18, m.getAllowance());
             statement.setString(19, m.getCreator());
 
@@ -125,6 +121,30 @@ public class DailyReportService {
         }
         pool.checkIn(connection);
         return dailyReports;
+    }
+
+    public int getEmployeeCount() throws SQLException {
+        // Get a connection:
+        Connection connection = pool.checkOut();
+        int total = 0;
+
+        String query ="SELECT count(idreport) AS total FROM daily_report";
+        PreparedStatement statement = connection.prepareStatement(query);
+        try {
+
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()){
+                total = rs.getInt("total");
+            }
+            return total;
+        } catch (SQLException e){
+            e.printStackTrace();
+        } finally {
+            if(statement != null) statement.close();
+            if(connection != null)  connection.close();
+        }
+        pool.checkIn(connection);
+        return total;
     }
 
     public DailyReport getEmployeeDailyReport(String version) throws SQLException {

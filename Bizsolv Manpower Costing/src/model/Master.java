@@ -3,6 +3,7 @@ package model;
 import controller.ProvinceReader;
 import controller.SSSReader;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
 
 import java.sql.SQLException;
@@ -137,6 +138,24 @@ public class Master {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public int getNumberOfDailyReport() {
+        try {
+            return dailyReportService.getEmployeeCount();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    public int getNumberOfMonthlyReport() {
+        try {
+            return monthlyReportService.getEmployeeCount();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
     }
 
     public void getReport(String version) {

@@ -123,6 +123,8 @@ public class LoadSelect implements View {
                     } else if(table.getSelectionModel().getSelectedItem() instanceof MonthlyReport) {
                         master.getReport(((MonthlyReport) table.getSelectionModel().getSelectedItem()).getVersion());
                     }
+                    generate.setVisible(true);
+                    load.setVisible(true);
                 }
             }
         });
@@ -132,6 +134,7 @@ public class LoadSelect implements View {
         back.setVisible(false);
         employee.setVisible(false);
         generate.setVisible(false);
+        load.setVisible(false);
         tableColumn = new TableColumn("Clients");
         tableColumn.setPrefWidth(450);
         tableColumn.setStyle("-fx-alignment: CENTER;");
@@ -145,7 +148,6 @@ public class LoadSelect implements View {
     public void setVersions(String name) {
         employee.setVisible(true);
         back.setVisible(true);
-        generate.setVisible(true);
         employee.setText(name);
         version = new TableColumn("Document Version");
         version.setCellValueFactory(new PropertyValueFactory("version"));

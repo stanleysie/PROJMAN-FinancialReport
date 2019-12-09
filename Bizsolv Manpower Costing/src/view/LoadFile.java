@@ -144,7 +144,7 @@ public class LoadFile implements View {
         image.scaleToFit(100, 100);
 
         Document document = new Document();
-        String destination = "C:\\Users\\jeffc\\Desktop\\" + fileName.getText().trim() + "-Edited.pdf";
+        String destination = "E:\\" + fileName.getText().trim() + "-Edited.pdf";
         master.setFileDestination(destination);
         master.setFileName(fileName.getText() + ".pdf");
         writer = PdfWriter.getInstance(document, new FileOutputStream(destination));
@@ -185,7 +185,9 @@ public class LoadFile implements View {
             daily.setTotal(comp.getTotalLaborCost());
             daily.setadmin_cost(comp.getAdminCost());
             daily.setcontractCost(comp.getContractCost());
-            daily.setVersion(master.getVersion() + "-1");
+            String[] ver = master.getVersion().split(("-"));
+            daily.setVersion(ver[0] + "-" + ver[1] +  "-" + (Integer.parseInt(ver[2]) + 1));
+            master.setVersion("Version " + daily.getVersion());
             daily.setAllowance(allowanceValue);
             daily.setCreator(creator);
             master.addDailyReport(daily);
@@ -206,7 +208,9 @@ public class LoadFile implements View {
             monthly.setTotal(comp.getTotalLaborCost());
             monthly.setadmin_cost(comp.getAdminCost());
             monthly.setcontractCost(comp.getContractCost());
-            monthly.setVersion(master.getVersion() + "-1");
+            String[] ver = master.getVersion().split(("-"));
+            monthly.setVersion(ver[0] + "-" + ver[1] +  "-" + (Integer.parseInt(ver[2]) + 1));
+            master.setVersion("Version " + monthly.getVersion());
             monthly.setAllowance(allowanceValue);
             monthly.setCreator(creator);
             master.addMonthlyReport(monthly);
