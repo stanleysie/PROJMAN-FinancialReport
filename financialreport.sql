@@ -18,6 +18,32 @@ USE `financialreport`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `account`
+--
+
+DROP TABLE IF EXISTS `account`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `account` (
+  `idaccount` int(11) NOT NULL,
+  `username` varchar(45) DEFAULT NULL,
+  `password` varchar(45) DEFAULT NULL,
+  `accounttype` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`idaccount`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `account`
+--
+
+LOCK TABLES `account` WRITE;
+/*!40000 ALTER TABLE `account` DISABLE KEYS */;
+INSERT INTO `account` VALUES (1,'admin','admin','admin');
+/*!40000 ALTER TABLE `account` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `daily_report`
 --
 
@@ -43,6 +69,7 @@ CREATE TABLE `daily_report` (
   `contract_cost` float DEFAULT NULL,
   `version` varchar(45) DEFAULT NULL,
   `allowance` float DEFAULT NULL,
+  `creator` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`idreport`),
   KEY `emplyeename_idx` (`employeename`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -54,7 +81,6 @@ CREATE TABLE `daily_report` (
 
 LOCK TABLES `daily_report` WRITE;
 /*!40000 ALTER TABLE `daily_report` DISABLE KEYS */;
-INSERT INTO `daily_report` VALUES (1,'Felongco, Silverio Gil Tansiongco',537,314,15222.5,14051.5,1120,100,193.21,10,1423.21,44.75,0,16645.7,12,18643.1,'2019124-76885',0),(2,'Felongco, Silverio Gil Tansiongco',537,300,14543.8,13425,1080,100,193.21,10,1383.21,44.75,0,15927,12,17838.2,'2019124-76885-1',0);
 /*!40000 ALTER TABLE `daily_report` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -71,6 +97,7 @@ CREATE TABLE `employee` (
   `employeelastname` varchar(45) DEFAULT NULL,
   `province` varchar(45) DEFAULT NULL,
   `address` varchar(300) DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
   PRIMARY KEY (`idemployee`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -81,7 +108,7 @@ CREATE TABLE `employee` (
 
 LOCK TABLES `employee` WRITE;
 /*!40000 ALTER TABLE `employee` DISABLE KEYS */;
-INSERT INTO `employee` VALUES (1,'Silverio Gil Tansiongco','Felongco','NCR','2326 Juan Luna Street Tondo 1000'),(2,'Gunnar Dominik Subrabas','Navidad','CAT','5/F B And L Building116 Legaspi Street, Legaspi Village 1200'),(3,'Justyn Riley Quiambao','Zoleta','ARMM','99 Maria Clara St. Sta Mesa Heights, 1220'),(4,'Daniela Krista Kulikutan','Quezada','Region I','4J Lopez De Leon Street Cor. Topaz Street Green Heights Village Sucat 1700'),(5,'Faro Clinton Tiong','Tanilon','Region IV-A','721-A Aurora Boulevard New Manila 1112'),(6,'Connor Lance Uson','Bristol','Region III','437 Quintin Paredes Street Binondo 1000'),(7,'Araceli Chrysann Chengco','Jacinto','Region X','8/F Pryce Center 1179 Don Chino Roces Avenue Corner Bagtikan Street 1286'),(8,'Rio Eugene Morgan','Fajardo','Region II','Jennys Avenue, Pasencia Cruz Compound Brgy. Maybunga 1600'),(9,'Julian Forrest Iitaoka','Reoja','Region XI','100 Einstein Street Cor. Finlandia Street Brgy. San Isidro 1200'),(10,'Yessenia Margaret Tanhehco','Padilla','Region VIII','150-A Lt. Artiaga Street 1500'),(11,'Stanley Lawrence','Sie','NCR','De La Salle University, Manila 1004');
+INSERT INTO `employee` VALUES (1,'Silverio Gil Tansiongco','Felongco','NCR','2326 Juan Luna Street Tondo 1000',1),(2,'Gunnar Dominik Subrabas','Navidad','CAT','5/F B And L Building116 Legaspi Street, Legaspi Village 1200',1),(3,'Justyn Riley Quiambao','Zoleta','ARMM','99 Maria Clara St. Sta Mesa Heights, 1220',1),(4,'Daniela Krista Kulikutan','Quezada','Region I','4J Lopez De Leon Street Cor. Topaz Street Green Heights Village Sucat 1700',1),(5,'Faro Clinton Tiong','Tanilon','Region IV-A','721-A Aurora Boulevard New Manila 1112',1),(6,'Connor Lance Uson','Bristol','Region III','437 Quintin Paredes Street Binondo 1000',1),(7,'Araceli Chrysann Chengco','Jacinto','Region X','8/F Pryce Center 1179 Don Chino Roces Avenue Corner Bagtikan Street 1286',1),(8,'Rio Eugene Morgan','Fajardo','Region II','Jennys Avenue, Pasencia Cruz Compound Brgy. Maybunga 1600',1),(9,'Julian Forrest Iitaoka','Reoja','Region XI','100 Einstein Street Cor. Finlandia Street Brgy. San Isidro 1200',1),(10,'Yessenia Margaret Tanhehco','Padilla','Region VIII','150-A Lt. Artiaga Street 1500',1),(11,'Stanley Lawrence','Sie','NCR','De La Salle University, Manila 1004',1);
 /*!40000 ALTER TABLE `employee` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -111,6 +138,7 @@ CREATE TABLE `monthly_report` (
   `contract_cost` float DEFAULT NULL,
   `version` varchar(45) DEFAULT NULL,
   `allowance` float DEFAULT NULL,
+  `creator` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`idreport`),
   KEY `emplyeename_idx` (`employeename`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -122,34 +150,7 @@ CREATE TABLE `monthly_report` (
 
 LOCK TABLES `monthly_report` WRITE;
 /*!40000 ALTER TABLE `monthly_report` DISABLE KEYS */;
-INSERT INTO `monthly_report` VALUES (1,'Reoja, Julian Forrest Iitaoka',396,314,429,396,160,7.92,618.75,10,371.13,33,0,800.13,12,896.146,'2019124-71553',NULL);
 /*!40000 ALTER TABLE `monthly_report` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `province`
---
-
-DROP TABLE IF EXISTS `province`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `province` (
-  `idProvince` int(11) NOT NULL,
-  `provincename` varchar(45) DEFAULT NULL,
-  `salarymin` float DEFAULT NULL,
-  `salarymax` float DEFAULT NULL,
-  PRIMARY KEY (`idProvince`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `province`
---
-
-LOCK TABLES `province` WRITE;
-/*!40000 ALTER TABLE `province` DISABLE KEYS */;
-INSERT INTO `province` VALUES (1,'NCR',500,537),(2,'CAR',340,350),(3,'Region I',282,340),(4,'Region II',320,360),(5,'Region III',284,400),(6,'Region IV-A',303,400),(7,'Region IV-B',294,320),(8,'Region V',310,310),(9,'Region VI',310,395),(10,'Region VII',313,386),(11,'Region VIII',285,315),(12,'Region IX',303,316),(13,'Region X',331,365),(14,'Region XI',381,396),(15,'Region XII',290,311),(16,'Region XIII',320,320),(17,'ARMM',270,280);
-/*!40000 ALTER TABLE `province` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -169,4 +170,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-12-04  2:28:01
+-- Dump completed on 2019-12-09 19:24:49
