@@ -13,7 +13,7 @@ public class Success implements View{
     @FXML
     private Label fileNames, fileLocation, fileTime, fileVersion;
     @FXML
-    private Button generateNew, exit;
+    private Button generateNew;
 
     private Stage stage;
     private Master master;
@@ -39,18 +39,6 @@ public class Success implements View{
 
         generateNew.setOnMouseExited(event -> {
             generateNew.setStyle("-fx-background-color: #ef5350");
-        });
-
-        exit.setOnAction(event -> {
-            Platform.exit();
-        });
-
-        exit.setOnMouseEntered(event -> {
-            exit.setStyle("-fx-background-color: #535353");
-        });
-
-        exit.setOnMouseExited(event -> {
-            exit.setStyle("-fx-background-color: #ef5350");
         });
     }
 

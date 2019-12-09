@@ -171,7 +171,7 @@ public class GeneratePDF extends PdfPageEventHelper implements View {
         image.scaleToFit(100, 100);
 
         Document document = new Document();
-        String destination = "E:\\" + fileName.getText().trim() + ".pdf";
+        String destination = "C:\\Users\\jeffc\\Desktop\\" + fileName.getText().trim() + ".pdf";
         master.setFileDestination(destination);
         master.setFileName(fileName.getText() + ".pdf");
         writer = PdfWriter.getInstance(document, new FileOutputStream(destination));

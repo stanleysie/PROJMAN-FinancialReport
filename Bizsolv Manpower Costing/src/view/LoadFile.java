@@ -144,7 +144,7 @@ public class LoadFile implements View {
         image.scaleToFit(100, 100);
 
         Document document = new Document();
-        String destination = "E:\\" + fileName.getText().trim() + "-Edited.pdf";
+        String destination = "C:\\Users\\jeffc\\Desktop\\" + fileName.getText().trim() + "-Edited.pdf";
         master.setFileDestination(destination);
         master.setFileName(fileName.getText() + ".pdf");
         writer = PdfWriter.getInstance(document, new FileOutputStream(destination));

@@ -13,7 +13,7 @@ import java.util.Optional;
 public class EmployeeList implements View {
 
     @FXML
-    private Button menu;
+    private Button back;
     @FXML
     private TableView table;
 
@@ -31,17 +31,17 @@ public class EmployeeList implements View {
     }
 
     public void initialize() {
-        menu.setOnAction(event ->{
-            Stage stage = (Stage) menu.getScene().getWindow();
-            Menu menu = new Menu(stage, master);
+        back.setOnAction(event ->{
+            Stage stage = (Stage) back.getScene().getWindow();
+            Maintenance back = new Maintenance(stage, master);
         });
 
-        menu.setOnMouseEntered(event -> {
-            menu.setStyle("-fx-background-color: #535353");
+        back.setOnMouseEntered(event -> {
+            back.setStyle("-fx-background-color: #535353");
         });
 
-        menu.setOnMouseExited(event -> {
-            menu.setStyle("-fx-background-color: #ef5350");
+        back.setOnMouseExited(event -> {
+            back.setStyle("-fx-background-color: #ef5350");
         });
         table.setOnMouseClicked(event -> {
              Employee emp = (Employee) table.getSelectionModel().getSelectedItem();

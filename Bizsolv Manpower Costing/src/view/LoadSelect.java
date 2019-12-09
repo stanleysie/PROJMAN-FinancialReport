@@ -108,7 +108,7 @@ public class LoadSelect implements View {
         });
 
         back.setOnMouseExited(event -> {
-            back.setStyle("-fx-background-color: #FFFFFF");
+            back.setStyle("-fx-border-color: #ef5350; -fx-background-color: #FFFFFF");
         });
 
         table.setOnMouseClicked(event -> {
@@ -168,7 +168,7 @@ public class LoadSelect implements View {
         image.scaleToFit(100, 100);
 
         Document document = new Document();
-        String destination = "E:\\" + master.getFileName() + ".pdf";
+        String destination = "C:\\Users\\jeffc\\Desktop\\" + master.getFileName() + ".pdf";
         master.setFileDestination(destination);
         master.setFileName(master.getFileName() + ".pdf");
         writer = PdfWriter.getInstance(document, new FileOutputStream(destination));
