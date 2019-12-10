@@ -3,7 +3,6 @@ package model;
 import controller.ProvinceReader;
 import controller.SSSReader;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
 
 import java.sql.SQLException;
@@ -179,7 +178,7 @@ public class Master {
 
     public void updateEmployeeList() {
         try {
-            employees = employeeService.getAll();
+            employees = employeeService.getUnfreezeEmployees();
         } catch (SQLException e) {
             e.printStackTrace();
         }
