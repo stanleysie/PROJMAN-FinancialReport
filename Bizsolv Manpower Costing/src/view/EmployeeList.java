@@ -56,12 +56,12 @@ public class EmployeeList implements View {
     }
 
     private void setup() {
-        name = new TableColumn("Employee Name");
+        name = new TableColumn("Client Name");
         name.setPrefWidth(300);
         name.setStyle("-fx-alignment: CENTER;");
         name.setCellValueFactory(new PropertyValueFactory("name"));
         name.setResizable(false);
-        status = new TableColumn("Employee Status");
+        status = new TableColumn("Client Status");
         status.setPrefWidth(150);
         status.setStyle("-fx-alignment: CENTER;");
         status.setCellValueFactory(new PropertyValueFactory("statusLabel"));
@@ -73,7 +73,7 @@ public class EmployeeList implements View {
 
     private void freezeEmployee(Employee e) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setHeaderText("Employee Status");
+        alert.setHeaderText("Client Status");
         alert.setContentText("Are you sure you want to freeze " + e.getName() + " account?");
         Optional<ButtonType> click = alert.showAndWait();
 
@@ -91,7 +91,7 @@ public class EmployeeList implements View {
 
     private void unfreezeEmployee(Employee e) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setHeaderText("Employee Status");
+        alert.setHeaderText("Client Status");
         alert.setContentText("Are you sure you want to unfreeze " + e.getName() + " account?");
         Optional<ButtonType> click = alert.showAndWait();
 
