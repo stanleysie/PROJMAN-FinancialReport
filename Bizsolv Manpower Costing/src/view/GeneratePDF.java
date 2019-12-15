@@ -185,7 +185,6 @@ public class GeneratePDF extends PdfPageEventHelper implements View {
         para.add(new Chunk(address.getText(), FontFactory.getFont(FontFactory.HELVETICA_BOLD, 11))); // add address
         para.add(Chunk.NEWLINE);
         document.add(para);
-        document.add(NEWLINE);
         setData(rateType.getSelectionModel().getSelectedItem(), basicSalary, Integer.parseInt(workingDays.getText()), incentiveValue, allowanceValue, Float.parseFloat(adminCost.getText()));
         PdfPTable table = createTable(rateType.getSelectionModel().getSelectedItem(), Integer.parseInt(workingDays.getText()));
         document.add(table);
@@ -268,7 +267,9 @@ public class GeneratePDF extends PdfPageEventHelper implements View {
         table.addCell(space);
         addHeader(table, "E. BIZSOLV ADMIN COST", comp.getAdminCost(), comp.getBizsolvAdminCost());
         table.addCell(space);
-        addHeader(table, "F. CONTRACT COST/MONTH", comp.getContractCost());
+        addHeader(table, "F. OTHERS (NAME)", comp.getContractCost());
+        table.addCell(space);
+        addHeader(table, "G. CONTRACT COST/MONTH", comp.getContractCost());
         return table;
     }
 

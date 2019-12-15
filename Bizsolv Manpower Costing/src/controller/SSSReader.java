@@ -18,7 +18,7 @@ public class SSSReader {
 
     public void readSSS() {
         String line = "";
-        try (BufferedReader br = new BufferedReader(new FileReader("src/files/SSS.csv"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("D:\\YEAR 3\\TERM 1\\PROJMAN\\PROJECT\\PROJMAN-FinancialReport\\Bizsolv Manpower Costing\\src\\files\\SSS.csv"))) {
             while ((line = br.readLine()) != null) {
                 // use pipe as separator
                 String[] data = line.split(",");
