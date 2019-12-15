@@ -3,9 +3,9 @@ package model;
 public abstract class Computation {
 
     private int workingDays;
-    private float basicSalary, totalGovernmentalCost, totalLaborCost, bizsolvAdminCost, contractCost;
+    private double basicSalary, totalGovernmentalCost, totalLaborCost, bizsolvAdminCost, contractCost;
 
-    public Computation(float basicSalary, int workingDays) {
+    public Computation(double basicSalary, int workingDays) {
         this.basicSalary = basicSalary;
         this.workingDays = workingDays;
     }
@@ -18,38 +18,38 @@ public abstract class Computation {
         this.workingDays = workingDays;
     }
 
-    public float getBasicSalary() {
+    public double getBasicSalary() {
         return basicSalary;
     }
 
-    public void setBasicSalary(float basicSalary) {
+    public void setBasicSalary(double basicSalary) {
         this.basicSalary = basicSalary;
     }
 
-    public float getMonthBonus() {
+    public double getMonthBonus() {
         return basicSalary/12;
     }
 
-    public void setGovernmentalCost(float value) { this.totalGovernmentalCost = value; }
+    public void setGovernmentalCost(double value) { this.totalGovernmentalCost = value; }
 
-    public float getTotalGovernmentalCost() { return totalGovernmentalCost; }
+    public double getTotalGovernmentalCost() { return totalGovernmentalCost; }
 
-    public void setTotalLaborCost(float value) { this.totalLaborCost = value; }
+    public void setTotalLaborCost(double value) { this.totalLaborCost = value; }
 
-    public float getTotalLaborCost() { return this.totalLaborCost; }
+    public double getTotalLaborCost() { return this.totalLaborCost; }
 
-    public void setBizsolvAdminCost(float value) { this.bizsolvAdminCost = value; }
+    public void setBizsolvAdminCost(double value) { this.bizsolvAdminCost = value; }
 
-    public float getBizsolvAdminCost() { return this.bizsolvAdminCost; }
+    public double getBizsolvAdminCost() { return this.bizsolvAdminCost; }
 
-    public void setContractCost(float value) { this.contractCost = value; }
+    public void setContractCost(double value) { this.contractCost = value; }
 
-    public float getContractCost() { return this.contractCost; }
+    public double getContractCost() { return this.contractCost; }
 
-    abstract public float getNumOfDayIncentive();
-    abstract public float getEquivalentMonthlyCost();
-    abstract public float getEffectiveMonthlyRate();
-    abstract public float getAllowance();
-    abstract public float getSubTotal();
-    abstract public float getAdminCost();
+    abstract public double getNumOfDayIncentive();
+    abstract public double getEquivalentMonthlyCost();
+    abstract public double getEffectiveMonthlyRate();
+    abstract public double getAllowance();
+    abstract public double getSubTotal();
+    abstract public double getAdminCost();
 }

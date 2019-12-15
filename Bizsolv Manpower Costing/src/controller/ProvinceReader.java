@@ -2,7 +2,6 @@ package controller;
 
 import model.Master;
 import model.Province;
-import model.SSS;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

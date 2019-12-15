@@ -30,6 +30,8 @@ public class DailyReportService {
     private final String VERSION = "version";
     private final String ALLOWANCE = "allowance";
     private final String CREATOR = "creator";
+    private final String OTHER_NAME = "other_name";
+    private final String OTHER_VALUE = "other_value";
 
     public DailyReportService() {
         pool = new JDBCConnectionPool();
@@ -38,30 +40,32 @@ public class DailyReportService {
     public boolean add(DailyReport m, Employee employee) throws SQLException {
         // Get a connection:
         Connection connection = pool.checkOut();
-        String query = "INSERT INTO daily_report VALUE (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO daily_report VALUE (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement statement = connection.prepareStatement(query);
         try {
             DailyReport temp = getLast();
             m.setIdreport(temp.getIdreport() + 1);
             statement.setInt(1, m.getIdreport());
             statement.setString(2,employee.getLastname() + ", " + employee.getFirstname());
-            statement.setFloat(3, m.getBasicRate());
-            statement.setFloat(4, m.getnWorkingDays());
-            statement.setFloat(5, m.getequivalentMonthlyCost());
-            statement.setFloat(6, m.geteffectiveMonthlyRate());
-            statement.setFloat(7, m.getStatutory_sss());
-            statement.setFloat(8, m.getStatutory_pagibig());
-            statement.setFloat(9, m.getStatutory_philhealth());
-            statement.setFloat(10, m.getStatutory_escola());
-            statement.setFloat(11, m.getTotalStatutory());
-            statement.setFloat(12, m.getThirteenth_month());
-            statement.setFloat(13, m.getIncentive());
-            statement.setFloat(14, m.getTotal());
-            statement.setFloat(15, m.getadmin_cost());
-            statement.setFloat(16, m.getcontractCost());
+            statement.setDouble(3, m.getBasicRate());
+            statement.setInt(4, m.getnWorkingDays());
+            statement.setDouble(5, m.getequivalentMonthlyCost());
+            statement.setDouble(6, m.geteffectiveMonthlyRate());
+            statement.setDouble(7, m.getStatutory_sss());
+            statement.setDouble(8, m.getStatutory_pagibig());
+            statement.setDouble(9, m.getStatutory_philhealth());
+            statement.setDouble(10, m.getStatutory_escola());
+            statement.setDouble(11, m.getTotalStatutory());
+            statement.setDouble(12, m.getThirteenth_month());
+            statement.setDouble(13, m.getIncentive());
+            statement.setDouble(14, m.getTotal());
+            statement.setDouble(15, m.getadmin_cost());
+            statement.setDouble(16, m.getcontractCost());
             statement.setString(17, m.getVersion());
-            statement.setFloat(18, m.getAllowance());
+            statement.setDouble(18, m.getAllowance());
             statement.setString(19, m.getCreator());
+            statement.setString(20, m.getOtherName());
+            statement.setDouble(21, m.getOtherValue());
 
             boolean added = statement.execute();
 
@@ -92,23 +96,25 @@ public class DailyReportService {
 
                 mr.setIdreport(rs.getInt(ID_REPORT));
                 mr.setEmployeename(rs.getString(EMPLOYEE_NAME));
-                mr.setBasicRate(rs.getFloat(BASIC_RATE));
-                mr.setnWorkingDays(rs.getFloat(NO_WORKING_DAYS));
-                mr.setequivalentMonthlyCost(rs.getFloat(EQUIVALENT_MONTHLY_COST));
-                mr.seteffectiveMonthlyRate(rs.getFloat(EFFECTIVE_MONTHLY_RATE));
-                mr.setStatutory_sss(rs.getFloat(STATUTORY_SSS));
-                mr.setStatutory_pagibig(rs.getFloat(STATUTORY_PAGIBIG));
-                mr.setStatutory_philhealth(rs.getFloat(STATUTORY_PHILHEALTH));
-                mr.setStatutory_escola(rs.getFloat(STATUTORY_ECOLA));
-                mr.setTotalStatutory(rs.getFloat(TOTAL_STATUTORY));
-                mr.setThirteenth_month(rs.getFloat(THIRTHEENTH_MONTH_PAY));
-                mr.setIncentive(rs.getFloat(INCENTIVE));
-                mr.setTotal(rs.getFloat(TOTAL_LABOR_COST));
-                mr.setadmin_cost(rs.getFloat(ADMIN_COST));
-                mr.setcontractCost(rs.getFloat(CONTRACT_COST));
+                mr.setBasicRate(rs.getDouble(BASIC_RATE));
+                mr.setnWorkingDays(rs.getInt(NO_WORKING_DAYS));
+                mr.setequivalentMonthlyCost(rs.getDouble(EQUIVALENT_MONTHLY_COST));
+                mr.seteffectiveMonthlyRate(rs.getDouble(EFFECTIVE_MONTHLY_RATE));
+                mr.setStatutory_sss(rs.getDouble(STATUTORY_SSS));
+                mr.setStatutory_pagibig(rs.getDouble(STATUTORY_PAGIBIG));
+                mr.setStatutory_philhealth(rs.getDouble(STATUTORY_PHILHEALTH));
+                mr.setStatutory_escola(rs.getDouble(STATUTORY_ECOLA));
+                mr.setTotalStatutory(rs.getDouble(TOTAL_STATUTORY));
+                mr.setThirteenth_month(rs.getDouble(THIRTHEENTH_MONTH_PAY));
+                mr.setIncentive(rs.getDouble(INCENTIVE));
+                mr.setTotal(rs.getDouble(TOTAL_LABOR_COST));
+                mr.setadmin_cost(rs.getDouble(ADMIN_COST));
+                mr.setcontractCost(rs.getDouble(CONTRACT_COST));
                 mr.setVersion(rs.getString(VERSION));
-                mr.setAllowance(rs.getFloat(ALLOWANCE));
+                mr.setAllowance(rs.getDouble(ALLOWANCE));
                 mr.setCreator(rs.getString(CREATOR));
+                mr.setOtherName(rs.getString(OTHER_NAME));
+                mr.setOtherValue(rs.getDouble(OTHER_VALUE));
 
                 dailyReports.add(mr);
             }
@@ -161,23 +167,25 @@ public class DailyReportService {
                 mr = new DailyReport();
                 mr.setIdreport(rs.getInt(ID_REPORT));
                 mr.setEmployeename(rs.getString(EMPLOYEE_NAME));
-                mr.setBasicRate(rs.getFloat(BASIC_RATE));
-                mr.setnWorkingDays(rs.getFloat(NO_WORKING_DAYS));
-                mr.setequivalentMonthlyCost(rs.getFloat(EQUIVALENT_MONTHLY_COST));
-                mr.seteffectiveMonthlyRate(rs.getFloat(EFFECTIVE_MONTHLY_RATE));
-                mr.setStatutory_sss(rs.getFloat(STATUTORY_SSS));
-                mr.setStatutory_pagibig(rs.getFloat(STATUTORY_PAGIBIG));
-                mr.setStatutory_philhealth(rs.getFloat(STATUTORY_PHILHEALTH));
-                mr.setStatutory_escola(rs.getFloat(STATUTORY_ECOLA));
-                mr.setTotalStatutory(rs.getFloat(TOTAL_STATUTORY));
-                mr.setThirteenth_month(rs.getFloat(THIRTHEENTH_MONTH_PAY));
-                mr.setIncentive(rs.getFloat(INCENTIVE));
-                mr.setTotal(rs.getFloat(TOTAL_LABOR_COST));
-                mr.setadmin_cost(rs.getFloat(ADMIN_COST));
-                mr.setcontractCost(rs.getFloat(CONTRACT_COST));
+                mr.setBasicRate(rs.getDouble(BASIC_RATE));
+                mr.setnWorkingDays(rs.getInt(NO_WORKING_DAYS));
+                mr.setequivalentMonthlyCost(rs.getDouble(EQUIVALENT_MONTHLY_COST));
+                mr.seteffectiveMonthlyRate(rs.getDouble(EFFECTIVE_MONTHLY_RATE));
+                mr.setStatutory_sss(rs.getDouble(STATUTORY_SSS));
+                mr.setStatutory_pagibig(rs.getDouble(STATUTORY_PAGIBIG));
+                mr.setStatutory_philhealth(rs.getDouble(STATUTORY_PHILHEALTH));
+                mr.setStatutory_escola(rs.getDouble(STATUTORY_ECOLA));
+                mr.setTotalStatutory(rs.getDouble(TOTAL_STATUTORY));
+                mr.setThirteenth_month(rs.getDouble(THIRTHEENTH_MONTH_PAY));
+                mr.setIncentive(rs.getDouble(INCENTIVE));
+                mr.setTotal(rs.getDouble(TOTAL_LABOR_COST));
+                mr.setadmin_cost(rs.getDouble(ADMIN_COST));
+                mr.setcontractCost(rs.getDouble(CONTRACT_COST));
                 mr.setVersion(rs.getString(VERSION));
-                mr.setAllowance(rs.getFloat(ALLOWANCE));
+                mr.setAllowance(rs.getDouble(ALLOWANCE));
                 mr.setCreator(rs.getString(CREATOR));
+                mr.setOtherName(rs.getString(OTHER_NAME));
+                mr.setOtherValue(rs.getDouble(OTHER_VALUE));
             }
             return mr;
         } catch (SQLException e){
@@ -205,23 +213,25 @@ public class DailyReportService {
 
                 mr.setIdreport(rs.getInt(ID_REPORT));
                 mr.setEmployeename(rs.getString(EMPLOYEE_NAME));
-                mr.setBasicRate(rs.getFloat(BASIC_RATE));
-                mr.setnWorkingDays(rs.getFloat(NO_WORKING_DAYS));
-                mr.setequivalentMonthlyCost(rs.getFloat(EQUIVALENT_MONTHLY_COST));
-                mr.seteffectiveMonthlyRate(rs.getFloat(EFFECTIVE_MONTHLY_RATE));
-                mr.setStatutory_sss(rs.getFloat(STATUTORY_SSS));
-                mr.setStatutory_pagibig(rs.getFloat(STATUTORY_PAGIBIG));
-                mr.setStatutory_philhealth(rs.getFloat(STATUTORY_PHILHEALTH));
-                mr.setStatutory_escola(rs.getFloat(STATUTORY_ECOLA));
-                mr.setTotalStatutory(rs.getFloat(TOTAL_STATUTORY));
-                mr.setThirteenth_month(rs.getFloat(THIRTHEENTH_MONTH_PAY));
-                mr.setIncentive(rs.getFloat(INCENTIVE));
-                mr.setTotal(rs.getFloat(TOTAL_LABOR_COST));
-                mr.setadmin_cost(rs.getFloat(ADMIN_COST));
-                mr.setcontractCost(rs.getFloat(CONTRACT_COST));
+                mr.setBasicRate(rs.getDouble(BASIC_RATE));
+                mr.setnWorkingDays(rs.getInt(NO_WORKING_DAYS));
+                mr.setequivalentMonthlyCost(rs.getDouble(EQUIVALENT_MONTHLY_COST));
+                mr.seteffectiveMonthlyRate(rs.getDouble(EFFECTIVE_MONTHLY_RATE));
+                mr.setStatutory_sss(rs.getDouble(STATUTORY_SSS));
+                mr.setStatutory_pagibig(rs.getDouble(STATUTORY_PAGIBIG));
+                mr.setStatutory_philhealth(rs.getDouble(STATUTORY_PHILHEALTH));
+                mr.setStatutory_escola(rs.getDouble(STATUTORY_ECOLA));
+                mr.setTotalStatutory(rs.getDouble(TOTAL_STATUTORY));
+                mr.setThirteenth_month(rs.getDouble(THIRTHEENTH_MONTH_PAY));
+                mr.setIncentive(rs.getDouble(INCENTIVE));
+                mr.setTotal(rs.getDouble(TOTAL_LABOR_COST));
+                mr.setadmin_cost(rs.getDouble(ADMIN_COST));
+                mr.setcontractCost(rs.getDouble(CONTRACT_COST));
                 mr.setVersion(rs.getString(VERSION));
-                mr.setAllowance(rs.getFloat(ALLOWANCE));
+                mr.setAllowance(rs.getDouble(ALLOWANCE));
                 mr.setCreator(rs.getString(CREATOR));
+                mr.setOtherName(rs.getString(OTHER_NAME));
+                mr.setOtherValue(rs.getDouble(OTHER_VALUE));
             }
             return mr;
         } catch (SQLException e){

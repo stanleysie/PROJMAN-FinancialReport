@@ -19,7 +19,8 @@ public class Master {
     private ProvinceReader provinceReader;
 
     // data needed for generating new pdf
-    private String fileName, fileDestination, version, fileTime;
+    private String fileName, fileDestination, version, fileTime, otherName;
+    private double otherValue;
 
     private ObservableList<Employee> employees;
     private ObservableList<Province> provinces;
@@ -167,11 +168,15 @@ public class Master {
         }
         if(daily != null) {
             setVersion(((DailyReport) daily).getVersion());
-            setFileName(((DailyReport) daily).getEmployeename().replace(", ", "_"));
+            setFileName(((DailyReport) daily).getEmployeename().replace(", ", "_") + "-" + getVersion());
+            setOtherName(((DailyReport) daily).getOtherName());
+            setOtherValue(((DailyReport) daily).getOtherValue());
             currentReport = daily;
         } else if(monthly != null) {
             setVersion(((MonthlyReport) monthly).getVersion());
-            setFileName(((MonthlyReport) monthly).getEmployeename().replace(", ", "_"));
+            setFileName(((MonthlyReport) monthly).getEmployeename().replace(", ", "_") + "-" + getVersion());
+            setOtherName(((MonthlyReport) monthly).getOtherName());
+            setOtherValue(((MonthlyReport) monthly).getOtherValue());
             currentReport = monthly;
         }
     }
@@ -251,4 +256,20 @@ public class Master {
     public String getFileTime() { return fileTime; }
 
     public void setFileTime(String fileTime) { this.fileTime = fileTime; }
+
+    public String getOtherName() {
+        return otherName;
+    }
+
+    public void setOtherName(String otherName) {
+        this.otherName = otherName;
+    }
+
+    public double getOtherValue() {
+        return otherValue;
+    }
+
+    public void setOtherValue(double otherValue) {
+        this.otherValue = otherValue;
+    }
 }

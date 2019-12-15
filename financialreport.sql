@@ -39,7 +39,7 @@ CREATE TABLE `account` (
 
 LOCK TABLES `account` WRITE;
 /*!40000 ALTER TABLE `account` DISABLE KEYS */;
-INSERT INTO `account` VALUES (1,'admin','admin','admin');
+INSERT INTO `account` VALUES (1,'admin','admin','admin'),(2,'stanleysie','stanley','staff');
 /*!40000 ALTER TABLE `account` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -53,23 +53,25 @@ DROP TABLE IF EXISTS `daily_report`;
 CREATE TABLE `daily_report` (
   `idreport` int(11) NOT NULL,
   `employeename` varchar(45) DEFAULT NULL,
-  `basic_rate` float DEFAULT NULL,
-  `no_working_days` float DEFAULT NULL,
-  `equivalent_monthly_cost` float DEFAULT NULL,
-  `effective_monthly_rate` float DEFAULT NULL,
-  `statutory_sss` float DEFAULT NULL,
-  `statutory_pagibig` float DEFAULT NULL,
-  `statutory_philhealth` float DEFAULT NULL,
-  `statutory_ecola` float DEFAULT NULL,
-  `total_statutory` float DEFAULT NULL,
-  `13th_month` float DEFAULT NULL,
-  `incentive` float DEFAULT NULL,
-  `total_labor_cost` float DEFAULT NULL,
-  `admin_cost` float DEFAULT NULL,
-  `contract_cost` float DEFAULT NULL,
+  `basic_rate` double DEFAULT NULL,
+  `no_working_days` int(11) DEFAULT NULL,
+  `equivalent_monthly_cost` double DEFAULT NULL,
+  `effective_monthly_rate` double DEFAULT NULL,
+  `statutory_sss` double DEFAULT NULL,
+  `statutory_pagibig` double DEFAULT NULL,
+  `statutory_philhealth` double DEFAULT NULL,
+  `statutory_ecola` double DEFAULT NULL,
+  `total_statutory` double DEFAULT NULL,
+  `13th_month` double DEFAULT NULL,
+  `incentive` double DEFAULT NULL,
+  `total_labor_cost` double DEFAULT NULL,
+  `admin_cost` double DEFAULT NULL,
+  `contract_cost` double DEFAULT NULL,
   `version` varchar(45) DEFAULT NULL,
-  `allowance` float DEFAULT NULL,
+  `allowance` double DEFAULT NULL,
   `creator` varchar(200) DEFAULT NULL,
+  `other_name` varchar(200) DEFAULT NULL,
+  `other_value` double DEFAULT NULL,
   PRIMARY KEY (`idreport`),
   KEY `emplyeename_idx` (`employeename`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -81,6 +83,7 @@ CREATE TABLE `daily_report` (
 
 LOCK TABLES `daily_report` WRITE;
 /*!40000 ALTER TABLE `daily_report` DISABLE KEYS */;
+INSERT INTO `daily_report` VALUES (1,'Felongco, Silverio Gil Tansiongco',537,314,15222.458333333334,14051.5,1120,100,14.7675,10,1244.7675,44.75,0,16467.225833333334,12,18443.292933333334,'20191215-D1-1',0,'Stanley','MISC',10);
 /*!40000 ALTER TABLE `daily_report` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -108,7 +111,7 @@ CREATE TABLE `employee` (
 
 LOCK TABLES `employee` WRITE;
 /*!40000 ALTER TABLE `employee` DISABLE KEYS */;
-INSERT INTO `employee` VALUES (1,'Silverio Gil Tansiongco','Felongco','NCR','2326 Juan Luna Street Tondo 1000',1),(2,'Gunnar Dominik Subrabas','Navidad','CAT','5/F B And L Building116 Legaspi Street, Legaspi Village 1200',1),(3,'Justyn Riley Quiambao','Zoleta','ARMM','99 Maria Clara St. Sta Mesa Heights, 1220',1),(4,'Daniela Krista Kulikutan','Quezada','Region I','4J Lopez De Leon Street Cor. Topaz Street Green Heights Village Sucat 1700',1),(5,'Faro Clinton Tiong','Tanilon','Region IV-A','721-A Aurora Boulevard New Manila 1112',1),(6,'Connor Lance Uson','Bristol','Region III','437 Quintin Paredes Street Binondo 1000',1),(7,'Araceli Chrysann Chengco','Jacinto','Region X','8/F Pryce Center 1179 Don Chino Roces Avenue Corner Bagtikan Street 1286',1),(8,'Rio Eugene Morgan','Fajardo','Region II','Jennys Avenue, Pasencia Cruz Compound Brgy. Maybunga 1600',1),(9,'Julian Forrest Iitaoka','Reoja','Region XI','100 Einstein Street Cor. Finlandia Street Brgy. San Isidro 1200',1),(10,'Yessenia Margaret Tanhehco','Padilla','Region VIII','150-A Lt. Artiaga Street 1500',1),(11,'Stanley Lawrence','Sie','NCR','De La Salle University, Manila 1004',1);
+INSERT INTO `employee` VALUES (1,'Silverio Gil Tansiongco','Felongco','NCR','2326 Juan Luna Street Tondo 1000',1),(2,'Gunnar Dominik Subrabas','Navidad','CAT','5/F B And L Building116 Legaspi Street, Legaspi Village 1200',1),(3,'Justyn Riley Quiambao','Zoleta','ARMM','99 Maria Clara St. Sta Mesa Heights, 1220',1),(4,'Daniela Krista Kulikutan','Quezada','Region I','4J Lopez De Leon Street Cor. Topaz Street Green Heights Village Sucat 1700',1),(5,'Faro Clinton Tiong','Tanilon','Region IV-A','721-A Aurora Boulevard New Manila 1112',0),(6,'Connor Lance Uson','Bristol','Region III','437 Quintin Paredes Street Binondo 1000',1),(7,'Araceli Chrysann Chengco','Jacinto','Region X','8/F Pryce Center 1179 Don Chino Roces Avenue Corner Bagtikan Street 1286',1),(8,'Rio Eugene Morgan','Fajardo','Region II','Jennys Avenue, Pasencia Cruz Compound Brgy. Maybunga 1600',1),(9,'Julian Forrest Iitaoka','Reoja','Region XI','100 Einstein Street Cor. Finlandia Street Brgy. San Isidro 1200',1),(10,'Yessenia Margaret Tanhehco','Padilla','Region VIII','150-A Lt. Artiaga Street 1500',1),(11,'Stanley Lawrence','Sie','NCR','De La Salle University, Manila 1004',1);
 /*!40000 ALTER TABLE `employee` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -122,23 +125,25 @@ DROP TABLE IF EXISTS `monthly_report`;
 CREATE TABLE `monthly_report` (
   `idreport` int(11) NOT NULL,
   `employeename` varchar(45) DEFAULT NULL,
-  `basic_rate` float DEFAULT NULL,
-  `no_working_days` float DEFAULT NULL,
-  `equivalent_monthly_cost` float DEFAULT NULL,
-  `effective_monthly_rate` float DEFAULT NULL,
-  `statutory_sss` float DEFAULT NULL,
-  `statutory_pagibig` float DEFAULT NULL,
-  `statutory_philhealth` float DEFAULT NULL,
-  `statutory_ecola` float DEFAULT NULL,
-  `total_statutory` float DEFAULT NULL,
-  `13th_month` float DEFAULT NULL,
-  `incentive` float DEFAULT NULL,
-  `total_labor_cost` float DEFAULT NULL,
-  `admin_cost` float DEFAULT NULL,
-  `contract_cost` float DEFAULT NULL,
+  `basic_rate` double DEFAULT NULL,
+  `no_working_days` int(11) DEFAULT NULL,
+  `equivalent_monthly_cost` double DEFAULT NULL,
+  `effective_monthly_rate` double DEFAULT NULL,
+  `statutory_sss` double DEFAULT NULL,
+  `statutory_pagibig` double DEFAULT NULL,
+  `statutory_philhealth` double DEFAULT NULL,
+  `statutory_ecola` double DEFAULT NULL,
+  `total_statutory` double DEFAULT NULL,
+  `13th_month` double DEFAULT NULL,
+  `incentive` double DEFAULT NULL,
+  `total_labor_cost` double DEFAULT NULL,
+  `admin_cost` double DEFAULT NULL,
+  `contract_cost` double DEFAULT NULL,
   `version` varchar(45) DEFAULT NULL,
-  `allowance` float DEFAULT NULL,
+  `allowance` double DEFAULT NULL,
   `creator` varchar(200) DEFAULT NULL,
+  `other_name` varchar(200) DEFAULT NULL,
+  `other_value` double DEFAULT NULL,
   PRIMARY KEY (`idreport`),
   KEY `emplyeename_idx` (`employeename`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -170,4 +175,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-12-09 19:24:49
+-- Dump completed on 2019-12-15 22:13:32

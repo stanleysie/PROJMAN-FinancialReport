@@ -170,7 +170,7 @@ public class LoadSelect implements View {
         image.scaleToFit(100, 100);
 
         Document document = new Document();
-        String destination = "C:\\Users\\jeffc\\Desktop\\" + master.getFileName() + ".pdf";
+        String destination = "E:\\" + master.getFileName() + ".pdf";
         master.setFileDestination(destination);
         master.setFileName(master.getFileName() + ".pdf");
         writer = PdfWriter.getInstance(document, new FileOutputStream(destination));
@@ -184,13 +184,12 @@ public class LoadSelect implements View {
         para.add(new Chunk(master.getCurrentEmployee().getAddress(), FontFactory.getFont(FontFactory.HELVETICA_BOLD, 11))); // add address
         para.add(Chunk.NEWLINE);
         document.add(para);
-        document.add(NEWLINE);
         PdfPTable table = null;
         if(master.getCurrentReport() instanceof DailyReport) {
-            setData("Daily", master.getCurrentReport().getBasicRate(), Integer.parseInt("" + master.getCurrentReport().getnWorkingDays()), Integer.parseInt("" + master.getCurrentReport().getIncentive()), master.getCurrentReport().getAllowance(), master.getCurrentReport().getadmin_cost());
+            setData("Daily", master.getCurrentReport().getBasicRate(), Integer.parseInt("" + master.getCurrentReport().getnWorkingDays()), Double.parseDouble("" + master.getCurrentReport().getIncentive()), master.getCurrentReport().getAllowance(), master.getCurrentReport().getadmin_cost());
             table = createTable("Daily", Integer.parseInt("" + master.getCurrentReport().getnWorkingDays()));
         } else if(master.getCurrentReport() instanceof MonthlyReport) {
-            setData("Monthly", master.getCurrentReport().getBasicRate(), Integer.parseInt("" + master.getCurrentReport().getnWorkingDays()), Integer.parseInt("" + master.getCurrentReport().getIncentive()), master.getCurrentReport().getAllowance(), master.getCurrentReport().getadmin_cost());
+            setData("Monthly", master.getCurrentReport().getBasicRate(), Integer.parseInt("" + master.getCurrentReport().getnWorkingDays()), Double.parseDouble("" + master.getCurrentReport().getIncentive()), master.getCurrentReport().getAllowance(), master.getCurrentReport().getadmin_cost());
             table = createTable("Monthly", Integer.parseInt("" + master.getCurrentReport().getnWorkingDays()));
         }
         document.add(table);
@@ -229,7 +228,9 @@ public class LoadSelect implements View {
         table.addCell(space);
         addHeader(table, "E. BIZSOLV ADMIN COST", comp.getAdminCost(), comp.getBizsolvAdminCost());
         table.addCell(space);
-        addHeader(table, "F. CONTRACT COST/MONTH", comp.getContractCost());
+        addHeader(table, "F. OTHERS (" + master.getOtherName() + ")", master.getOtherValue());
+        table.addCell(space);
+        addHeader(table, "G. CONTRACT COST/MONTH", (comp.getContractCost() + master.getOtherValue()));
         return table;
     }
 
@@ -404,7 +405,7 @@ public class LoadSelect implements View {
     }
 
 
-    public void setData(String type, float basicSalary, int workingDays, int daysOfIncentiveLeave, float allowance, float admin) {
+    public void setData(String type, double basicSalary, int workingDays, double daysOfIncentiveLeave, double allowance, double admin) {
         if(type.equalsIgnoreCase("daily")) {
             comp = new ComputationDaily(basicSalary, workingDays, daysOfIncentiveLeave, allowance, admin);
         } else if(type.equalsIgnoreCase("monthly")) {
@@ -420,7 +421,7 @@ public class LoadSelect implements View {
         governmental.add(new Data("Associate Benefit-Philhealth", master.getCurrentReport().getStatutory_philhealth()));
         governmental.add(new Data("Associate Benefit-Pag-ibig", master.getCurrentReport().getStatutory_pagibig()));
         governmental.add(new Data("Associate Benefit-EC", master.getCurrentReport().getStatutory_escola()));
-        float sum = 0;
+        double sum = 0;
         for(int i = 0; i < governmental.size(); i++) {
             sum += governmental.get(i).getValue();
         }

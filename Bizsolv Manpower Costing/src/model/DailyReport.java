@@ -1,11 +1,11 @@
 package model;
 
 public class DailyReport implements Report {
-    int idreport;
-    String employeename, version, type, creator;
-    float basicRate, nWorkingDays, equivalentMonthlyCost, effectiveMonthlyRate, statutory_sss,
+    int idreport, nWorkingDays;
+    String employeename, version, type, creator, otherName;
+    double basicRate, equivalentMonthlyCost, effectiveMonthlyRate, statutory_sss,
             statutory_pagibig, statutory_philhealth,statutory_escola, totalStatutory, thirteenth_month,
-            incentive, totalLaborCost, admin_cost, contractCost, allowance;
+            incentive, totalLaborCost, admin_cost, contractCost, allowance, otherValue;
 
     public DailyReport() {
         this.type = "Daily";
@@ -27,113 +27,113 @@ public class DailyReport implements Report {
         this.employeename = employeename;
     }
 
-    public float getBasicRate() {
+    public double getBasicRate() {
         return basicRate;
     }
 
-    public void setBasicRate(float basicRate) {
+    public void setBasicRate(double basicRate) {
         this.basicRate = basicRate;
     }
 
-    public float getnWorkingDays() {
+    public int getnWorkingDays() {
         return nWorkingDays;
     }
 
-    public void setnWorkingDays(float nWorkingDays) {
+    public void setnWorkingDays(int nWorkingDays) {
         this.nWorkingDays = nWorkingDays;
     }
 
-    public float getequivalentMonthlyCost() {
+    public double getequivalentMonthlyCost() {
         return equivalentMonthlyCost;
     }
 
-    public void setequivalentMonthlyCost(float equivalentMonthlyCost) {
+    public void setequivalentMonthlyCost(double equivalentMonthlyCost) {
         this.equivalentMonthlyCost = equivalentMonthlyCost;
     }
 
-    public float geteffectiveMonthlyRate() {
+    public double geteffectiveMonthlyRate() {
         return effectiveMonthlyRate;
     }
 
-    public void seteffectiveMonthlyRate(float effectiveMonthlyRate) {
+    public void seteffectiveMonthlyRate(double effectiveMonthlyRate) {
         this.effectiveMonthlyRate = effectiveMonthlyRate;
     }
 
-    public float getStatutory_sss() {
+    public double getStatutory_sss() {
         return statutory_sss;
     }
 
-    public void setStatutory_sss(float statutory_sss) {
+    public void setStatutory_sss(double statutory_sss) {
         this.statutory_sss = statutory_sss;
     }
 
-    public float getStatutory_pagibig() {
+    public double getStatutory_pagibig() {
         return statutory_pagibig;
     }
 
-    public void setStatutory_pagibig(float statutory_pagibig) {
+    public void setStatutory_pagibig(double statutory_pagibig) {
         this.statutory_pagibig = statutory_pagibig;
     }
 
-    public float getStatutory_philhealth() {
+    public double getStatutory_philhealth() {
         return statutory_philhealth;
     }
 
-    public void setStatutory_philhealth(float statutory_philhealth) {
+    public void setStatutory_philhealth(double statutory_philhealth) {
         this.statutory_philhealth = statutory_philhealth;
     }
 
-    public float getStatutory_escola() {
+    public double getStatutory_escola() {
         return statutory_escola;
     }
 
-    public void setStatutory_escola(float statutory_escola) {
+    public void setStatutory_escola(double statutory_escola) {
         this.statutory_escola = statutory_escola;
     }
 
-    public float getTotalStatutory() {
+    public double getTotalStatutory() {
         return totalStatutory;
     }
 
-    public void setTotalStatutory(float totalStatutory) {
+    public void setTotalStatutory(double totalStatutory) {
         this.totalStatutory = totalStatutory;
     }
 
-    public float getThirteenth_month() {
+    public double getThirteenth_month() {
         return thirteenth_month;
     }
 
-    public void setThirteenth_month(float thirteenth_month) {
+    public void setThirteenth_month(double thirteenth_month) {
         this.thirteenth_month = thirteenth_month;
     }
 
-    public float getIncentive() {
+    public double getIncentive() {
         return incentive;
     }
 
-    public void setIncentive(float incentive) {
+    public void setIncentive(double incentive) {
         this.incentive = incentive;
     }
 
-    public float getTotal() { return totalLaborCost; }
+    public double getTotal() { return totalLaborCost; }
 
-    public void setTotal(float total) {
+    public void setTotal(double total) {
         this.totalLaborCost = total;
     }
 
-    public float getadmin_cost() {
+    public double getadmin_cost() {
         return admin_cost;
     }
 
-    public void setadmin_cost(float admin_cost) {
+    public void setadmin_cost(double admin_cost) {
         this.admin_cost = admin_cost;
     }
 
-    public float getcontractCost() {
+    public double getcontractCost() {
         return contractCost;
     }
 
-    public void setcontractCost(float contractCost) {
+    public void setcontractCost(double contractCost) {
         this.contractCost = contractCost;
     }
 
@@ -145,11 +145,11 @@ public class DailyReport implements Report {
         this.version = version;
     }
 
-    public float getAllowance() {
+    public double getAllowance() {
         return allowance;
     }
 
-    public void setAllowance(float allowance) {
+    public void setAllowance(double allowance) {
         this.allowance = allowance;
     }
 
@@ -168,4 +168,12 @@ public class DailyReport implements Report {
     public void setCreator(String creator) {
         this.creator = creator;
     }
+
+    public String getOtherName() { return otherName; }
+
+    public void setOtherName(String otherName) { this.otherName = otherName; }
+
+    public double getOtherValue() { return otherValue; }
+
+    public void setOtherValue(double otherValue) { this.otherValue = otherValue; }
 }

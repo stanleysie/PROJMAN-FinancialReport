@@ -40,7 +40,7 @@ public class GeneratePDF extends PdfPageEventHelper implements View {
     private Font regular, bold, small;
     private Computation comp;
     private ObservableList<String> rateTypeList, locationList, nameList;
-    private float basicSalary, allowanceValue;
+    private double basicSalary, allowanceValue;
     private int incentiveValue, sssIndex;
 
     private final String MONTH_NAME[] = {"January", "February", "March", "April", "May", "June", "July", "August", "September",
@@ -85,6 +85,11 @@ public class GeneratePDF extends PdfPageEventHelper implements View {
                 incentiveValue = 0;
             } else {
                 incentiveValue = Integer.parseInt(incentiveLeave.getText());
+            }
+            if(othersRate.getText().isEmpty()) {
+                master.setOtherValue(0);
+            } else {
+                master.setOtherValue(Double.parseDouble(othersRate.getText()));
             }
 
             if(done) {
@@ -169,11 +174,12 @@ public class GeneratePDF extends PdfPageEventHelper implements View {
         Path path = Paths.get(ClassLoader.getSystemResource("files/logo.png").toURI());
         Image image = Image.getInstance(path.toAbsolutePath().toString());
         image.scaleToFit(100, 100);
+        setData(rateType.getSelectionModel().getSelectedItem(), basicSalary, Integer.parseInt(workingDays.getText()), incentiveValue, allowanceValue, Double.parseDouble(adminCost.getText()));
 
         Document document = new Document();
-        String destination = "E:\\" + fileName.getText().trim() + ".pdf";
+        String destination = "E:\\" + fileName.getText().trim() + "-" + getVersion() + ".pdf";
         master.setFileDestination(destination);
-        master.setFileName(fileName.getText() + ".pdf");
+        master.setFileName(fileName.getText() + "-" + getVersion() + ".pdf");
         writer = PdfWriter.getInstance(document, new FileOutputStream(destination));
         document.setPageSize(PageSize.LETTER);
         document.open();
@@ -185,7 +191,6 @@ public class GeneratePDF extends PdfPageEventHelper implements View {
         para.add(new Chunk(address.getText(), FontFactory.getFont(FontFactory.HELVETICA_BOLD, 11))); // add address
         para.add(Chunk.NEWLINE);
         document.add(para);
-        setData(rateType.getSelectionModel().getSelectedItem(), basicSalary, Integer.parseInt(workingDays.getText()), incentiveValue, allowanceValue, Float.parseFloat(adminCost.getText()));
         PdfPTable table = createTable(rateType.getSelectionModel().getSelectedItem(), Integer.parseInt(workingDays.getText()));
         document.add(table);
         document.add(NEWLINE);
@@ -214,6 +219,8 @@ public class GeneratePDF extends PdfPageEventHelper implements View {
             daily.setVersion(getVersion());
             daily.setAllowance(allowanceValue);
             daily.setCreator(username.getText().trim());
+            daily.setOtherName(othersName.getText());
+            daily.setOtherValue(Double.parseDouble(othersRate.getText()));
             master.addDailyReport(daily);
         } else if(comp instanceof ComputationMonthly) {
             MonthlyReport monthly = new MonthlyReport();
@@ -231,10 +238,12 @@ public class GeneratePDF extends PdfPageEventHelper implements View {
             monthly.setIncentive(comp.getNumOfDayIncentive());
             monthly.setTotal(comp.getTotalLaborCost());
             monthly.setadmin_cost(comp.getAdminCost());
-            monthly.setcontractCost(comp.getContractCost());
+            monthly.setcontractCost(comp.getContractCost() + master.getOtherValue());
             monthly.setVersion(getVersion());
             monthly.setAllowance(allowanceValue);
             monthly.setCreator(username.getText().trim());
+            monthly.setOtherName(othersName.getText());
+            monthly.setOtherValue(master.getOtherValue());
             master.addMonthlyReport(monthly);
         }
     }
@@ -267,9 +276,9 @@ public class GeneratePDF extends PdfPageEventHelper implements View {
         table.addCell(space);
         addHeader(table, "E. BIZSOLV ADMIN COST", comp.getAdminCost(), comp.getBizsolvAdminCost());
         table.addCell(space);
-        addHeader(table, "F. OTHERS (NAME)", comp.getContractCost());
+        addHeader(table, "F. OTHERS (" + othersName.getText().trim() + ")", master.getOtherValue());
         table.addCell(space);
-        addHeader(table, "G. CONTRACT COST/MONTH", comp.getContractCost());
+        addHeader(table, "G. CONTRACT COST/MONTH", (comp.getContractCost() + master.getOtherValue()));
         return table;
     }
 
@@ -444,7 +453,7 @@ public class GeneratePDF extends PdfPageEventHelper implements View {
     }
 
 
-    public void setData(String type, float basicSalary, int workingDays, int daysOfIncentiveLeave, float allowance, float admin) {
+    public void setData(String type, double basicSalary, int workingDays, double daysOfIncentiveLeave, double allowance, double admin) {
         if(type.equalsIgnoreCase("daily")) {
             comp = new ComputationDaily(basicSalary, workingDays, daysOfIncentiveLeave, allowance, admin);
         } else if(type.equalsIgnoreCase("monthly")) {
@@ -460,7 +469,7 @@ public class GeneratePDF extends PdfPageEventHelper implements View {
         governmental.add(new Data("Associate Benefit-Philhealth", getPhilhealth()));
         governmental.add(new Data("Associate Benefit-Pag-ibig", getPagIbig()));
         governmental.add(new Data("Associate Benefit-EC", getBenefitEC()));
-        float sum = 0;
+        double sum = 0;
         for(int i = 0; i < governmental.size(); i++) {
             sum += governmental.get(i).getValue();
         }
@@ -502,7 +511,7 @@ public class GeneratePDF extends PdfPageEventHelper implements View {
         rateType.getSelectionModel().select(0);
     }
 
-    public float getSSS(float value) {
+    public double getSSS(double value) {
         for(int i = 0; i < master.getSSS().size(); i++) {
             if(value >= master.getSSS().get(i).getMinRange() && value <= master.getSSS().get(i).getMaxRange()) {
                 sssIndex = i;
@@ -512,18 +521,18 @@ public class GeneratePDF extends PdfPageEventHelper implements View {
         return 0;
     }
 
-    public float getBenefitEC() {
+    public double getBenefitEC() {
         return master.getSSS().get(sssIndex).getEC();
     }
 
-    public float getPagIbig() {
+    public double getPagIbig() {
         if(comp.getEffectiveMonthlyRate() * 2/100.0 > 100.0) {
             return 100;
         }
         return comp.getEffectiveMonthlyRate() * 2/100;
     }
 
-    public float getPhilhealth() {
+    public double getPhilhealth() {
         return 275*basicSalary/10000;
     }
 
@@ -538,7 +547,7 @@ public class GeneratePDF extends PdfPageEventHelper implements View {
         master.setFileTime(MONTH_NAME[date.getMonthValue() - 1] + " " + date.getDayOfMonth() + ", " + date.getYear() + " " +
                         String.format("%02d", date.getHour()) + ":" + String.format("%02d", date.getMinute()) + ":" +
                         String.format("%02d", date.getSecond()));
-        master.setVersion("Version " + str);
+        master.setVersion(str);
         return str;
     }
 }
