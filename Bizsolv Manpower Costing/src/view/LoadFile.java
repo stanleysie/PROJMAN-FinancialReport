@@ -24,7 +24,7 @@ import java.util.Optional;
 public class LoadFile implements View {
 
     @FXML
-    private TextField address, adminCost, fileName, workingDays, incentiveLeave, name, locations, allowance;
+    private TextField address, adminCost, fileName, workingDays, incentiveLeave, name, locations, allowance, othersName, othersRate;
     @FXML
     private ComboBox<String> rateType;
     @FXML

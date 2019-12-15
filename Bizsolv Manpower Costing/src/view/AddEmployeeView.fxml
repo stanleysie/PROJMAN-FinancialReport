@@ -12,7 +12,7 @@
 <AnchorPane prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #ef5350;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="500.0" stroke="WHITE" strokeType="INSIDE" width="500.0" />
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="111.0" layoutY="37.0" prefHeight="39.0" prefWidth="279.0" text="Add Employee" textAlignment="CENTER">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="111.0" layoutY="37.0" prefHeight="39.0" prefWidth="279.0" text="Add Client" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="27.0" />
          </font>
