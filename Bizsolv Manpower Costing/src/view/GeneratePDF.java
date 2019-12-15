@@ -25,7 +25,7 @@ import java.time.LocalDateTime;
 public class GeneratePDF extends PdfPageEventHelper implements View {
 
     @FXML
-    private TextField address, adminCost, fileName, workingDays, incentiveLeave, username, allowance;
+    private TextField address, adminCost, fileName, workingDays, incentiveLeave, username, allowance, othersName, othersRate;
     @FXML
     private ComboBox<String> name, locations, rateType;
     @FXML
